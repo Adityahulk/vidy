@@ -67,7 +67,7 @@ export default function Testimonials() {
         </div>
 
         {/* Client Logos */}
-        <div className="mt-16 text-center">
+        <div className="mt-12 text-center">
           <p className="text-slate-400 mb-8 text-sm sm:text-base">Trusted by industry leaders</p>
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 opacity-40">
             <div className="text-slate-400 font-bold text-sm sm:text-lg">Microsoft</div>

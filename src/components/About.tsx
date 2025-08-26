@@ -20,7 +20,7 @@ export default function About() {
               making it accessible, reliable, and scalable for organizations of all sizes.
             </p>
             
-            <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 mt-6">
               <div className="text-center p-4 bg-slate-800/30 rounded-lg">
                 <div className="text-xl sm:text-2xl font-bold text-white mb-1">5+</div>
                 <div className="text-slate-400 text-sm">Years of Research</div>
