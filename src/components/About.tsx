@@ -3,7 +3,7 @@ import { Users, Award, Target, Rocket } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-slate-800 to-slate-900">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-slate-800 to-slate-900">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <div>
