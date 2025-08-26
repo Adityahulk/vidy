@@ -1,0 +1,82 @@
+import React from 'react';
+import { Play, Twitter, Linkedin, Github, Mail } from 'lucide-react';
+
+export default function Footer() {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <footer className="bg-slate-950 border-t border-slate-800">
+      <div className="container mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Brand */}
+          <div className="sm:col-span-2 lg:col-span-2">
+            <div className="flex items-center space-x-2 mb-6">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <Play className="w-4 h-4 text-white" fill="currentColor" />
+              </div>
+              <span className="text-lg sm:text-xl font-bold text-white">VideoAI Pro</span>
+            </div>
+            <p className="text-sm sm:text-base text-slate-400 mb-6 max-w-md">
+              Transforming enterprise video workflows with cutting-edge AI technology. 
+              Trusted by Fortune 500 companies worldwide.
+            </p>
+            <div className="flex space-x-3 sm:space-x-4">
+              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+                <Twitter className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+              </a>
+              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+                <Linkedin className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+              </a>
+              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+                <Github className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+              </a>
+              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+                <Mail className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+              </a>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h3 className="text-white font-semibold mb-4 text-sm sm:text-base">Services</h3>
+            <ul className="space-y-2">
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Video Clipping</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">AI Avatars</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Voice Dubbing</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Video Enhancement</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Custom Solutions</a></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="text-white font-semibold mb-4 text-sm sm:text-base">Company</h3>
+            <ul className="space-y-2">
+              <li><button onClick={() => scrollToSection('about')} className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">About</button></li>
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Careers</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Press</a></li>
+              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Blog</a></li>
+              <li><button onClick={() => scrollToSection('contact')} className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Contact</button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
+          <p className="text-slate-400 text-sm">
+            © 2025 VideoAI Pro. All rights reserved.
+          </p>
+          <div className="flex flex-wrap justify-center space-x-4 sm:space-x-6 mt-4 sm:mt-0">
+            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+            <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Security</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
