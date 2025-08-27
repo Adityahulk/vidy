@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Play } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +31,7 @@ export default function Header() {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <img src="/IMG_0769.jpg" alt="VidSimplify Logo" className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg object-cover" />
+            <Logo className="w-8 h-8 sm:w-10 sm:h-10" />
             <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">VidSimplify</span>
           </div>
 
