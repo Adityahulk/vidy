@@ -87,7 +87,7 @@ export default function Hero() {
               <div className="text-slate-400 text-sm sm:text-base">Videos Processed</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-2">500+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-2">50+</div>
               <div className="text-slate-400 text-sm sm:text-base">Enterprise Clients</div>
             </div>
           </div>
