@@ -22,9 +22,9 @@ const services = [
   },
   {
     icon: Film,
-    title: 'Video Enhancement',
-    description: 'Upscale, stabilize, and enhance video quality using advanced AI algorithms for crystal-clear professional content.',
-    features: ['4K upscaling', 'Stabilization', 'Color correction']
+    title: 'AI Lip-Syncing',
+    description: 'Perfect lip-sync alignment for dubbed content and avatar videos using advanced facial recognition and motion tracking.',
+    features: ['Real-time sync', 'Multi-language support', 'Facial expression matching']
   },
   {
     icon: Zap,
