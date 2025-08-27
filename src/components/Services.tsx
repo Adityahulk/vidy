@@ -77,12 +77,15 @@ export default function Services() {
               )}
               className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"
             >
-              {/* Click here indicator - always visible on mobile, hover on desktop */}
-              <div className="absolute top-3 right-3 opacity-100 transition-opacity duration-300">
-                <span className="text-xs sm:text-xs text-blue-400 font-medium bg-blue-500/10 px-2 py-1 sm:px-1.5 sm:py-0.5 rounded-full">
-                  Tap to explore
+              {/* Attractive click indicator with animation */}
+              <div className="absolute top-3 right-3 opacity-100 group-hover:scale-110 transition-all duration-300">
+                <span className="text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-1.5 rounded-full shadow-lg animate-pulse hover:animate-none">
+                  Click to Explore →
                 </span>
               </div>
+              
+              {/* Subtle glow effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3 sm:mb-0 sm:mr-4 group-hover:scale-110 transition-transform">
@@ -103,6 +106,19 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
+              
+              {/* Bottom call-to-action */}
+              <div className="mt-6 pt-4 border-t border-slate-600/30">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm text-slate-400">Learn more about this service</span>
+                  <div className="flex items-center text-blue-400 group-hover:text-blue-300 transition-colors">
+                    <span className="text-sm font-medium mr-1">Explore</span>
+                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
