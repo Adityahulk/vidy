@@ -83,7 +83,7 @@ export default function Hero() {
               <div className="text-slate-400 text-sm sm:text-base">Uptime Guarantee</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-2">10M+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-2">10k+</div>
               <div className="text-slate-400 text-sm sm:text-base">Videos Processed</div>
             </div>
             <div className="text-center">
