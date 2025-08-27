@@ -26,7 +26,7 @@ export default function About() {
                 <div className="text-slate-400 text-sm">Years of Research</div>
               </div>
               <div className="text-center p-4 bg-slate-800/30 rounded-lg">
-                <div className="text-xl sm:text-2xl font-bold text-white mb-1">50+</div>
+                <div className="text-xl sm:text-2xl font-bold text-white mb-1">10+</div>
                 <div className="text-slate-400 text-sm">AI Engineers</div>
               </div>
             </div>
