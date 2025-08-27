@@ -19,7 +19,7 @@ export default function Footer() {
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <Play className="w-4 h-4 text-white" fill="currentColor" />
               </div>
-              <span className="text-lg sm:text-xl font-bold text-white">VideoAI Pro</span>
+              <span className="text-lg sm:text-xl font-bold text-white">VidSimplify</span>
             </div>
             <p className="text-sm sm:text-base text-slate-400 mb-6 max-w-md">
               Transforming enterprise video workflows with cutting-edge AI technology. 
@@ -68,7 +68,7 @@ export default function Footer() {
 
         <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-slate-400 text-sm">
-            © 2025 VideoAI Pro. All rights reserved.
+            © 2025 VidSimplify. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center space-x-4 sm:space-x-6 mt-4 sm:mt-0">
             <a href="#" className="text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>

@@ -33,7 +33,7 @@ export default function Header() {
             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <Play className="w-4 h-4 text-white" fill="currentColor" />
             </div>
-            <span className="text-lg sm:text-xl font-bold text-white">VideoAI Pro</span>
+            <span className="text-lg sm:text-xl font-bold text-white">VidSimplify</span>
           </div>
 
           {/* Desktop Navigation */}
