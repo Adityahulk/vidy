@@ -16,10 +16,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <Play className="w-4 h-4 text-white" fill="currentColor" />
-              </div>
-              <span className="text-lg sm:text-xl font-bold text-white">VidSimplify</span>
+              <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">VidSimplify</span>
             </div>
             <p className="text-sm sm:text-base text-slate-400 mb-6 max-w-md">
               Transforming enterprise video workflows with cutting-edge AI technology. 
