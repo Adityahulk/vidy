@@ -68,7 +68,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="lg:hidden mt-4 py-4 border-t border-slate-700 bg-slate-900/95 backdrop-blur-md rounded-lg">
+          <div className="lg:hidden mt-4 py-6 px-6 border-t border-slate-700 bg-slate-900/95 backdrop-blur-md rounded-lg">
             <div className="flex flex-col space-y-4">
               <button onClick={() => scrollToSection('services')} className="text-slate-300 hover:text-white transition-colors text-left">
                 Services
