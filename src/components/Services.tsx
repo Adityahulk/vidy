@@ -58,7 +58,14 @@ export default function Services() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
             <Link
-              to={index === 0 ? "/services/long-to-short-clips" : "#"}
+              to={
+                index === 0 ? "/services/long-to-short-clips" :
+                index === 1 ? "/services/ai-avatar-creation" :
+                index === 2 ? "/services/ai-video-dubbing" :
+                index === 3 ? "/services/ai-lip-syncing" :
+                index === 4 ? "/services/automated-editing" :
+                index === 5 ? "/services/custom-solutions" : "#"
+              }
               key={index}
               className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2"
             >
