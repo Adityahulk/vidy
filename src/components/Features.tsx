@@ -65,7 +65,7 @@ export default function Features() {
         </div>
 
         {/* Technology Stack */}
-        <div className="mt-12 text-center">
+        <div className="mt-8 text-center">
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-8">Powered by Advanced AI</h3>
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 opacity-60">
             <div className="text-slate-400 font-semibold text-sm sm:text-base">TensorFlow</div>
