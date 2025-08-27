@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Twitter, Linkedin, Github, Mail } from 'lucide-react';
+import { Play, Instagram, Linkedin, Youtube, Mail } from 'lucide-react';
 import Logo from './Logo';
 
 export default function Footer() {
@@ -26,15 +26,15 @@ export default function Footer() {
             </p>
             <div className="flex space-x-3 sm:space-x-4">
               <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
-                <Twitter className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+                <Instagram className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
               </a>
               <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
                 <Linkedin className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
               </a>
               <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
-                <Github className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
+                <Youtube className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
               </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+              <a href="mailto:support@vidsimplify.com" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
                 <Mail className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
               </a>
             </div>
