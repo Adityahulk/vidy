@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Scissors, User, Volume2, Zap, Film, Wand2 } from 'lucide-react';
 
 const services = [
@@ -56,7 +57,8 @@ export default function Services() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
-            <div 
+            <Link
+              to={index === 0 ? "/services/long-to-short-clips" : "#"}
               key={index}
               className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2"
             >
@@ -79,7 +81,7 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
