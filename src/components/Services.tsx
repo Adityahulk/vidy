@@ -67,8 +67,15 @@ export default function Services() {
                 index === 5 ? "/services/custom-solutions" : "#"
               }
               key={index}
-              className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2"
+              className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2"
             >
+              {/* Click here indicator - appears on hover */}
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-xs text-blue-400 font-medium bg-blue-500/10 px-2 py-1 rounded-full">
+                  Click here
+                </span>
+              </div>
+              
               <div className="flex flex-col sm:flex-row items-start sm:items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3 sm:mb-0 sm:mr-4 group-hover:scale-110 transition-transform">
                   <service.icon className="w-6 h-6 text-white" />
