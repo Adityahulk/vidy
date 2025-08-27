@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Play, Clock, Target, Zap, BarChart3, CheckCircle, Star } from 'lucide-react';
+import { ArrowLeft, Play, Clock, Target, Zap, BarChart3, CheckCircle, Star, Scissors } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
