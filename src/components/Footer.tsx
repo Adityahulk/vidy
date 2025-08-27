@@ -25,13 +25,13 @@ export default function Footer() {
               Trusted by Fortune 500 companies worldwide.
             </p>
             <div className="flex space-x-3 sm:space-x-4">
-              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://www.instagram.com/vidsimplify?igsh=MWhnbXl5ZDVjNXZhMA==" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
                 <Instagram className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
               </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://www.linkedin.com/company/vidsimplify" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
                 <Linkedin className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
               </a>
-              <a href="#" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
+              <a href="https://www.youtube.com/@VidSimplify/videos" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
                 <Youtube className="w-5 h-5 text-slate-400 hover:text-white transition-colors" />
               </a>
               <a href="mailto:support@vidsimplify.com" className="w-10 h-10 bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center justify-center transition-colors">
@@ -60,7 +60,7 @@ export default function Footer() {
               <li><button onClick={() => scrollToSection('about')} className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">About</button></li>
               <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Careers</a></li>
               <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Press</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Blog</a></li>
+              <li><a href="https://vidsimplify.hashnode.dev/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Blog</a></li>
               <li><button onClick={() => scrollToSection('contact')} className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Contact</button></li>
             </ul>
           </div>
