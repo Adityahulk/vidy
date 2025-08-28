@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, Sparkles, Scissors, User, Volume2, Film, Zap, Wand2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Scissors, User, Volume2, Film, Zap, Wand2 } from 'lucide-react';
 
 export default function Hero() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -138,7 +138,10 @@ export default function Hero() {
                 <div className="flex items-center justify-center">
                   
                   {/* Previous Video (Left Side) */}
-                  <div className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out">
+                  <div 
+                    className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80"
+                    onClick={handlePrevVideo}
+                  >
                     <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
                         <div className="absolute top-2 left-2 right-2">
@@ -186,7 +189,10 @@ export default function Hero() {
                   </div>
 
                   {/* Next Video (Right Side) */}
-                  <div className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out">
+                  <div 
+                    className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80"
+                    onClick={handleNextVideo}
+                  >
                     <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
                         <div className="absolute top-2 left-2 right-2">
@@ -211,23 +217,6 @@ export default function Hero() {
 
                 </div>
 
-                {/* Navigation Controls */}
-                <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
-                  <button
-                    onClick={handlePrevVideo}
-                    className="w-14 h-14 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
-                  >
-                    <ChevronLeft className="w-7 h-7" />
-                  </button>
-                </div>
-                <div className="absolute top-1/2 right-2 transform -translate-y-1/2">
-                  <button
-                    onClick={handleNextVideo}
-                    className="w-14 h-14 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
-                  >
-                    <ChevronRight className="w-7 h-7" />
-                  </button>
-                </div>
               </div>
 
               {/* Call to Action */}
