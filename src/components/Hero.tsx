@@ -138,8 +138,8 @@ export default function Hero() {
                 <div className="flex items-center justify-center">
                   
                   {/* Previous Video (Left Side) */}
-                  <div className="w-1/4 opacity-50 transform scale-75 transition-all duration-700 ease-in-out">
-                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden">
+                  <div className="w-1/3 opacity-60 transform scale-90 transition-all duration-700 ease-in-out">
+                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
                         <div className="absolute top-2 left-2 right-2">
                           <div className="flex items-center space-x-2 bg-slate-900/60 backdrop-blur-sm rounded-md p-2">
@@ -152,30 +152,30 @@ export default function Hero() {
                           </div>
                         </div>
                         <div className="text-center">
-                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <prevService.icon className="w-4 h-4 text-white" />
+                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <prevService.icon className="w-8 h-8 text-white" />
                           </div>
-                          <p className="text-slate-400 text-xs">Previous</p>
+                          <p className="text-slate-400 text-sm">Previous</p>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Current Video (Center) */}
-                  <div className="w-1/2 mx-4 transform scale-100 transition-all duration-700 ease-in-out">
+                  <div className="w-2/3 mx-6 transform scale-100 transition-all duration-700 ease-in-out">
                     <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
                         {/* Video Content */}
                         <div className="text-center">
-                          <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                           </div>
                         </div>
                         
                         {/* Progress Bar */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700">
+                        <div className="absolute bottom-0 left-0 right-0 h-2 bg-slate-700">
                           <div 
-                            className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100"
+                            className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100 rounded-full"
                             style={{
                               width: '100%',
                               animation: `progress ${currentService.videoDuration}ms linear`
@@ -187,8 +187,8 @@ export default function Hero() {
                   </div>
 
                   {/* Next Video (Right Side) */}
-                  <div className="w-1/4 opacity-50 transform scale-75 transition-all duration-700 ease-in-out">
-                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden">
+                  <div className="w-1/3 opacity-60 transform scale-90 transition-all duration-700 ease-in-out">
+                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
                         <div className="absolute top-2 left-2 right-2">
                           <div className="flex items-center space-x-2 bg-slate-900/60 backdrop-blur-sm rounded-md p-2">
@@ -201,10 +201,10 @@ export default function Hero() {
                           </div>
                         </div>
                         <div className="text-center">
-                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <nextService.icon className="w-4 h-4 text-white" />
+                          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <nextService.icon className="w-8 h-8 text-white" />
                           </div>
-                          <p className="text-slate-400 text-xs">Next</p>
+                          <p className="text-slate-400 text-sm">Next</p>
                         </div>
                       </div>
                     </div>
@@ -213,20 +213,20 @@ export default function Hero() {
                 </div>
 
                 {/* Navigation Controls */}
-                <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+                <div className="absolute top-1/2 left-2 transform -translate-y-1/2">
                   <button
                     onClick={handlePrevVideo}
-                    className="w-12 h-12 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
+                    className="w-14 h-14 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    <ChevronLeft className="w-7 h-7" />
                   </button>
                 </div>
-                <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+                <div className="absolute top-1/2 right-2 transform -translate-y-1/2">
                   <button
                     onClick={handleNextVideo}
-                    className="w-12 h-12 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
+                    className="w-14 h-14 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    <ChevronRight className="w-7 h-7" />
                   </button>
                 </div>
               </div>
