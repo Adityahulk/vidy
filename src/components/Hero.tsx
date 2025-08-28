@@ -233,36 +233,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Service Thumbnails */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-                {services.map((service, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleVideoSelect(index)}
-                    className={`p-3 rounded-lg border transition-all duration-300 text-left ${
-                      index === currentVideoIndex
-                        ? 'bg-gradient-to-br from-blue-500/20 to-purple-500/20 border-blue-500/50'
-                        : 'bg-slate-800/30 border-slate-700 hover:border-slate-600'
-                    }`}
-                  >
-                    <div className="flex items-center space-x-2 mb-2">
-                      <div className={`w-6 h-6 rounded flex items-center justify-center ${
-                        index === currentVideoIndex
-                          ? 'bg-gradient-to-br from-blue-500 to-purple-600'
-                          : 'bg-slate-700'
-                      }`}>
-                        <service.icon className="w-3 h-3 text-white" />
-                      </div>
-                      {index === currentVideoIndex && isPlaying && (
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      )}
-                    </div>
-                    <h5 className="text-white text-xs font-medium mb-1 leading-tight">{service.title}</h5>
-                    <p className="text-slate-400 text-xs leading-tight">{service.description}</p>
-                  </button>
-                ))}
-              </div>
-
               {/* Call to Action */}
               <div className="text-center mt-8">
                 <p className="text-slate-400 mb-4">Ready to transform your video workflow?</p>
