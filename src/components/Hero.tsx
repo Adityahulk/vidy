@@ -165,30 +165,11 @@ export default function Hero() {
                   <div className="w-1/2 mx-4 transform scale-100 transition-all duration-700 ease-in-out">
                     <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
-                        {/* Service Title Overlay */}
-                        <div className="absolute top-4 left-4 right-4 z-10">
-                          <div className="flex items-center space-x-3 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-slate-700">
-                            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                              <currentService.icon className="w-4 h-4 text-white" />
-                            </div>
-                            <div className="text-left">
-                              <h4 className="text-white font-semibold text-sm">{currentService.title}</h4>
-                              <p className="text-slate-400 text-xs">{currentService.description}</p>
-                            </div>
-                            <div className="text-green-400 text-xs flex items-center ml-auto">
-                              <div className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></div>
-                              Playing
-                            </div>
-                          </div>
-                        </div>
-
                         {/* Video Content */}
                         <div className="text-center">
                           <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                             <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                           </div>
-                          <h4 className="text-xl font-semibold text-white mb-2">{currentService.videoTitle}</h4>
-                          <p className="text-slate-400 text-sm">Playing demo...</p>
                         </div>
                         
                         {/* Progress Bar */}
