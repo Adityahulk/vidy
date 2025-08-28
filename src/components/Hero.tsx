@@ -3,7 +3,7 @@ import { ArrowRight, Play, Sparkles, Scissors, User, Volume2, Film, Zap, Wand2, 
 
 export default function Hero() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -54,21 +54,14 @@ export default function Hero() {
     }
   ];
 
-  // Auto-advance to next video after current video completes
+  // Auto-advance to next video after current video completes - continuous play
   useEffect(() => {
-    if (isPlaying) {
-      const timer = setTimeout(() => {
-        setCurrentVideoIndex((prev) => (prev + 1) % services.length);
-        setIsPlaying(false); // Reset playing state for next video
-      }, services[currentVideoIndex].videoDuration);
+    const timer = setTimeout(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % services.length);
+    }, services[currentVideoIndex].videoDuration);
 
-      return () => clearTimeout(timer);
-    }
-  }, [currentVideoIndex, isPlaying, services]);
-
-  const handlePlayVideo = () => {
-    setIsPlaying(true);
-  };
+    return () => clearTimeout(timer);
+  }, [currentVideoIndex, services]);
 
   const handlePrevVideo = () => {
     setCurrentVideoIndex((prev) => (prev - 1 + services.length) % services.length);
@@ -77,12 +70,10 @@ export default function Hero() {
 
   const handleNextVideo = () => {
     setCurrentVideoIndex((prev) => (prev + 1) % services.length);
-    setIsPlaying(false);
   };
 
   const handleVideoSelect = (index: number) => {
     setCurrentVideoIndex(index);
-    setIsPlaying(false);
   };
 
   const currentService = services[currentVideoIndex];
@@ -169,42 +160,24 @@ export default function Hero() {
                   {/* Video Placeholder */}
                   <div className="text-center">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      {isPlaying ? (
-                        <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                      ) : (
-                        <Play className="w-10 h-10 text-white ml-1" />
-                      )}
+                      <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                     </div>
                     <h4 className="text-xl font-semibold text-white mb-2">{currentService.videoTitle}</h4>
                     <p className="text-slate-400 text-sm">
-                      {isPlaying ? 'Playing demo...' : 'Click to play demo'}
+                      Playing demo...
                     </p>
                   </div>
                   
-                  {/* Play Button Overlay */}
-                  {!isPlaying && (
-                    <div 
-                      className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center"
-                      onClick={handlePlayVideo}
-                    >
-                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                        <Play className="w-8 h-8 text-white ml-1" />
-                      </div>
-                    </div>
-                  )}
-
                   {/* Progress Bar */}
-                  {isPlaying && (
-                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700">
-                      <div 
-                        className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100"
-                        style={{
-                          width: '100%',
-                          animation: `progress ${currentService.videoDuration}ms linear`
-                        }}
-                      ></div>
-                    </div>
-                  )}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700">
+                    <div 
+                      className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100"
+                      style={{
+                        width: '100%',
+                        animation: `progress ${currentService.videoDuration}ms linear`
+                      }}
+                    ></div>
+                  </div>
                 </div>
 
                 {/* Navigation Controls */}
