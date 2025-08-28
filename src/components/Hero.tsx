@@ -163,21 +163,6 @@ export default function Hero() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                    <Play className="w-8 h-8 text-white ml-1" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mt-12 sm:mt-16 pt-12 sm:pt-16 border-t border-slate-700 px-4 sm:px-0">
