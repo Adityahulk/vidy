@@ -145,34 +145,27 @@ export default function Hero() {
 
               {/* Main Video Display */}
               <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden mb-6">
-                {/* Service Info Header */}
-                <div className="bg-slate-900/80 backdrop-blur-sm p-4 border-b border-slate-700">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <currentService.icon className="w-5 h-5 text-white" />
+                {/* Video Area */}
+                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
+                  {/* Service Title Overlay */}
+                  <div className="absolute top-4 left-4 right-4 z-10">
+                    <div className="flex items-center space-x-3 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-slate-700">
+                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <currentService.icon className="w-4 h-4 text-white" />
                       </div>
                       <div className="text-left">
-                        <h4 className="text-white font-semibold">{currentService.title}</h4>
-                        <p className="text-slate-400 text-sm">{currentService.description}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-slate-300 text-sm">
-                        {currentVideoIndex + 1} / {services.length}
+                        <h4 className="text-white font-semibold text-sm">{currentService.title}</h4>
+                        <p className="text-slate-400 text-xs">{currentService.description}</p>
                       </div>
                       {isPlaying && (
-                        <div className="text-green-400 text-xs flex items-center mt-1">
+                        <div className="text-green-400 text-xs flex items-center ml-auto">
                           <div className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></div>
                           Playing
                         </div>
                       )}
                     </div>
                   </div>
-                </div>
 
-                {/* Video Area */}
-                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
                   {/* Video Placeholder */}
                   <div className="text-center">
                     <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
