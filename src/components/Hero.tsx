@@ -134,12 +134,12 @@ export default function Hero() {
               </div>
 
               {/* Horizontal Carousel Container */}
-              <div className="relative overflow-hidden rounded-xl max-w-7xl mx-auto">
+              <div className="relative overflow-hidden rounded-xl">
                 <div className="flex items-center justify-center">
                   
                   {/* Previous Video (Left Side) */}
                   <div 
-                    className="w-1/5 lg:w-1/4 opacity-40 transform scale-75 lg:scale-85 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80 lg:hover:scale-90"
+                    className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80"
                     onClick={handlePrevVideo}
                   >
                     <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
@@ -165,7 +165,7 @@ export default function Hero() {
                   </div>
 
                   {/* Current Video (Center) */}
-                  <div className="w-3/5 lg:w-1/2 mx-2 lg:mx-4 transform scale-100 transition-all duration-700 ease-in-out">
+                  <div className="w-2/3 mx-2 transform scale-100 transition-all duration-700 ease-in-out">
                     <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
                       <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
                         {/* Video Content */}
@@ -190,7 +190,7 @@ export default function Hero() {
 
                   {/* Next Video (Right Side) */}
                   <div 
-                    className="w-1/5 lg:w-1/4 opacity-40 transform scale-75 lg:scale-85 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80 lg:hover:scale-90"
+                    className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80"
                     onClick={handleNextVideo}
                   >
                     <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
