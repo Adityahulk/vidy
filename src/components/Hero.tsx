@@ -3,7 +3,6 @@ import { ArrowRight, Play, Sparkles, Scissors, User, Volume2, Film, Zap, Wand2, 
 
 export default function Hero() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -54,7 +53,7 @@ export default function Hero() {
     }
   ];
 
-  // Auto-advance to next video after current video completes - continuous play
+  // Auto-advance to next video after current video completes
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentVideoIndex((prev) => (prev + 1) % services.length);
@@ -65,18 +64,18 @@ export default function Hero() {
 
   const handlePrevVideo = () => {
     setCurrentVideoIndex((prev) => (prev - 1 + services.length) % services.length);
-    setIsPlaying(false);
   };
 
   const handleNextVideo = () => {
     setCurrentVideoIndex((prev) => (prev + 1) % services.length);
   };
 
-  const handleVideoSelect = (index: number) => {
-    setCurrentVideoIndex(index);
-  };
+  const getPrevIndex = () => (currentVideoIndex - 1 + services.length) % services.length;
+  const getNextIndex = () => (currentVideoIndex + 1) % services.length;
 
   const currentService = services[currentVideoIndex];
+  const prevService = services[getPrevIndex()];
+  const nextService = services[getNextIndex()];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -126,75 +125,127 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Video Carousel Section */}
+          {/* Horizontal Sliding Video Carousel */}
           <div id="demo-video" className="mt-16 sm:mt-20">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <div className="text-center mb-8">
                 <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">See Our AI Solutions in Action</h3>
                 <p className="text-slate-400">Experience each service with dedicated demo videos</p>
               </div>
 
-              {/* Main Video Display */}
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden mb-6">
-                {/* Video Area */}
-                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
-                  {/* Service Title Overlay */}
-                  <div className="absolute top-4 left-4 right-4 z-10">
-                    <div className="flex items-center space-x-3 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-slate-700">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <currentService.icon className="w-4 h-4 text-white" />
-                      </div>
-                      <div className="text-left">
-                        <h4 className="text-white font-semibold text-sm">{currentService.title}</h4>
-                        <p className="text-slate-400 text-xs">{currentService.description}</p>
-                      </div>
-                      {isPlaying && (
-                        <div className="text-green-400 text-xs flex items-center ml-auto">
-                          <div className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></div>
-                          Playing
+              {/* Horizontal Carousel Container */}
+              <div className="relative overflow-hidden rounded-xl">
+                <div className="flex items-center justify-center">
+                  
+                  {/* Previous Video (Left Side) */}
+                  <div className="w-1/4 opacity-50 transform scale-75 transition-all duration-700 ease-in-out">
+                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden">
+                      <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
+                        <div className="absolute top-2 left-2 right-2">
+                          <div className="flex items-center space-x-2 bg-slate-900/60 backdrop-blur-sm rounded-md p-2">
+                            <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded flex items-center justify-center">
+                              <prevService.icon className="w-2 h-2 text-white" />
+                            </div>
+                            <div className="text-left">
+                              <h4 className="text-white font-medium text-xs">{prevService.title}</h4>
+                            </div>
+                          </div>
                         </div>
-                      )}
+                        <div className="text-center">
+                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <prevService.icon className="w-4 h-4 text-white" />
+                          </div>
+                          <p className="text-slate-400 text-xs">Previous</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Video Placeholder */}
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                  {/* Current Video (Center) */}
+                  <div className="w-1/2 mx-4 transform scale-100 transition-all duration-700 ease-in-out">
+                    <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
+                      <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
+                        {/* Service Title Overlay */}
+                        <div className="absolute top-4 left-4 right-4 z-10">
+                          <div className="flex items-center space-x-3 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-slate-700">
+                            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                              <currentService.icon className="w-4 h-4 text-white" />
+                            </div>
+                            <div className="text-left">
+                              <h4 className="text-white font-semibold text-sm">{currentService.title}</h4>
+                              <p className="text-slate-400 text-xs">{currentService.description}</p>
+                            </div>
+                            <div className="text-green-400 text-xs flex items-center ml-auto">
+                              <div className="w-2 h-2 bg-green-400 rounded-full mr-1 animate-pulse"></div>
+                              Playing
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Video Content */}
+                        <div className="text-center">
+                          <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                          </div>
+                          <h4 className="text-xl font-semibold text-white mb-2">{currentService.videoTitle}</h4>
+                          <p className="text-slate-400 text-sm">Playing demo...</p>
+                        </div>
+                        
+                        {/* Progress Bar */}
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700">
+                          <div 
+                            className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100"
+                            style={{
+                              width: '100%',
+                              animation: `progress ${currentService.videoDuration}ms linear`
+                            }}
+                          ></div>
+                        </div>
+                      </div>
                     </div>
-                    <h4 className="text-xl font-semibold text-white mb-2">{currentService.videoTitle}</h4>
-                    <p className="text-slate-400 text-sm">
-                      Playing demo...
-                    </p>
                   </div>
-                  
-                  {/* Progress Bar */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700">
-                    <div 
-                      className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100"
-                      style={{
-                        width: '100%',
-                        animation: `progress ${currentService.videoDuration}ms linear`
-                      }}
-                    ></div>
+
+                  {/* Next Video (Right Side) */}
+                  <div className="w-1/4 opacity-50 transform scale-75 transition-all duration-700 ease-in-out">
+                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-lg overflow-hidden">
+                      <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
+                        <div className="absolute top-2 left-2 right-2">
+                          <div className="flex items-center space-x-2 bg-slate-900/60 backdrop-blur-sm rounded-md p-2">
+                            <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded flex items-center justify-center">
+                              <nextService.icon className="w-2 h-2 text-white" />
+                            </div>
+                            <div className="text-left">
+                              <h4 className="text-white font-medium text-xs">{nextService.title}</h4>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-center">
+                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <nextService.icon className="w-4 h-4 text-white" />
+                          </div>
+                          <p className="text-slate-400 text-xs">Next</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+
                 </div>
 
                 {/* Navigation Controls */}
                 <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
                   <button
                     onClick={handlePrevVideo}
-                    className="w-10 h-10 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors"
+                    className="w-12 h-12 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
                   >
-                    <ChevronLeft className="w-5 h-5" />
+                    <ChevronLeft className="w-6 h-6" />
                   </button>
                 </div>
                 <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
                   <button
                     onClick={handleNextVideo}
-                    className="w-10 h-10 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors"
+                    className="w-12 h-12 bg-slate-900/80 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center text-white hover:bg-slate-800 transition-colors shadow-lg"
                   >
-                    <ChevronRight className="w-5 h-5" />
+                    <ChevronRight className="w-6 h-6" />
                   </button>
                 </div>
               </div>
