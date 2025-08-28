@@ -1,10 +1,49 @@
 import React from 'react';
-import { ArrowRight, Play, Sparkles } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, Scissors, User, Volume2, Film, Zap, Wand2 } from 'lucide-react';
 
 export default function Hero() {
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const services = [
+    {
+      icon: Scissors,
+      title: 'Long-Form to Short Clips',
+      description: 'AI extracts the most engaging moments from long videos',
+      videoTitle: 'Smart Content Extraction Demo'
+    },
+    {
+      icon: User,
+      title: 'AI Avatar Creation',
+      description: 'Generate lifelike avatars with natural expressions',
+      videoTitle: 'Photorealistic Avatar Demo'
+    },
+    {
+      icon: Volume2,
+      title: 'AI Video Dubbing',
+      description: 'Professional voice cloning in 50+ languages',
+      videoTitle: 'Multilingual Dubbing Demo'
+    },
+    {
+      icon: Film,
+      title: 'AI Lip-Syncing',
+      description: 'Perfect audio-visual synchronization',
+      videoTitle: 'Precision Lip-Sync Demo'
+    },
+    {
+      icon: Zap,
+      title: 'Automated Editing',
+      description: 'Intelligent editing with professional decisions',
+      videoTitle: 'Smart Editing Demo'
+    },
+    {
+      icon: Wand2,
+      title: 'Custom Solutions',
+      description: 'Tailored AI solutions for enterprise needs',
+      videoTitle: 'Enterprise Integration Demo'
+    }
+  ];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -57,14 +96,78 @@ export default function Hero() {
           {/* Demo Video Section */}
           <div id="demo-video" className="mt-16 sm:mt-20">
             <div className="max-w-4xl mx-auto">
-              <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Play className="w-10 h-10 text-white ml-1" />
+              
+              {/* Video Carousel */}
+              <div className="relative overflow-hidden rounded-xl">
+                <div className="flex animate-slide-infinite">
+                  {/* Duplicate services array for seamless loop */}
+                  {[...services, ...services].map((service, index) => (
+                    <div key={index} className="flex-shrink-0 w-full">
+                      <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden mx-2">
+                        <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
+                          {/* Service Info Overlay */}
+                          <div className="absolute top-4 left-4 right-4 z-10">
+                            <div className="flex items-center space-x-3 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3">
+                              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <service.icon className="w-5 h-5 text-white" />
+                              </div>
+                              <div className="min-w-0">
+                                <h4 className="text-white font-semibold text-sm truncate">{service.title}</h4>
+                                <p className="text-slate-400 text-xs truncate">{service.description}</p>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Video Placeholder */}
+                          <div className="text-center">
+                            <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                              <Play className="w-10 h-10 text-white ml-1" />
+                            </div>
+                            <h4 className="text-xl font-semibold text-white mb-2">{service.videoTitle}</h4>
+                            <p className="text-slate-400 text-sm">Experience {service.title.toLowerCase()}</p>
+                          </div>
+                          
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center">
+                            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                              <Play className="w-8 h-8 text-white ml-1" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">VidSimplify Platform Demo</h3>
-                    <p className="text-slate-400 text-sm">See all our AI video services in action</p>
+                  ))}
+                </div>
+                
+                {/* Gradient Overlays for smooth edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-slate-900 to-transparent pointer-events-none z-10"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-slate-900 to-transparent pointer-events-none z-10"></div>
+              </div>
+              
+              {/* Service Indicators */}
+              <div className="flex justify-center space-x-2 mt-6">
+                {services.map((_, index) => (
+                  <div key={index} className="w-2 h-2 bg-slate-600 rounded-full animate-pulse" style={{animationDelay: `${index * 0.5}s`}}></div>
+                ))}
+              </div>
+              
+              {/* Call to Action */}
+              <div className="text-center mt-8">
+                <p className="text-slate-400 mb-4">Ready to transform your video workflow?</p>
+                <button 
+                  onClick={scrollToContact}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
+                >
+                  Get Started Today
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
                   </div>
                 </div>
                 <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center">
