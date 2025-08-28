@@ -77,13 +77,6 @@ export default function Services() {
               )}
               className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"
             >
-              {/* Attractive click indicator with animation */}
-              <div className="absolute top-3 right-3 opacity-100 group-hover:scale-110 transition-all duration-300">
-                <span className="text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-1.5 rounded-full shadow-lg animate-pulse hover:animate-none">
-                  Click to Explore →
-                </span>
-              </div>
-              
               {/* Subtle glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               
