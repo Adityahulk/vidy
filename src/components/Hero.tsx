@@ -57,7 +57,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentVideoIndex((prev) => (prev + 1) % services.length);
-    }, services[currentVideoIndex].videoDuration);
+    }, services[currentVideoIndex].videoDuration + 100); // Small buffer for smooth transition
 
     return () => clearTimeout(timer);
   }, [currentVideoIndex, services]);
@@ -177,8 +177,7 @@ export default function Hero() {
                           <div 
                             className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100 rounded-full"
                             style={{
-                              width: '100%',
-                              animation: `progress ${currentService.videoDuration}ms linear`
+                              animation: `progress ${currentService.videoDuration}ms linear forwards`
                             }}
                           ></div>
                         </div>
