@@ -103,7 +103,7 @@ export default function Hero() {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-            Revolutionize your content strategy with our enterprise AI platform. 
+            Revolutionize your content strategy with our enterprise AI - create 10x More Video Content at 80% Less Cost. 
             Create short clips, avatars, dubbing, and more, all powered by cutting-edge artificial intelligence.
           </p>
 
