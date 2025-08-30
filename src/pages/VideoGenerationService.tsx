@@ -226,11 +226,11 @@ export default function VideoGenerationService() {
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-500/10 to-purple-500/10 border-y border-blue-500/20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Create Your Avatar?
+            Ready to Generate AI Videos?
           </h2>
           <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-            Start creating photorealistic AI avatars for your business today. 
-            Professional quality, unlimited usage, enterprise security.
+            Start creating complete AI-generated videos with custom avatars and scripts today. 
+            Professional quality, unlimited content creation, enterprise security.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
