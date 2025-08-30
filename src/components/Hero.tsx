@@ -19,7 +19,7 @@ export default function Hero() {
     {
       icon: User,
       title: 'AI Video Generation',
-      description: 'Create complete videos with AI avatars speaking your script',
+      description: 'Create complete videos with AI avatars speaking your script with natural gestures',
       videoTitle: 'AI Video Generation Demo',
       videoDuration: 10000 // 10 seconds demo
     },

@@ -13,8 +13,8 @@ const services = [
   {
     icon: User,
     title: 'AI Video Generation',
-    description: 'Create complete videos with AI avatars speaking your script. Perfect for advertisements, content creation, and corporate communications.',
-    features: ['Script-to-video generation', 'Custom avatar design', 'Voice synthesis & lip-sync']
+    description: 'Create complete videos with AI avatars speaking your script with natural hand gestures. Perfect for advertisements, content creation, and corporate communications.',
+    features: ['Script-to-video generation', 'Custom avatar design', 'Voice synthesis & hand gestures']
   },
   {
     icon: Volume2,

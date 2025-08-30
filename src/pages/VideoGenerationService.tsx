@@ -41,7 +41,7 @@ export default function VideoGenerationService() {
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-              Create complete videos with AI avatars speaking your script with natural voice and gestures. 
+              Create complete videos with AI avatars speaking your script with natural voice and hand gestures. 
               Perfect for advertisements, content creation, training, and personalized communications at scale.
             </p>
 
@@ -114,7 +114,7 @@ export default function VideoGenerationService() {
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
               <h3 className="text-xl font-bold text-white mb-4">AI Processing</h3>
-              <p className="text-slate-400">Our AI creates the avatar, generates natural voice, and synchronizes everything perfectly.</p>
+              <p className="text-slate-400">Our AI creates the avatar, generates natural voice, adds hand gestures, and synchronizes everything perfectly.</p>
             </div>
 
             <div className="text-center">
@@ -122,7 +122,7 @@ export default function VideoGenerationService() {
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Complete Video</h3>
-              <p className="text-slate-400">Receive a complete video with your avatar speaking the script with natural voice and gestures.</p>
+              <p className="text-slate-400">Receive a complete video with your avatar speaking the script with natural voice and hand gestures.</p>
             </div>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function VideoGenerationService() {
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
               <Zap className="w-8 h-8 text-purple-500 mb-4" />
               <h3 className="text-lg font-semibold text-white mb-2">Script-to-Video</h3>
-              <p className="text-slate-400 text-sm">Transform any script into a complete video with natural voice synthesis and gestures.</p>
+              <p className="text-slate-400 text-sm">Transform any script into a complete video with natural voice synthesis and hand gestures.</p>
             </div>
 
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
@@ -164,8 +164,8 @@ export default function VideoGenerationService() {
 
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
               <CheckCircle className="w-8 h-8 text-purple-500 mb-4" />
-              <h3 className="text-lg font-semibold text-white mb-2">Voice & Emotion Control</h3>
-              <p className="text-slate-400 text-sm">Fine-tune voice tone and emotional expressions to match your content's message.</p>
+              <h3 className="text-lg font-semibold text-white mb-2">Natural Hand Gestures</h3>
+              <p className="text-slate-400 text-sm">AI generates contextual hand movements and gestures that match the spoken content naturally.</p>
             </div>
 
             <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
