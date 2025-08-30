@@ -45,7 +45,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4 text-sm sm:text-base">Services</h3>
             <ul className="space-y-2">
               <li><a href="/services/long-to-short-clips" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Long-Form to Short Clips</a></li>
-              <li><a href="/services/ai-video-generation" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">AI Video Generation</a></li>
+              <li><a href="/services/personality-clone" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Personality Clone</a></li>
               <li><a href="/services/ai-video-dubbing" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">AI Video Dubbing</a></li>
               <li><a href="/services/ai-lip-syncing" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">AI Lip-Syncing</a></li>
               <li><a href="/services/automated-editing" className="text-slate-400 hover:text-white transition-colors text-sm sm:text-base">Automated Editing</a></li>
