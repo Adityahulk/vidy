@@ -12,9 +12,9 @@ const services = [
   },
   {
     icon: User,
-    title: 'AI Avatar Creation',
-    description: 'Generate lifelike avatars with natural hand gestures and expressions, perfect for corporate training and presentations.',
-    features: ['Realistic hand gestures', 'Custom avatar design', 'Multi-language support']
+    title: 'AI Video Generation',
+    description: 'Create complete videos with AI avatars speaking your script. Perfect for advertisements, content creation, and corporate communications.',
+    features: ['Script-to-video generation', 'Custom avatar design', 'Voice synthesis & lip-sync']
   },
   {
     icon: Volume2,
@@ -69,7 +69,7 @@ export default function Services() {
               key={index}
               onClick={() => handleServiceClick(
                 index === 0 ? "/services/long-to-short-clips" :
-                index === 1 ? "/services/ai-avatar-creation" :
+                index === 1 ? "/services/ai-video-generation" :
                 index === 2 ? "/services/ai-video-dubbing" :
                 index === 3 ? "/services/ai-lip-syncing" :
                 index === 4 ? "/services/automated-editing" :
