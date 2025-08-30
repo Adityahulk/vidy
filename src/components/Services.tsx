@@ -12,9 +12,9 @@ const services = [
   },
   {
     icon: User,
-    title: 'AI Video Generation',
-    description: 'Create complete videos with AI avatars speaking your script with natural hand gestures. Perfect for advertisements, content creation, and corporate communications.',
-    features: ['Script-to-video generation', 'Custom avatar design', 'Voice synthesis & hand gestures']
+    title: 'Personality Clone',
+    description: 'Clone your complete personality including face, voice, gestures, and natural movements. Generate unlimited personalized content from any script while maintaining your authentic presence.',
+    features: ['Complete personality cloning', 'Voice & gesture replication', 'Unlimited content generation']
   },
   {
     icon: Volume2,
@@ -69,7 +69,7 @@ export default function Services() {
               key={index}
               onClick={() => handleServiceClick(
                 index === 0 ? "/services/long-to-short-clips" :
-                index === 1 ? "/services/ai-video-generation" :
+                index === 1 ? "/services/personality-clone" :
                 index === 2 ? "/services/ai-video-dubbing" :
                 index === 3 ? "/services/ai-lip-syncing" :
                 index === 4 ? "/services/automated-editing" :

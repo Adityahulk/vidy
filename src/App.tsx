@@ -9,7 +9,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LongToShortService from './pages/LongToShortService';
-import VideoGenerationService from './pages/VideoGenerationService';
+import PersonalityCloneService from './pages/PersonalityCloneService';
 import DubbingService from './pages/DubbingService';
 import LipSyncService from './pages/LipSyncService';
 import AutoEditingService from './pages/AutoEditingService';
@@ -32,7 +32,7 @@ function App() {
           </>
         } />
         <Route path="/services/long-to-short-clips" element={<LongToShortService />} />
-        <Route path="/services/ai-video-generation" element={<VideoGenerationService />} />
+        <Route path="/services/personality-clone" element={<PersonalityCloneService />} />
         <Route path="/services/ai-video-dubbing" element={<DubbingService />} />
         <Route path="/services/ai-lip-syncing" element={<LipSyncService />} />
         <Route path="/services/automated-editing" element={<AutoEditingService />} />
