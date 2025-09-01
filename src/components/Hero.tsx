@@ -1,81 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Play, Sparkles, Scissors, User, Volume2, Film, Zap, Wand2 } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import InteractiveLongToShortPlayer from './InteractiveLongToShortPlayer';
+import InteractivePersonalityClonePlayer from './InteractivePersonalityClonePlayer';
+import InteractiveDubbingPlayer from './InteractiveDubbingPlayer';
+import InteractiveLipSyncPlayer from './InteractiveLipSyncPlayer';
+import InteractiveAutoEditingPlayer from './InteractiveAutoEditingPlayer';
 
 export default function Hero() {
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [currentDemoIndex, setCurrentDemoIndex] = useState(0);
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const services = [
+  const demos = [
     {
-      icon: Scissors,
       title: 'Long-Form to Short Clips',
       description: 'AI extracts the most engaging moments from long videos',
-      videoTitle: 'Smart Content Extraction Demo',
-      videoDuration: 8000 // 8 seconds demo
+      component: <InteractiveLongToShortPlayer />
     },
     {
-      icon: User,
       title: 'Personality Clone',
-      description: 'Clone your complete personality - face, voice, gestures, and movements to generate unlimited content',
-      videoTitle: 'Personality Clone Demo',
-      videoDuration: 10000 // 10 seconds demo
+      description: 'Clone your complete personality - face, voice, gestures, and movements',
+      component: <InteractivePersonalityClonePlayer />
     },
     {
-      icon: Volume2,
       title: 'AI Video Dubbing',
       description: 'Professional voice cloning in 50+ languages',
-      videoTitle: 'Multilingual Dubbing Demo',
-      videoDuration: 12000 // 12 seconds demo
+      component: <InteractiveDubbingPlayer />
     },
     {
-      icon: Film,
       title: 'AI Lip-Syncing',
       description: 'Perfect audio-visual synchronization',
-      videoTitle: 'Precision Lip-Sync Demo',
-      videoDuration: 9000 // 9 seconds demo
+      component: <InteractiveLipSyncPlayer />
     },
     {
-      icon: Zap,
       title: 'Automated Editing',
       description: 'Intelligent editing with professional decisions',
-      videoTitle: 'Smart Editing Demo',
-      videoDuration: 11000 // 11 seconds demo
-    },
-    {
-      icon: Wand2,
-      title: 'Custom Solutions',
-      description: 'Tailored AI solutions for enterprise needs',
-      videoTitle: 'Enterprise Integration Demo',
-      videoDuration: 7000 // 7 seconds demo
+      component: <InteractiveAutoEditingPlayer />
     }
   ];
 
-  // Auto-advance to next video after current video completes
+  // Auto-advance to next demo every 15 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentVideoIndex((prev) => (prev + 1) % services.length);
-    }, services[currentVideoIndex].videoDuration + 100); // Small buffer for smooth transition
+    const timer = setInterval(() => {
+      setCurrentDemoIndex((prev) => (prev + 1) % demos.length);
+    }, 15000);
 
-    return () => clearTimeout(timer);
-  }, [currentVideoIndex, services]);
+    return () => clearInterval(timer);
+  }, [demos.length]);
 
-  const handlePrevVideo = () => {
-    setCurrentVideoIndex((prev) => (prev - 1 + services.length) % services.length);
+  const handlePrevDemo = () => {
+    setCurrentDemoIndex((prev) => (prev - 1 + demos.length) % demos.length);
   };
 
-  const handleNextVideo = () => {
-    setCurrentVideoIndex((prev) => (prev + 1) % services.length);
+  const handleNextDemo = () => {
+    setCurrentDemoIndex((prev) => (prev + 1) % demos.length);
   };
 
-  const getPrevIndex = () => (currentVideoIndex - 1 + services.length) % services.length;
-  const getNextIndex = () => (currentVideoIndex + 1) % services.length;
-
-  const currentService = services[currentVideoIndex];
-  const prevService = services[getPrevIndex()];
-  const nextService = services[getNextIndex()];
+  const currentDemo = demos[currentDemoIndex];
 
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -117,7 +100,7 @@ export default function Hero() {
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
-              onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => document.getElementById('demo-carousel')?.scrollIntoView({ behavior: 'smooth' })}
               className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-slate-800/70 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"
             >
               <Play className="w-5 h-5" />
@@ -125,109 +108,63 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Horizontal Sliding Video Carousel */}
-          <div id="demo-video" className="mt-16 sm:mt-20">
+          {/* Interactive Demo Carousel */}
+          <div id="demo-carousel" className="mt-16 sm:mt-20">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-8">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">See Our AI Solutions in Action</h3>
-                <p className="text-slate-400">Experience each service with dedicated demo videos</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Interactive AI Demos</h3>
+                <p className="text-slate-400">Experience each service with hands-on interactive demonstrations</p>
               </div>
 
-              {/* Horizontal Carousel Container */}
-              <div className="relative overflow-hidden rounded-xl">
-                <div className="flex items-center justify-center">
-                  
-                  {/* Previous Video (Left Side) */}
-                  <div 
-                    className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80"
-                    onClick={handlePrevVideo}
-                  >
-                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
-                      <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
-                        <div className="absolute top-2 left-2 right-2">
-                          <div className="flex items-center space-x-2 bg-slate-900/60 backdrop-blur-sm rounded-md p-2">
-                            <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded flex items-center justify-center">
-                              <prevService.icon className="w-2 h-2 text-white" />
-                            </div>
-                            <div className="text-left">
-                              <h4 className="text-white font-medium text-xs">{prevService.title}</h4>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <prevService.icon className="w-4 h-4 text-white" />
-                          </div>
-                          <p className="text-slate-400 text-xs">Previous</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              {/* Demo Navigation */}
+              <div className="flex items-center justify-center mb-8">
+                <button
+                  onClick={handlePrevDemo}
+                  className="w-10 h-10 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center hover:bg-slate-800/70 transition-all duration-300 mr-4"
+                >
+                  <ChevronLeft className="w-5 h-5 text-white" />
+                </button>
 
-                  {/* Current Video (Center) */}
-                  <div className="w-2/3 mx-2 transform scale-100 transition-all duration-700 ease-in-out">
-                    <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
-                      <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
-                        {/* Video Content */}
-                        <div className="text-center">
-                          <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                          </div>
-                        </div>
-                        
-                        {/* Progress Bar */}
-                        <div className="absolute bottom-0 left-0 right-0 h-2 bg-slate-700">
-                          <div 
-                            className="h-full bg-gradient-to-r from-blue-500 to-purple-600 transition-all duration-100 rounded-full"
-                            style={{
-                              animation: `progress ${currentService.videoDuration}ms linear forwards`
-                            }}
-                          ></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Next Video (Right Side) */}
-                  <div 
-                    className="w-1/6 opacity-40 transform scale-75 transition-all duration-700 ease-in-out cursor-pointer hover:opacity-60 hover:scale-80"
-                    onClick={handleNextVideo}
-                  >
-                    <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-xl overflow-hidden">
-                      <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center relative">
-                        <div className="absolute top-2 left-2 right-2">
-                          <div className="flex items-center space-x-2 bg-slate-900/60 backdrop-blur-sm rounded-md p-2">
-                            <div className="w-4 h-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded flex items-center justify-center">
-                              <nextService.icon className="w-2 h-2 text-white" />
-                            </div>
-                            <div className="text-left">
-                              <h4 className="text-white font-medium text-xs">{nextService.title}</h4>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <nextService.icon className="w-4 h-4 text-white" />
-                          </div>
-                          <p className="text-slate-400 text-xs">Next</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                <div className="flex items-center space-x-2">
+                  {demos.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentDemoIndex(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        index === currentDemoIndex 
+                          ? 'bg-blue-500' 
+                          : 'bg-slate-600 hover:bg-slate-500'
+                      }`}
+                    />
+                  ))}
                 </div>
 
+                <button
+                  onClick={handleNextDemo}
+                  className="w-10 h-10 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-full flex items-center justify-center hover:bg-slate-800/70 transition-all duration-300 ml-4"
+                >
+                  <ChevronRight className="w-5 h-5 text-white" />
+                </button>
               </div>
 
-              {/* Call to Action */}
-              <div className="text-center mt-8">
-                <p className="text-slate-400 mb-4">Ready to transform your video workflow?</p>
-                <button 
-                  onClick={scrollToContact}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105"
-                >
-                  Get Started Today
-                </button>
+              {/* Current Demo Display */}
+              <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-xl p-6 mb-6">
+                <div className="text-center mb-6">
+                  <h4 className="text-xl font-bold text-white mb-2">{currentDemo.title}</h4>
+                  <p className="text-slate-400">{currentDemo.description}</p>
+                </div>
+                
+                {/* Demo Component */}
+                <div className="transition-all duration-500 ease-in-out">
+                  {currentDemo.component}
+                </div>
+              </div>
+
+              {/* Demo Indicators */}
+              <div className="flex justify-center space-x-4 text-sm text-slate-400">
+                <span>Demo {currentDemoIndex + 1} of {demos.length}</span>
+                <span>•</span>
+                <span>Auto-advancing every 15s</span>
               </div>
             </div>
           </div>
@@ -249,13 +186,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes progress {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-      `}</style>
     </section>
   );
 }
