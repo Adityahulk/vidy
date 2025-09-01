@@ -3,6 +3,7 @@ import { ArrowLeft, Play, Clock, Target, Zap, BarChart3, CheckCircle, Star, Scis
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import InteractiveLongToShortPlayer from '../components/InteractiveLongToShortPlayer';
 
 export default function LongToShortService() {
   return (
@@ -63,25 +64,10 @@ export default function LongToShortService() {
             <div id="demo-video" className="mt-16 sm:mt-20">
               <div className="max-w-4xl mx-auto">
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">See It In Action</h3>
-                  <p className="text-slate-400">Watch how our AI transforms long-form content into engaging short clips</p>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Interactive Demo</h3>
+                  <p className="text-slate-400">Select a video and see how AI creates perfect short clips</p>
                 </div>
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
-                  <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Scissors className="w-10 h-10 text-white" />
-                      </div>
-                      <h4 className="text-xl font-semibold text-white mb-2">Long-to-Short Demo</h4>
-                      <p className="text-slate-400 text-sm">See how we extract perfect clips from long videos</p>
-                    </div>
-                  </div>
-                  <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                      <Play className="w-8 h-8 text-white ml-1" />
-                    </div>
-                  </div>
-                </div>
+                <InteractiveLongToShortPlayer />
               </div>
             </div>
           </div>
