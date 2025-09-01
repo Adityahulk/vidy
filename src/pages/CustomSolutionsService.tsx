@@ -93,44 +93,36 @@ export default function CustomSolutionsService() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-              Our Development Process
+              Our Process
             </h2>
             <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
-              From initial consultation to full deployment, we ensure your custom solution exceeds expectations
+              From consultation to deployment, we work closely with your team to deliver the perfect solution
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-4">Discovery Workshop</h3>
-              <p className="text-slate-400 text-sm">2-week deep dive into your requirements, workflows, and technical infrastructure with our solution architects.</p>
+              <h3 className="text-xl font-bold text-white mb-4">Discovery & Analysis</h3>
+              <p className="text-slate-400">Deep dive into your requirements, existing workflows, and technical infrastructure.</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-4">Prototype Development</h3>
-              <p className="text-slate-400 text-sm">4-week rapid prototyping phase with weekly demos and iterative feedback sessions.</p>
+              <h3 className="text-xl font-bold text-white mb-4">Custom Development</h3>
+              <p className="text-slate-400">Build tailored solutions using our AI platform and your specific requirements.</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-lg font-bold text-white mb-4">Full Development</h3>
-              <p className="text-slate-400 text-sm">8-12 week development cycle with enterprise-grade security, scalability, and performance optimization.</p>
-            </div>
-
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
-                <span className="text-2xl font-bold text-white">4</span>
-              </div>
-              <h3 className="text-lg font-bold text-white mb-4">Deploy & Scale</h3>
-              <p className="text-slate-400 text-sm">Seamless deployment with 24/7 monitoring, ongoing optimization, and dedicated support team.</p>
+              <h3 className="text-xl font-bold text-white mb-4">Deploy & Support</h3>
+              <p className="text-slate-400">Seamless deployment with ongoing support and optimization for your team.</p>
             </div>
           </div>
         </div>
@@ -190,41 +182,82 @@ export default function CustomSolutionsService() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-              Industry Solutions
+              Success Stories by Industry
             </h2>
+            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
+              Real implementations delivering measurable results across diverse industries
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Code className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Media & Entertainment</h3>
-              <p className="text-slate-400 text-sm">Custom solutions for content creators, broadcasters, and streaming platforms.</p>
+              <h3 className="text-lg font-bold text-white mb-3">Media & Entertainment</h3>
+              <p className="text-slate-400 text-sm mb-3">Streaming platforms processing 10,000+ hours monthly with automated dubbing and content localization.</p>
+              <div className="text-xs text-blue-400 font-medium">85% cost reduction</div>
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Settings className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Enterprise Training</h3>
-              <p className="text-slate-400 text-sm">Scalable training solutions for large organizations and educational institutions.</p>
+              <h3 className="text-lg font-bold text-white mb-3">Enterprise Training</h3>
+              <p className="text-slate-400 text-sm mb-3">Fortune 500 companies using AI avatars for consistent global training delivery across 50+ countries.</p>
+              <div className="text-xs text-purple-400 font-medium">90% faster deployment</div>
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Wand2 className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Marketing Agencies</h3>
-              <p className="text-slate-400 text-sm">White-label solutions for agencies serving multiple clients and campaigns.</p>
+              <h3 className="text-lg font-bold text-white mb-3">Marketing Agencies</h3>
+              <p className="text-slate-400 text-sm mb-3">Top agencies using white-label solutions to deliver personalized video campaigns for 500+ clients simultaneously.</p>
+              <div className="text-xs text-green-400 font-medium">300% client capacity increase</div>
             </div>
 
             <div className="text-center">
-              <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <Cog className="w-10 h-10 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">Technology Platforms</h3>
-              <p className="text-slate-400 text-sm">API integrations for SaaS platforms and technology companies.</p>
+              <h3 className="text-lg font-bold text-white mb-3">SaaS Platforms</h3>
+              <p className="text-slate-400 text-sm mb-3">Leading CRM platforms integrating AI video generation for personalized customer communications at scale.</p>
+              <div className="text-xs text-orange-400 font-medium">60% higher engagement</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ROI Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-slate-800">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              Proven ROI
+            </h2>
+            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
+              Our custom solutions deliver measurable business impact from day one
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8">
+              <div className="text-4xl font-bold text-white mb-2">85%</div>
+              <div className="text-blue-400 font-semibold mb-2">Cost Reduction</div>
+              <div className="text-slate-400 text-sm">Average savings on video production costs across all enterprise clients</div>
+            </div>
+
+            <div className="text-center bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8">
+              <div className="text-4xl font-bold text-white mb-2">10x</div>
+              <div className="text-purple-400 font-semibold mb-2">Faster Delivery</div>
+              <div className="text-slate-400 text-sm">Speed improvement in content creation and deployment timelines</div>
+            </div>
+
+            <div className="text-center bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8">
+              <div className="text-4xl font-bold text-white mb-2">99.9%</div>
+              <div className="text-green-400 font-semibold mb-2">Uptime SLA</div>
+              <div className="text-slate-400 text-sm">Enterprise-grade reliability with guaranteed service level agreements</div>
             </div>
           </div>
         </div>
