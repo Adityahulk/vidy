@@ -111,19 +111,10 @@ const demoVideos = [
 
 export default function InteractiveLongToShortPlayer() {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
-  const [selectedClip, setSelectedClip] = useState(selectedVideo.clips[0]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showClips, setShowClips] = useState(false);
 
   const handleVideoSelect = (video: typeof demoVideos[0]) => {
     setSelectedVideo(video);
-    setSelectedClip(video.clips[0]);
-    setShowClips(false);
-    setIsPlaying(false);
-  };
-
-  const handleProcessVideo = () => {
-    setShowClips(true);
     setIsPlaying(false);
   };
 
@@ -144,7 +135,7 @@ export default function InteractiveLongToShortPlayer() {
     <div className="space-y-8">
       {/* Original Video Selection */}
       <div>
-        <h4 className="text-xl font-bold text-white mb-4">1. Select Your Long-Form Video</h4>
+        <h4 className="text-xl font-bold text-white mb-4">Select Your Long-Form Video</h4>
         <div className="relative bg-black rounded-xl overflow-hidden">
           <div className="flex">
             {/* Main Video Player */}
@@ -210,86 +201,73 @@ export default function InteractiveLongToShortPlayer() {
             </div>
           </div>
         </div>
-
-        {/* Process Button */}
-        <div className="text-center mt-6">
-          <button
-            onClick={handleProcessVideo}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 mx-auto"
-          >
-            <Zap className="w-5 h-5" />
-            <span>Generate Short Clips</span>
-          </button>
-        </div>
       </div>
 
-      {/* Generated Clips */}
-      {showClips && (
-        <div>
-          <h4 className="text-xl font-bold text-white mb-4">2. AI-Generated Short Clips</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {selectedVideo.clips.map((clip) => (
-              <div key={clip.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300">
-                {/* Clip Video */}
-                <div className={`bg-black relative ${getAspectRatioClass(clip.aspectRatio)}`}>
-                  <img 
-                    src={clip.thumbnail} 
-                    alt="Clip thumbnail"
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  
-                  {/* Platform Badge */}
-                  <div className="absolute top-2 right-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-2 py-1 rounded text-xs font-medium">
-                    {clip.platform}
-                  </div>
-
-                  {/* Duration Badge */}
-                  <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-sm rounded px-2 py-1">
-                    <span className="text-white text-xs">{clip.duration}</span>
-                  </div>
-
-                  {/* Play Button */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <button className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                      <Play className="w-6 h-6 text-white ml-0.5" />
-                    </button>
-                  </div>
-
-                  {/* Caption Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
-                    <p className="text-white text-sm font-medium text-center">"{clip.caption}"</p>
-                  </div>
+      {/* Generated Clips - Always Visible */}
+      <div>
+        <h4 className="text-xl font-bold text-white mb-4">AI-Generated Short Clips</h4>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {selectedVideo.clips.map((clip) => (
+            <div key={clip.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300">
+              {/* Clip Video */}
+              <div className={`bg-black relative ${getAspectRatioClass(clip.aspectRatio)}`}>
+                <img 
+                  src={clip.thumbnail} 
+                  alt="Clip thumbnail"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                
+                {/* Platform Badge */}
+                <div className="absolute top-2 right-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-2 py-1 rounded text-xs font-medium">
+                  {clip.platform}
                 </div>
 
-                {/* Clip Info */}
-                <div className="p-4">
-                  <h5 className="text-white font-medium mb-2">{clip.title}</h5>
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <span>Aspect: {clip.aspectRatio}</span>
-                    <span>{clip.duration}</span>
-                  </div>
+                {/* Duration Badge */}
+                <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-sm rounded px-2 py-1">
+                  <span className="text-white text-xs">{clip.duration}</span>
+                </div>
+
+                {/* Play Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <button className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <Play className="w-6 h-6 text-white ml-0.5" />
+                  </button>
+                </div>
+
+                {/* Caption Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
+                  <p className="text-white text-sm font-medium text-center">"{clip.caption}"</p>
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Features Highlight */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-              <Target className="w-6 h-6 text-blue-500 mx-auto mb-2" />
-              <p className="text-white text-sm font-medium">Smart Scene Detection</p>
+              {/* Clip Info */}
+              <div className="p-4">
+                <h5 className="text-white font-medium mb-2">{clip.title}</h5>
+                <div className="flex items-center justify-between text-xs text-slate-400">
+                  <span>Aspect: {clip.aspectRatio}</span>
+                  <span>{clip.duration}</span>
+                </div>
+              </div>
             </div>
-            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-              <Clock className="w-6 h-6 text-purple-500 mx-auto mb-2" />
-              <p className="text-white text-sm font-medium">Auto Captions</p>
-            </div>
-            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-              <Zap className="w-6 h-6 text-green-500 mx-auto mb-2" />
-              <p className="text-white text-sm font-medium">Multi-Platform Format</p>
-            </div>
+          ))}
+        </div>
+
+        {/* Features Highlight */}
+        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+            <Target className="w-6 h-6 text-blue-500 mx-auto mb-2" />
+            <p className="text-white text-sm font-medium">Smart Scene Detection</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+            <Clock className="w-6 h-6 text-purple-500 mx-auto mb-2" />
+            <p className="text-white text-sm font-medium">Auto Captions</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+            <Zap className="w-6 h-6 text-green-500 mx-auto mb-2" />
+            <p className="text-white text-sm font-medium">Multi-Platform Format</p>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

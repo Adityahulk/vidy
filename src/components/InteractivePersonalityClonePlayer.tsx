@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Pause, User, Type, Wand2 } from 'lucide-react';
 
 const demoPersonalities = [
@@ -34,20 +34,7 @@ const sampleScripts = [
 export default function InteractivePersonalityClonePlayer() {
   const [selectedPersonality, setSelectedPersonality] = useState(demoPersonalities[0]);
   const [currentScript, setCurrentScript] = useState(sampleScripts[0]);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const [showResult, setShowResult] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const handleGenerate = () => {
-    setIsGenerating(true);
-    setShowResult(false);
-    
-    // Simulate AI processing
-    setTimeout(() => {
-      setIsGenerating(false);
-      setShowResult(true);
-    }, 3000);
-  };
 
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -57,7 +44,7 @@ export default function InteractivePersonalityClonePlayer() {
     <div className="space-y-6">
       {/* Step 1: Select Personality */}
       <div>
-        <h4 className="text-xl font-bold text-white mb-4">1. Select Your Cloned Personality</h4>
+        <h4 className="text-xl font-bold text-white mb-4">Select Your Cloned Personality</h4>
         <div className="grid grid-cols-3 gap-4">
           {demoPersonalities.map((personality) => (
             <button
@@ -94,7 +81,7 @@ export default function InteractivePersonalityClonePlayer() {
 
       {/* Step 2: Input Script */}
       <div>
-        <h4 className="text-xl font-bold text-white mb-4">2. Enter Your Script</h4>
+        <h4 className="text-xl font-bold text-white mb-4">Enter Your Script</h4>
         <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4">
           <div className="flex items-center space-x-2 mb-3">
             <Type className="w-5 h-5 text-blue-400" />
@@ -124,88 +111,60 @@ export default function InteractivePersonalityClonePlayer() {
         </div>
       </div>
 
-      {/* Step 3: Generate Button */}
-      <div className="text-center">
-        <button
-          onClick={handleGenerate}
-          disabled={isGenerating || !currentScript.trim()}
-          className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 mx-auto disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-        >
-          <Wand2 className="w-5 h-5" />
-          <span>{isGenerating ? 'Generating...' : 'Generate Video'}</span>
-        </button>
+      {/* Step 3: Generated Result - Always Visible */}
+      <div>
+        <h4 className="text-xl font-bold text-white mb-4">Your Generated Video</h4>
+        <div className="relative bg-black rounded-xl overflow-hidden">
+          <div className="aspect-video bg-black relative overflow-hidden">
+            <img 
+              src={selectedPersonality.thumbnail} 
+              alt="Generated video"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            
+            {/* Play Controls */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button
+                onClick={handlePlayPause}
+                className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300"
+              >
+                {isPlaying ? (
+                  <Pause className="w-8 h-8 text-white" />
+                ) : (
+                  <Play className="w-8 h-8 text-white ml-1" />
+                )}
+              </button>
+            </div>
+
+            {/* Generated Badge */}
+            <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+              AI Generated
+            </div>
+
+            {/* Script Preview */}
+            <div className="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-sm rounded-lg p-3">
+              <p className="text-white text-sm font-medium">"{currentScript.substring(0, 80)}..."</p>
+              <p className="text-slate-300 text-xs mt-1">Speaking as {selectedPersonality.name}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Result Info */}
+        <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+          <div className="bg-slate-800/30 rounded-lg p-3">
+            <User className="w-5 h-5 text-blue-500 mx-auto mb-1" />
+            <p className="text-white text-sm font-medium">Voice Cloned</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-lg p-3">
+            <Wand2 className="w-5 h-5 text-purple-500 mx-auto mb-1" />
+            <p className="text-white text-sm font-medium">Gestures Matched</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-lg p-3">
+            <Type className="w-5 h-5 text-green-500 mx-auto mb-1" />
+            <p className="text-white text-sm font-medium">Script Delivered</p>
+          </div>
+        </div>
       </div>
-
-      {/* Step 4: Processing Animation */}
-      {isGenerating && (
-        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 text-center">
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-            <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-          </div>
-          <h4 className="text-lg font-semibold text-white mb-2">Cloning Your Personality...</h4>
-          <p className="text-slate-400 text-sm">AI is analyzing voice patterns, facial expressions, and gestures</p>
-          <div className="mt-4 bg-slate-700 rounded-full h-2 overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-full rounded-full animate-pulse" style={{width: '70%'}}></div>
-          </div>
-        </div>
-      )}
-
-      {/* Step 5: Generated Result */}
-      {showResult && (
-        <div>
-          <h4 className="text-xl font-bold text-white mb-4">3. Your Generated Video</h4>
-          <div className="relative bg-black rounded-xl overflow-hidden">
-            <div className="aspect-video bg-black relative overflow-hidden">
-              <img 
-                src={selectedPersonality.thumbnail} 
-                alt="Generated video"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              
-              {/* Play Controls */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button
-                  onClick={handlePlayPause}
-                  className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300"
-                >
-                  {isPlaying ? (
-                    <Pause className="w-8 h-8 text-white" />
-                  ) : (
-                    <Play className="w-8 h-8 text-white ml-1" />
-                  )}
-                </button>
-              </div>
-
-              {/* Generated Badge */}
-              <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                AI Generated
-              </div>
-
-              {/* Script Preview */}
-              <div className="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-sm rounded-lg p-3">
-                <p className="text-white text-sm font-medium">"{currentScript.substring(0, 80)}..."</p>
-                <p className="text-slate-300 text-xs mt-1">Speaking as {selectedPersonality.name}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Result Info */}
-          <div className="mt-4 grid grid-cols-3 gap-4 text-center">
-            <div className="bg-slate-800/30 rounded-lg p-3">
-              <User className="w-5 h-5 text-blue-500 mx-auto mb-1" />
-              <p className="text-white text-sm font-medium">Voice Cloned</p>
-            </div>
-            <div className="bg-slate-800/30 rounded-lg p-3">
-              <Wand2 className="w-5 h-5 text-purple-500 mx-auto mb-1" />
-              <p className="text-white text-sm font-medium">Gestures Matched</p>
-            </div>
-            <div className="bg-slate-800/30 rounded-lg p-3">
-              <Type className="w-5 h-5 text-green-500 mx-auto mb-1" />
-              <p className="text-white text-sm font-medium">Script Delivered</p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
