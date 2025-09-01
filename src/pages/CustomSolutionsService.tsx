@@ -93,36 +93,44 @@ export default function CustomSolutionsService() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-              Our Process
+              Our Development Process
             </h2>
             <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
-              From consultation to deployment, we work closely with your team to deliver the perfect solution
+              From initial consultation to full deployment, we ensure your custom solution exceeds expectations
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-white">1</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Discovery & Analysis</h3>
-              <p className="text-slate-400">Deep dive into your requirements, existing workflows, and technical infrastructure.</p>
+              <h3 className="text-lg font-bold text-white mb-4">Discovery Workshop</h3>
+              <p className="text-slate-400 text-sm">2-week deep dive into your requirements, workflows, and technical infrastructure with our solution architects.</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-white">2</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Custom Development</h3>
-              <p className="text-slate-400">Build tailored solutions using our AI platform and your specific requirements.</p>
+              <h3 className="text-lg font-bold text-white mb-4">Prototype Development</h3>
+              <p className="text-slate-400 text-sm">4-week rapid prototyping phase with weekly demos and iterative feedback sessions.</p>
             </div>
 
             <div className="text-center">
               <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
                 <span className="text-2xl font-bold text-white">3</span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Deploy & Support</h3>
-              <p className="text-slate-400">Seamless deployment with ongoing support and optimization for your team.</p>
+              <h3 className="text-lg font-bold text-white mb-4">Full Development</h3>
+              <p className="text-slate-400 text-sm">8-12 week development cycle with enterprise-grade security, scalability, and performance optimization.</p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+                <span className="text-2xl font-bold text-white">4</span>
+              </div>
+              <h3 className="text-lg font-bold text-white mb-4">Deploy & Scale</h3>
+              <p className="text-slate-400 text-sm">Seamless deployment with 24/7 monitoring, ongoing optimization, and dedicated support team.</p>
             </div>
           </div>
         </div>
