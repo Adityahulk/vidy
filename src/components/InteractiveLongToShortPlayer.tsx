@@ -16,24 +16,6 @@ const demoVideos = [
         aspectRatio: '9:16',
         caption: 'The secret to scaling your business...',
         platform: 'TikTok'
-      },
-      {
-        id: 2,
-        title: 'Best Quote',
-        thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300',
-        duration: '0:30',
-        aspectRatio: '16:9',
-        caption: 'Success is not about luck, it\'s about...',
-        platform: 'YouTube Shorts'
-      },
-      {
-        id: 3,
-        title: 'Action Steps',
-        thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300',
-        duration: '0:45',
-        aspectRatio: '1:1',
-        caption: '3 steps to transform your strategy',
-        platform: 'Instagram'
       }
     ]
   },
@@ -95,15 +77,6 @@ const demoVideos = [
         aspectRatio: '16:9',
         caption: 'The future of technology is here',
         platform: 'YouTube Shorts'
-      },
-      {
-        id: 3,
-        title: 'Call to Action',
-        thumbnail: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=300',
-        duration: '0:22',
-        aspectRatio: '1:1',
-        caption: 'Start implementing this today',
-        platform: 'Instagram'
       }
     ]
   }
@@ -119,11 +92,11 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
   const getGridClass = (clipCount: number) => {
     if (clipCount === 1) {
-      return 'grid-cols-1 max-w-sm mx-auto lg:max-w-none';
+      return 'flex justify-center';
     } else if (clipCount === 2) {
-      return 'grid-cols-1 lg:grid-cols-2 max-w-md mx-auto lg:max-w-none';
+      return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto';
     } else {
-      return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+      return 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
     }
   };
 
@@ -145,6 +118,13 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
       case '16:9': return 'aspect-video';
       default: return 'aspect-video';
     }
+  };
+
+  const getClipWidth = (clipCount: number) => {
+    if (clipCount === 1) {
+      return 'w-80 max-w-sm';
+    }
+    return 'w-full';
   };
 
   return (
@@ -186,7 +166,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
             </div>
 
             {/* Video Selection Sidebar */}
-            <div className="w-32 bg-black/80 flex flex-col space-y-2 p-2">
+            <div className="w-24 sm:w-28 lg:w-32 bg-black/80 flex flex-col space-y-2 p-2">
               {demoVideos.map((video) => (
                 <button
                   key={video.id}
@@ -201,7 +181,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                   <img 
                     src={video.thumbnail} 
                     alt="Video thumbnail"
-                    className="w-full h-20 object-cover"
+                    className="w-full h-16 sm:h-18 lg:h-20 object-cover"
                   />
                   <div className="absolute bottom-1 left-1 bg-black/70 rounded px-1">
                     <span className="text-white text-xs">{video.duration}</span>
@@ -222,12 +202,12 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
       {/* Generated Clips - Always Visible */}
       <div>
-        <h4 className="text-xl font-bold text-white mb-4">AI-Generated Short Clips</h4>
-        <div className={`grid gap-4 lg:gap-6 ${getGridClass(selectedVideo.clips.length)}`}>
+        <h4 className="text-xl font-bold text-white mb-4">AI-Generated Short Clips ({selectedVideo.clips.length} clips)</h4>
+        <div className={getGridClass(selectedVideo.clips.length)}>
           {selectedVideo.clips.map((clip) => (
-            <div key={clip.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 w-full">
+            <div key={clip.id} className={`bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 ${getClipWidth(selectedVideo.clips.length)}`}>
               {/* Clip Video */}
-              <div className={`bg-black relative ${getAspectRatioClass(clip.aspectRatio)} w-full`}>
+              <div className={`bg-black relative ${getAspectRatioClass(clip.aspectRatio)}`}>
                 <img 
                   src={clip.thumbnail} 
                   alt="Clip thumbnail"
@@ -258,7 +238,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
               </div>
 
               {/* Clip Info */}
-              <div className="p-3 lg:p-4">
+              <div className="p-3">
                 <h5 className="text-white font-medium mb-2">{clip.title}</h5>
                 <div className="flex items-center justify-between text-xs text-slate-400">
                   <span>Aspect: {clip.aspectRatio}</span>
@@ -270,7 +250,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
         </div>
 
         {/* Features Highlight */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-slate-800/30 rounded-lg p-4 text-center">
             <Target className="w-6 h-6 text-blue-500 mx-auto mb-2" />
             <p className="text-white text-sm font-medium">Smart Scene Detection</p>
