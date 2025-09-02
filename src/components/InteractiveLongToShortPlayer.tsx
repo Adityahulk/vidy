@@ -298,8 +298,8 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
   const getClipsPerPage = (ratio: string) => {
     switch (ratio) {
-      case '9:16': return 1;
-      case '16:9': return 3;
+      case '9:16': return 2;
+      case '16:9': return 2;
       case '1:1': return 2;
       default: return 1;
     }
@@ -307,8 +307,8 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
   const getGridClass = (ratio: string) => {
     switch (ratio) {
-      case '9:16': return 'flex justify-center';
-      case '16:9': return 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
+      case '9:16': return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto';
+      case '16:9': return 'grid grid-cols-1 sm:grid-cols-2 gap-4';
       case '1:1': return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto';
       default: return 'flex justify-center';
     }
