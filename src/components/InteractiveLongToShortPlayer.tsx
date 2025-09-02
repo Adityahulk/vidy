@@ -109,16 +109,22 @@ const demoVideos = [
   }
 ];
 
-export default function InteractiveLongToShortPlayer() {
+interface InteractiveLongToShortPlayerProps {
+  isPreview?: boolean;
+}
+
+export default function InteractiveLongToShortPlayer({ isPreview = false }: InteractiveLongToShortPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handleVideoSelect = (video: typeof demoVideos[0]) => {
+    if (isPreview) return; // Disable interaction in preview mode
     setSelectedVideo(video);
     setIsPlaying(false);
   };
 
   const handlePlayPause = () => {
+    if (isPreview) return; // Disable interaction in preview mode
     setIsPlaying(!isPlaying);
   };
 
@@ -175,10 +181,11 @@ export default function InteractiveLongToShortPlayer() {
                 <button
                   key={video.id}
                   onClick={() => handleVideoSelect(video)}
+                  disabled={isPreview}
                   className={`relative rounded overflow-hidden transition-all duration-300 ${
                     selectedVideo.id === video.id 
                       ? 'ring-2 ring-blue-500' 
-                      : 'hover:ring-1 hover:ring-white/50'
+                      : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
                   }`}
                 >
                   <img 

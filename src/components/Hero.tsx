@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Play, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import InteractiveLongToShortPlayer from './InteractiveLongToShortPlayer';
 import InteractivePersonalityClonePlayer from './InteractivePersonalityClonePlayer';
 import InteractiveDubbingPlayer from './InteractiveDubbingPlayer';
@@ -8,6 +9,7 @@ import InteractiveAutoEditingPlayer from './InteractiveAutoEditingPlayer';
 
 export default function Hero() {
   const [currentDemoIndex, setCurrentDemoIndex] = useState(0);
+  const navigate = useNavigate();
 
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
@@ -17,27 +19,32 @@ export default function Hero() {
     {
       title: 'Long-Form to Short Clips',
       description: 'AI extracts the most engaging moments from long videos',
-      component: <InteractiveLongToShortPlayer />
+      component: <InteractiveLongToShortPlayer />,
+      path: '/services/long-to-short-clips'
     },
     {
       title: 'Personality Clone',
       description: 'Clone your complete personality - face, voice, gestures, and movements',
-      component: <InteractivePersonalityClonePlayer />
+      component: <InteractivePersonalityClonePlayer />,
+      path: '/services/personality-clone'
     },
     {
       title: 'AI Video Dubbing',
       description: 'Professional voice cloning in 50+ languages',
-      component: <InteractiveDubbingPlayer />
+      component: <InteractiveDubbingPlayer />,
+      path: '/services/ai-video-dubbing'
     },
     {
       title: 'AI Lip-Syncing',
       description: 'Perfect audio-visual synchronization',
-      component: <InteractiveLipSyncPlayer />
+      component: <InteractiveLipSyncPlayer />,
+      path: '/services/ai-lip-syncing'
     },
     {
       title: 'Automated Editing',
       description: 'Intelligent editing with professional decisions',
-      component: <InteractiveAutoEditingPlayer />
+      component: <InteractiveAutoEditingPlayer />,
+      path: '/services/automated-editing'
     }
   ];
 
@@ -56,6 +63,11 @@ export default function Hero() {
 
   const handleNextDemo = () => {
     setCurrentDemoIndex((prev) => (prev + 1) % demos.length);
+  };
+
+  const handleDemoClick = (path: string) => {
+    navigate(path);
+    window.scrollTo(0, 0);
   };
 
   const currentDemo = demos[currentDemoIndex];
@@ -152,11 +164,26 @@ export default function Hero() {
                 <div className="text-center mb-6">
                   <h4 className="text-xl font-bold text-white mb-2">{currentDemo.title}</h4>
                   <p className="text-slate-400">{currentDemo.description}</p>
+                  <button 
+                    onClick={() => handleDemoClick(currentDemo.path)}
+                    className="mt-3 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+                  >
+                    Try Interactive Demo →
+                  </button>
                 </div>
                 
                 {/* Demo Component */}
-                <div className="transition-all duration-500 ease-in-out">
+                <div 
+                  className="transition-all duration-500 ease-in-out cursor-pointer relative"
+                  onClick={() => handleDemoClick(currentDemo.path)}
+                >
                   {currentDemo.component}
+                  {/* Overlay to prevent interaction but allow clicks */}
+                  <div className="absolute inset-0 bg-transparent hover:bg-blue-500/5 transition-colors rounded-lg flex items-center justify-center opacity-0 hover:opacity-100">
+                    <div className="bg-blue-500/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg font-medium">
+                      Click to Try Full Demo
+                    </div>
+                  </div>
                 </div>
               </div>
 

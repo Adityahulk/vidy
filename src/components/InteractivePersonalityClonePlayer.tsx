@@ -31,12 +31,17 @@ const sampleScripts = [
   "Hey everyone! Today I'm excited to share some amazing tips that will transform your workflow."
 ];
 
-export default function InteractivePersonalityClonePlayer() {
+interface InteractivePersonalityClonePlayerProps {
+  isPreview?: boolean;
+}
+
+export default function InteractivePersonalityClonePlayer({ isPreview = false }: InteractivePersonalityClonePlayerProps) {
   const [selectedPersonality, setSelectedPersonality] = useState(demoPersonalities[0]);
   const [currentScript, setCurrentScript] = useState(sampleScripts[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayPause = () => {
+    if (isPreview) return; // Disable interaction in preview mode
     setIsPlaying(!isPlaying);
   };
 
@@ -49,11 +54,12 @@ export default function InteractivePersonalityClonePlayer() {
           {demoPersonalities.map((personality) => (
             <button
               key={personality.id}
-              onClick={() => setSelectedPersonality(personality)}
+              onClick={() => !isPreview && setSelectedPersonality(personality)}
+              disabled={isPreview}
               className={`relative rounded-xl overflow-hidden transition-all duration-300 ${
                 selectedPersonality.id === personality.id 
                   ? 'ring-2 ring-blue-500 scale-105' 
-                  : 'hover:ring-1 hover:ring-white/50 hover:scale-102'
+                  : isPreview ? '' : 'hover:ring-1 hover:ring-white/50 hover:scale-102'
               }`}
             >
               <img 
@@ -89,7 +95,8 @@ export default function InteractivePersonalityClonePlayer() {
           </div>
           <textarea
             value={currentScript}
-            onChange={(e) => setCurrentScript(e.target.value)}
+            onChange={(e) => !isPreview && setCurrentScript(e.target.value)}
+            disabled={isPreview}
             className="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
             rows={3}
             placeholder="Enter your script here..."
@@ -99,7 +106,8 @@ export default function InteractivePersonalityClonePlayer() {
               {sampleScripts.map((script, index) => (
                 <button
                   key={index}
-                  onClick={() => setCurrentScript(script)}
+                  onClick={() => !isPreview && setCurrentScript(script)}
+                  disabled={isPreview}
                   className="text-xs bg-slate-600 hover:bg-slate-500 text-slate-300 px-2 py-1 rounded transition-colors"
                 >
                   Sample {index + 1}
