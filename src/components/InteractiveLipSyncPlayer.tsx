@@ -103,7 +103,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
         </div>
 
         {/* Video Selection Sidebar */}
-        <div className="w-32 bg-black/80 flex flex-col space-y-2 p-2">
+        <div className="w-24 sm:w-28 lg:w-32 bg-black/80 flex flex-col space-y-1.5 lg:space-y-2 p-1.5 lg:p-2">
           {demoVideos.map((video) => (
             <button
               key={video.id}
@@ -118,12 +118,12 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
               <img 
                 src={video.thumbnail} 
                 alt="Video thumbnail"
-                className="w-full h-20 object-cover"
+                className="w-full h-16 sm:h-18 lg:h-20 object-cover"
               />
               {selectedVideo.id === video.id && (
                 <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                    <Play className="w-3 h-3 text-white ml-0.5" />
+                  <div className="w-4 h-4 lg:w-6 lg:h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                    <Play className="w-2 h-2 lg:w-3 lg:h-3 text-white ml-0.5" />
                   </div>
                 </div>
               )}
@@ -133,7 +133,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
       </div>
 
       {/* Features Highlight */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="mt-6 lg:mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-slate-800/30 rounded-lg p-4 text-center">
           <Film className="w-6 h-6 text-blue-500 mx-auto mb-2" />
           <p className="text-white text-sm font-medium">Real-Time Sync</p>

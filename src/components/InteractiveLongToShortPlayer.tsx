@@ -213,9 +213,9 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
       {/* Generated Clips - Always Visible */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">AI-Generated Short Clips</h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {selectedVideo.clips.map((clip) => (
-            <div key={clip.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300">
+            <div key={clip.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 max-w-sm mx-auto lg:max-w-none">
               {/* Clip Video */}
               <div className={`bg-black relative ${getAspectRatioClass(clip.aspectRatio)}`}>
                 <img 
@@ -248,7 +248,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
               </div>
 
               {/* Clip Info */}
-              <div className="p-4">
+              <div className="p-3 lg:p-4">
                 <h5 className="text-white font-medium mb-2">{clip.title}</h5>
                 <div className="flex items-center justify-between text-xs text-slate-400">
                   <span>Aspect: {clip.aspectRatio}</span>
@@ -260,7 +260,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
         </div>
 
         {/* Features Highlight */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="mt-6 lg:mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="bg-slate-800/30 rounded-lg p-4 text-center">
             <Target className="w-6 h-6 text-blue-500 mx-auto mb-2" />
             <p className="text-white text-sm font-medium">Smart Scene Detection</p>
