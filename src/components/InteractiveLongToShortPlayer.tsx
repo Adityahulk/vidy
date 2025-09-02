@@ -44,7 +44,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                 <h4 className="text-2xl font-bold text-white mb-4">Source Video</h4>
                 
                 {/* Video Selection Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                <div className="grid grid-cols-3 gap-4">
                     {demoVideos.map((video) => (
                         <button
                             key={video.id}
@@ -59,12 +59,12 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                             <img 
                                 src={video.thumbnail} 
                                 alt={video.title}
-                                className="w-full h-24 object-cover"
+                                className="w-full h-32 object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
                                 <div className="p-3 w-full">
                                     <h5 className="text-white font-medium text-sm">{video.title}</h5>
-                                    <p className="text-slate-300 text-xs">{video.duration}</p>
+                                    <p className="text-slate-300 text-xs">Duration: {video.duration}</p>
                                 </div>
                             </div>
                             {selectedVideo.id === video.id && (
@@ -77,7 +77,11 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                         </button>
                     ))}
                 </div>
-                
+            </div>
+
+            {/* Main Video Player */}
+            <div>
+                <h4 className="text-xl font-bold text-white mb-4">Selected Video</h4>
                 <div className="relative bg-black rounded-xl overflow-hidden border border-slate-800 flex flex-col md:flex-row">
                     <div className="w-full"><div className="aspect-video bg-black relative">
                         <img src={selectedVideo.thumbnail} alt={selectedVideo.title} className="absolute inset-0 w-full h-full object-cover" />
