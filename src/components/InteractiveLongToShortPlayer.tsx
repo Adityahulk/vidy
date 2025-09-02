@@ -307,7 +307,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
   const getGridClass = (ratio: string) => {
     switch (ratio) {
-      case '9:16': return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto';
+      case '9:16': return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto justify-items-center';
       case '16:9': return 'grid grid-cols-1 sm:grid-cols-2 gap-4';
       case '1:1': return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto';
       default: return 'flex justify-center';
