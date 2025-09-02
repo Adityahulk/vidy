@@ -21,12 +21,17 @@ const audioOptions = [
   { id: 'synced', name: 'Synced Audio', icon: '🔄' }
 ];
 
-export default function InteractiveLipSyncPlayer() {
+interface InteractiveLipSyncPlayerProps {
+  isPreview?: boolean;
+}
+
+export default function InteractiveLipSyncPlayer({ isPreview = false }: InteractiveLipSyncPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [selectedAudio, setSelectedAudio] = useState(audioOptions[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayPause = () => {
+    if (isPreview) return; // Disable interaction in preview mode
     setIsPlaying(!isPlaying);
   };
 
@@ -80,7 +85,8 @@ export default function InteractiveLipSyncPlayer() {
                 {audioOptions.map((audio) => (
                   <button
                     key={audio.id}
-                    onClick={() => setSelectedAudio(audio)}
+                    onClick={() => !isPreview && setSelectedAudio(audio)}
+                    disabled={isPreview}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                       selectedAudio.id === audio.id 
                         ? 'bg-white text-black' 
@@ -101,11 +107,12 @@ export default function InteractiveLipSyncPlayer() {
           {demoVideos.map((video) => (
             <button
               key={video.id}
-              onClick={() => setSelectedVideo(video)}
+              onClick={() => !isPreview && setSelectedVideo(video)}
+              disabled={isPreview}
               className={`relative rounded overflow-hidden transition-all duration-300 ${
                 selectedVideo.id === video.id 
                   ? 'ring-2 ring-blue-500' 
-                  : 'hover:ring-1 hover:ring-white/50'
+                  : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
               }`}
             >
               <img 

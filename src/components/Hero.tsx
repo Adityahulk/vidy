@@ -19,31 +19,31 @@ export default function Hero() {
     {
       title: 'Long-Form to Short Clips',
       description: 'AI extracts the most engaging moments from long videos',
-      component: <InteractiveLongToShortPlayer />,
+      component: <InteractiveLongToShortPlayer isPreview={true} />,
       path: '/services/long-to-short-clips'
     },
     {
       title: 'Personality Clone',
       description: 'Clone your complete personality - face, voice, gestures, and movements',
-      component: <InteractivePersonalityClonePlayer />,
+      component: <InteractivePersonalityClonePlayer isPreview={true} />,
       path: '/services/personality-clone'
     },
     {
       title: 'AI Video Dubbing',
       description: 'Professional voice cloning in 50+ languages',
-      component: <InteractiveDubbingPlayer />,
+      component: <InteractiveDubbingPlayer isPreview={true} />,
       path: '/services/ai-video-dubbing'
     },
     {
       title: 'AI Lip-Syncing',
       description: 'Perfect audio-visual synchronization',
-      component: <InteractiveLipSyncPlayer />,
+      component: <InteractiveLipSyncPlayer isPreview={true} />,
       path: '/services/ai-lip-syncing'
     },
     {
       title: 'Automated Editing',
       description: 'Intelligent editing with professional decisions',
-      component: <InteractiveAutoEditingPlayer />,
+      component: <InteractiveAutoEditingPlayer isPreview={true} />,
       path: '/services/automated-editing'
     }
   ];

@@ -58,16 +58,22 @@ const demoVideos = [
   }
 ];
 
-export default function InteractiveAutoEditingPlayer() {
+interface InteractiveAutoEditingPlayerProps {
+  isPreview?: boolean;
+}
+
+export default function InteractiveAutoEditingPlayer({ isPreview = false }: InteractiveAutoEditingPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handleVideoSelect = (video: typeof demoVideos[0]) => {
+    if (isPreview) return; // Disable interaction in preview mode
     setSelectedVideo(video);
     setIsPlaying(false);
   };
 
   const handlePlayPause = () => {
+    if (isPreview) return; // Disable interaction in preview mode
     setIsPlaying(!isPlaying);
   };
 
@@ -170,10 +176,11 @@ export default function InteractiveAutoEditingPlayer() {
               AI Edited
             </div>
 
+                disabled={isPreview}
             {/* Play Button */}
             <div className="absolute inset-0 flex items-center justify-center">
               <button
-                onClick={handlePlayPause}
+                    : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
                 className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300"
               >
                 {isPlaying ? (
