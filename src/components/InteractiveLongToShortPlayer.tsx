@@ -7,11 +7,11 @@ const demoVideos = [
     { id: 2, title: 'Podcast Interview', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '1:20:15', clips: [ { id: 10, title: 'Viral Moment', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '0:12', aspectRatio: '9:16', caption: 'This one moment changed everything for me, and it might for you too.', platform: 'TikTok' }, { id: 11, title: 'Expert Advice', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '0:25', aspectRatio: '16:9', caption: 'Here\'s the biggest mistake most people make in this industry.', platform: 'YouTube' }, { id: 12, title: 'Personal Story', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '0:35', aspectRatio: '1:1', caption: 'My biggest failure taught me the most important lesson about resilience.', platform: 'Instagram' }, ] },
 ];
 
-// --- CHANGE HIGHLIGHT ---
-// Removed `mx-auto` from '9:16' and '1:1' to left-align them in the large grid column.
+// --- CHANGE HIGHLIGHT #1 ---
+// Added `mx-auto` back to center the vertical and square previews.
 const ASPECT_RATIO_INFO = {
-    '9:16': { label: 'Vertical (TikTok, Reels)', className: 'aspect-[9/16] max-w-[320px]' },
-    '1:1': { label: 'Square (Instagram, Facebook)', className: 'aspect-square max-w-[500px]' },
+    '9:16': { label: 'Vertical (TikTok, Reels)', className: 'aspect-[9/16] max-w-[320px] mx-auto' },
+    '1:1': { label: 'Square (Instagram, Facebook)', className: 'aspect-square max-w-[500px] mx-auto' },
     '16:9': { label: 'Widescreen (YouTube)', className: 'aspect-video' },
 };
 
@@ -95,7 +95,10 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
             {/* SECTION 2: AI Generated Clips */}
             <div>
                 <h4 className="text-2xl font-bold text-white mb-4">AI-Generated Clips</h4>
-                <div className="grid lg:grid-cols-[22rem_1fr] gap-8">
+                {/* --- CHANGE HIGHLIGHT #2 ---
+                  Reduced the gap from `gap-8` to `gap-6`.
+                */}
+                <div className="grid lg:grid-cols-[22rem_1fr] lg:items-start gap-6">
                     {/* Column 1: The "Smart Sidebar" Navigator */}
                     <aside className="bg-slate-900/50 rounded-xl p-4 border border-slate-800 space-y-6">
                         {Object.entries(groupedClips).map(([ratio, clips]) => {
