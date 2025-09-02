@@ -95,7 +95,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
             {/* SECTION 2: AI Generated Clips */}
             <div>
                 <h4 className="text-2xl font-bold text-white mb-4">AI-Generated Clips</h4>
-                <div className="grid lg:grid-cols-[22rem_1fr] lg:items-start gap-8">
+                <div className="grid lg:grid-cols-[22rem_1fr] gap-8">
                     {/* Column 1: The "Smart Sidebar" Navigator */}
                     <aside className="bg-slate-900/50 rounded-xl p-4 border border-slate-800 space-y-6">
                         {Object.entries(groupedClips).map(([ratio, clips]) => {
