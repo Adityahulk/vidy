@@ -21,12 +21,17 @@ const languages = [
   { code: 'pt', name: 'Brazilian Portuguese', flag: '🇧🇷' }
 ];
 
-export default function InteractiveDubbingPlayer() {
+interface InteractiveDubbingPlayerProps {
+  isPreview?: boolean;
+}
+
+export default function InteractiveDubbingPlayer({ isPreview = false }: InteractiveDubbingPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayPause = () => {
+    if (isPreview) return; // Disable interaction in preview mode
     setIsPlaying(!isPlaying);
   };
 
@@ -80,7 +85,8 @@ export default function InteractiveDubbingPlayer() {
                 {languages.map((language) => (
                   <button
                     key={language.code}
-                    onClick={() => setSelectedLanguage(language)}
+                    onClick={() => !isPreview && setSelectedLanguage(language)}
+                    disabled={isPreview}
                     className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                       selectedLanguage.code === language.code 
                         ? 'bg-white text-black' 
@@ -101,11 +107,12 @@ export default function InteractiveDubbingPlayer() {
           {demoVideos.map((video) => (
             <button
               key={video.id}
-              onClick={() => setSelectedVideo(video)}
+              onClick={() => !isPreview && setSelectedVideo(video)}
+              disabled={isPreview}
               className={`relative rounded overflow-hidden transition-all duration-300 ${
                 selectedVideo.id === video.id 
                   ? 'ring-2 ring-blue-500' 
-                  : 'hover:ring-1 hover:ring-white/50'
+                  : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
               }`}
             >
               <img 
