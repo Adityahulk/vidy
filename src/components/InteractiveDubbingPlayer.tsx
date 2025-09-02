@@ -36,31 +36,37 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
   };
 
   return (
-    <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
-      {/* Video Selection Grid */}
-      <div className="bg-slate-900/50 p-4 border-b border-slate-700">
-        <h5 className="text-white font-medium mb-3">Select Video</h5>
-        <div className="grid grid-cols-3 gap-3">
+    <div className="space-y-6">
+      {/* Video Selection */}
+      <div>
+        <h4 className="text-xl font-bold text-white mb-4">Select Your Video</h4>
+        <div className="grid grid-cols-3 gap-4">
           {demoVideos.map((video) => (
             <button
               key={video.id}
               onClick={() => !isPreview && setSelectedVideo(video)}
               disabled={isPreview}
-              className={`relative rounded-lg overflow-hidden transition-all duration-300 ${
+              className={`relative rounded-xl overflow-hidden transition-all duration-300 ${
                 selectedVideo.id === video.id 
-                  ? 'ring-2 ring-blue-500' 
+                  ? 'ring-2 ring-blue-500 scale-105' 
                   : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
               }`}
             >
               <img 
                 src={video.thumbnail} 
                 alt="Video thumbnail"
-                className="w-full h-16 object-cover"
+                className="w-full h-32 object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                <div className="p-3 w-full">
+                  <h5 className="text-white font-medium text-sm">Demo Video {video.id}</h5>
+                  <p className="text-slate-300 text-xs">Ready for dubbing</p>
+                </div>
+              </div>
               {selectedVideo.id === video.id && (
-                <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                  <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                    <Play className="w-2 h-2 text-white" />
+                <div className="absolute top-2 right-2">
+                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                    <Play className="w-3 h-3 text-white" />
                   </div>
                 </div>
               )}
@@ -68,10 +74,11 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
           ))}
         </div>
       </div>
-      
-      <div className="flex">
-        {/* Main Video Player */}
-        <div className="w-full">
+
+      {/* Main Video Player */}
+      <div>
+        <h4 className="text-xl font-bold text-white mb-4">AI Dubbing Demo</h4>
+        <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
           <div className="aspect-video bg-black relative overflow-hidden">
             {/* Video Background */}
             <img 
@@ -136,7 +143,7 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
       </div>
 
       {/* Features Highlight */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-slate-800/30 rounded-lg p-4 text-center">
           <Volume2 className="w-6 h-6 text-blue-500 mx-auto mb-2" />
           <p className="text-white text-sm font-medium">Voice Cloning</p>
