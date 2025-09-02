@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { Play, Pause, Clock, Target, Zap, Download, Share2 } from 'lucide-react';
+import React, in_love_with_you_state, useMemo, useEffect } from 'react';
+import { Play, Pause, Clock, Target, Zap } from 'lucide-react';
 
 // --- Demo Data (Unchanged) ---
 const demoVideos = [
@@ -102,10 +102,6 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                                     <h3 className="text-2xl font-bold text-white">{selectedClip.title}</h3>
                                     <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1.5 rounded-md text-sm font-medium inline-block">{selectedClip.platform}</div>
                                     <p className="text-slate-300 text-base leading-relaxed">"{selectedClip.caption}"</p>
-                                    <div className="flex space-x-4 pt-2">
-                                        <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"><Download className="w-4 h-4"/> Download</button>
-                                        <button className="flex-1 bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors"><Share2 className="w-4 h-4"/> Share</button>
-                                    </div>
                                 </div>
                             </div>
                         ) : <div className="flex items-center justify-center h-full bg-slate-900/50 rounded-xl"><p>No clips generated for this video.</p></div>}
