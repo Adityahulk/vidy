@@ -37,9 +37,41 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
 
   return (
     <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
+      {/* Video Selection Grid */}
+      <div className="bg-slate-900/50 p-4 border-b border-slate-700">
+        <h5 className="text-white font-medium mb-3">Select Video</h5>
+        <div className="grid grid-cols-3 gap-3">
+          {demoVideos.map((video) => (
+            <button
+              key={video.id}
+              onClick={() => !isPreview && setSelectedVideo(video)}
+              disabled={isPreview}
+              className={`relative rounded-lg overflow-hidden transition-all duration-300 ${
+                selectedVideo.id === video.id 
+                  ? 'ring-2 ring-blue-500' 
+                  : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
+              }`}
+            >
+              <img 
+                src={video.thumbnail} 
+                alt="Video thumbnail"
+                className="w-full h-16 object-cover"
+              />
+              {selectedVideo.id === video.id && (
+                <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
+                  <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
+                    <Play className="w-2 h-2 text-white" />
+                  </div>
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+      
       <div className="flex">
         {/* Main Video Player */}
-        <div className="flex-1">
+        <div className="w-full">
           <div className="aspect-video bg-black relative overflow-hidden">
             {/* Video Background */}
             <img 
@@ -100,35 +132,6 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Video Selection Sidebar */}
-        <div className="w-32 bg-black/80 flex flex-col space-y-2 p-2">
-          {demoVideos.map((video) => (
-            <button
-              key={video.id}
-              onClick={() => !isPreview && setSelectedVideo(video)}
-              disabled={isPreview}
-              className={`relative rounded overflow-hidden transition-all duration-300 ${
-                selectedVideo.id === video.id 
-                  ? 'ring-2 ring-blue-500' 
-                  : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
-              }`}
-            >
-              <img 
-                src={video.thumbnail} 
-                alt="Video thumbnail"
-                className="w-full h-20 object-cover"
-              />
-              {selectedVideo.id === video.id && (
-                <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                    <Play className="w-3 h-3 text-white ml-0.5" />
-                  </div>
-                </div>
-              )}
-            </button>
-          ))}
         </div>
       </div>
 

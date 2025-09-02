@@ -82,73 +82,73 @@ export default function InteractiveAutoEditingPlayer({ isPreview = false }: Inte
       {/* Original Video Selection */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">Select Your Raw Footage</h4>
-        <div className="relative bg-black rounded-xl overflow-hidden">
-          <div className="flex">
-            {/* Main Video Player */}
-            <div className="flex-1">
-              <div className="aspect-video bg-black relative overflow-hidden">
-                <img 
-                  src={selectedVideo.thumbnail} 
-                  alt="Selected video"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                
-                {/* Video Info Overlay */}
-                <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
-                  <h5 className="text-white font-medium text-sm">{selectedVideo.title}</h5>
-                  <p className="text-slate-300 text-xs">{selectedVideo.duration}</p>
-                </div>
-
-                {/* Raw Footage Badge */}
-                <div className="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  Raw Footage
-                </div>
-
-                {/* Play Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <button
-                    onClick={handlePlayPause}
-                    className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300"
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-8 h-8 text-white" />
-                    ) : (
-                      <Play className="w-8 h-8 text-white ml-1" />
-                    )}
-                  </button>
+        
+        {/* Video Selection Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          {demoVideos.map((video) => (
+            <button
+              key={video.id}
+              onClick={() => handleVideoSelect(video)}
+              disabled={isPreview}
+              className={`relative rounded-xl overflow-hidden transition-all duration-300 ${
+                selectedVideo.id === video.id 
+                  ? 'ring-2 ring-blue-500 scale-105' 
+                  : isPreview ? '' : 'hover:ring-1 hover:ring-white/50 hover:scale-102'
+              }`}
+            >
+              <img 
+                src={video.thumbnail} 
+                alt={video.title}
+                className="w-full h-24 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
+                <div className="p-3 w-full">
+                  <h5 className="text-white font-medium text-sm">{video.title}</h5>
+                  <p className="text-slate-300 text-xs">{video.duration}</p>
                 </div>
               </div>
+              {selectedVideo.id === video.id && (
+                <div className="absolute top-2 right-2">
+                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                    <Play className="w-3 h-3 text-white" />
+                  </div>
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
+        
+        <div className="relative bg-black rounded-xl overflow-hidden">
+          <div className="aspect-video bg-black relative overflow-hidden">
+            <img 
+              src={selectedVideo.thumbnail} 
+              alt="Selected video"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            
+            {/* Video Info Overlay */}
+            <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+              <h5 className="text-white font-medium text-sm">{selectedVideo.title}</h5>
+              <p className="text-slate-300 text-xs">{selectedVideo.duration}</p>
             </div>
 
-            {/* Video Selection Sidebar */}
-            <div className="w-32 bg-black/80 flex flex-col space-y-2 p-2">
-              {demoVideos.map((video) => (
-                <button
-                  key={video.id}
-                  onClick={() => handleVideoSelect(video)}
-                  className={`relative rounded overflow-hidden transition-all duration-300 ${
-                    selectedVideo.id === video.id 
-                      ? 'ring-2 ring-blue-500' 
-                      : 'hover:ring-1 hover:ring-white/50'
-                  }`}
-                >
-                  <img 
-                    src={video.thumbnail} 
-                    alt="Video thumbnail"
-                    className="w-full h-20 object-cover"
-                  />
-                  <div className="absolute bottom-1 left-1 bg-black/70 rounded px-1">
-                    <span className="text-white text-xs">{video.duration}</span>
-                  </div>
-                  {selectedVideo.id === video.id && (
-                    <div className="absolute inset-0 bg-blue-500/20 flex items-center justify-center">
-                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                        <Play className="w-3 h-3 text-white ml-0.5" />
-                      </div>
-                    </div>
-                  )}
-                </button>
-              ))}
+            {/* Raw Footage Badge */}
+            <div className="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+              Raw Footage
+            </div>
+
+            {/* Play Button */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <button
+                onClick={handlePlayPause}
+                className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300"
+              >
+                {isPlaying ? (
+                  <Pause className="w-8 h-8 text-white" />
+                ) : (
+                  <Play className="w-8 h-8 text-white ml-1" />
+                )}
+              </button>
             </div>
           </div>
         </div>
