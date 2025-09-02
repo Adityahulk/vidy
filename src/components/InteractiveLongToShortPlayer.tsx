@@ -1,5 +1,44 @@
 import React, { useState } from 'react';
-import { Play, Pause, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Play, Pause } from 'lucide-react';
+
+const demoVideos = [
+  {
+    id: 1,
+    title: 'Business Webinar',
+    thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400',
+    duration: '45:30',
+    clips: {
+      '9:16': [
+        { id: 1, title: 'Key Insight #1', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:15', caption: 'The secret to scaling your business...', platform: 'TikTok' },
+        { id: 2, title: 'Expert Tip', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:18', caption: 'Most entrepreneurs miss this...', platform: 'Instagram Reels' }
+      ],
+      '16:9': [
+        { id: 5, title: 'Full Explanation', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:45', caption: 'Complete business strategy breakdown', platform: 'YouTube Shorts' },
+        { id: 6, title: 'Case Study', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:38', caption: 'Real client transformation', platform: 'LinkedIn' }
+      ],
+      '1:1': [
+        { id: 10, title: 'Instagram Post', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:25', caption: 'Quick business tip', platform: 'Instagram' }
+      ]
+    }
+  },
+  {
+    id: 2,
+    title: 'Podcast Interview',
+    thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400',
+    duration: '1:20:15',
+    clips: {
+      '9:16': [
+        { id: 13, title: 'Viral Moment', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:12', caption: 'This changed everything for me...', platform: 'TikTok' }
+      ],
+      '16:9': [
+        { id: 16, title: 'Expert Advice', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:55', caption: 'Here\'s what most people get wrong', platform: 'YouTube Shorts' }
+      ],
+      '1:1': [
+        { id: 20, title: 'Quote Card', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=300', duration: '0:15', caption: 'Wisdom in 15 seconds', platform: 'Instagram' }
+      ]
+    }
+  }
+];
 
 const aspectRatios = [
   { key: '9:16', label: 'Vertical (9:16)' },
