@@ -117,6 +117,16 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const getGridClass = (clipCount: number) => {
+    if (clipCount === 1) {
+      return 'grid-cols-1 max-w-sm mx-auto lg:max-w-none';
+    } else if (clipCount === 2) {
+      return 'grid-cols-1 lg:grid-cols-2 max-w-md mx-auto lg:max-w-none';
+    } else {
+      return 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3';
+    }
+  };
+
   const handleVideoSelect = (video: typeof demoVideos[0]) => {
     if (isPreview) return; // Disable interaction in preview mode
     setSelectedVideo(video);
