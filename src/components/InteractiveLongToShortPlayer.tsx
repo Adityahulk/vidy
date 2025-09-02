@@ -127,12 +127,14 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                     <main>
                         {selectedClip ? (
                             <div className="space-y-6">
-                                <div className="bg-black rounded-xl border border-slate-800 flex items-center justify-center p-4 min-h-[400px]">
-                                    <div className={`relative shadow-2xl shadow-black rounded-lg overflow-hidden ${ASPECT_RATIO_INFO[selectedClip.aspectRatio].className}`}>
-                                        <img src={selectedClip.thumbnail} alt={selectedClip.title} className="w-full h-full object-cover" />
-                                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                            <button className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"><Play className="w-8 h-8 text-white ml-1" /></button>
-                                        </div>
+                                {/* --- CHANGE HIGHLIGHT ---
+                                  The wrapper div with 'bg-black', 'min-h-[400px]', etc. has been removed.
+                                  The div below now directly uses the aspect ratio classes, making it adaptive.
+                                */}
+                                <div className={`relative shadow-2xl shadow-black rounded-lg overflow-hidden ${ASPECT_RATIO_INFO[selectedClip.aspectRatio].className}`}>
+                                    <img src={selectedClip.thumbnail} alt={selectedClip.title} className="w-full h-full object-cover" />
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                        <button className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"><Play className="w-8 h-8 text-white ml-1" /></button>
                                     </div>
                                 </div>
                                 <div className="space-y-3">
