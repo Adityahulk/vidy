@@ -213,15 +213,15 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
       {/* Generated Clips - Always Visible */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">AI-Generated Short Clips</h4>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className={`grid gap-4 lg:gap-6 ${getGridClass(selectedVideo.clips.length)}`}>
           {selectedVideo.clips.map((clip) => (
-            <div key={clip.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300">
+            <div key={clip.id} className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden hover:border-blue-500/50 transition-all duration-300 w-full">
               {/* Clip Video */}
-              <div className={`bg-black relative ${getAspectRatioClass(clip.aspectRatio)}`}>
+              <div className={`bg-black relative ${getAspectRatioClass(clip.aspectRatio)} w-full`}>
                 <img 
                   src={clip.thumbnail} 
                   alt="Clip thumbnail"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="w-full h-full object-cover"
                 />
                 
                 {/* Platform Badge */}
@@ -248,7 +248,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
               </div>
 
               {/* Clip Info */}
-              <div className="p-4">
+              <div className="p-3 lg:p-4">
                 <h5 className="text-white font-medium mb-2">{clip.title}</h5>
                 <div className="flex items-center justify-between text-xs text-slate-400">
                   <span>Aspect: {clip.aspectRatio}</span>
