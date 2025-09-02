@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Pause, Volume2 } from 'lucide-react';
+import { Play, Pause, Volume2, Film, Target, Zap } from 'lucide-react';
 
 const demoVideos = [
   {
