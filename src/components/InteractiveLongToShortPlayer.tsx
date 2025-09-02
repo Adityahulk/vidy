@@ -299,7 +299,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
   const getClipsPerPage = (ratio: string) => {
     switch (ratio) {
       case '9:16': return 1;
-      case '16:9': return 2;
+      case '16:9': return 3;
       case '1:1': return 2;
       default: return 1;
     }
@@ -308,7 +308,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
   const getGridClass = (ratio: string) => {
     switch (ratio) {
       case '9:16': return 'flex justify-center';
-      case '16:9': return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto';
+      case '16:9': return 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4';
       case '1:1': return 'grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto';
       default: return 'flex justify-center';
     }
@@ -494,7 +494,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
         {/* 16:9 Horizontal Clips */}
         <div className="mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h5 className="text-lg font-semibold text-white">Horizontal Clips (16:9) - {selectedVideo.clips['16:9'].length} clips (2 per page)</h5>
+            <h5 className="text-lg font-semibold text-white">Horizontal Clips (16:9) - {selectedVideo.clips['16:9'].length} clips</h5>
             {getTotalPages('16:9') > 1 && (
               <div className="flex items-center space-x-2">
                 <button
