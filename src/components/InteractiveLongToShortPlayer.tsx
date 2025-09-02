@@ -1,4 +1,4 @@
-import React, in_love_with_you_state, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Play, Pause, Clock, Target, Zap } from 'lucide-react';
 
 // --- Demo Data (Unchanged) ---
