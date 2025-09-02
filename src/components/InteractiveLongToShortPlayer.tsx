@@ -23,7 +23,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
     const [selectedClip, setSelectedClip] = useState(demoVideos[0].clips[0]);
 
     const groupedClips = useMemo(() => {
-        const groups = { '9:16': [], '16:9': [], '1:1': [] }; // Pre-define order
+        const groups = { '16:9': [], '9:16': [], '1:1': [] }; // Pre-define order
         selectedVideo.clips.forEach(clip => {
             if (groups[clip.aspectRatio]) {
                 groups[clip.aspectRatio].push(clip);
