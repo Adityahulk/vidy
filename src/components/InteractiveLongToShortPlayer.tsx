@@ -7,6 +7,8 @@ const demoVideos = [
     { id: 2, title: 'Podcast Interview', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '1:20:15', clips: [ { id: 10, title: 'Viral Moment', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '0:12', aspectRatio: '9:16', caption: 'This one moment changed everything for me, and it might for you too.', platform: 'TikTok' }, { id: 11, title: 'Expert Advice', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '0:25', aspectRatio: '16:9', caption: 'Here\'s the biggest mistake most people make in this industry.', platform: 'YouTube' }, { id: 12, title: 'Personal Story', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', duration: '0:35', aspectRatio: '1:1', caption: 'My biggest failure taught me the most important lesson about resilience.', platform: 'Instagram' }, ] },
 ];
 
+// --- CHANGE HIGHLIGHT ---
+// Removed `mx-auto` from '9:16' and '1:1' to left-align them in the large grid column.
 const ASPECT_RATIO_INFO = {
     '9:16': { label: 'Vertical (TikTok, Reels)', className: 'aspect-[9/16] max-w-[320px]' },
     '1:1': { label: 'Square (Instagram, Facebook)', className: 'aspect-square max-w-[500px]' },
@@ -43,7 +45,6 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
             <div>
                 <h4 className="text-2xl font-bold text-white mb-4">Source Video</h4>
                 
-                {/* Video Selection Grid */}
                 <div className="grid grid-cols-3 gap-4">
                     {demoVideos.map((video) => (
                         <button
@@ -127,10 +128,6 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                     <main>
                         {selectedClip ? (
                             <div className="space-y-6">
-                                {/* --- CHANGE HIGHLIGHT ---
-                                  The wrapper div with 'bg-black', 'min-h-[400px]', etc. has been removed.
-                                  The div below now directly uses the aspect ratio classes, making it adaptive.
-                                */}
                                 <div className={`relative shadow-2xl shadow-black rounded-lg overflow-hidden ${ASPECT_RATIO_INFO[selectedClip.aspectRatio].className}`}>
                                     <img src={selectedClip.thumbnail} alt={selectedClip.title} className="w-full h-full object-cover" />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300">
