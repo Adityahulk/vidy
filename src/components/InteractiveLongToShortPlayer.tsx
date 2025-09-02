@@ -8,8 +8,8 @@ const demoVideos = [
 ];
 
 const ASPECT_RATIO_INFO = {
-    '9:16': { label: 'Vertical (TikTok, Reels)', className: 'aspect-[9/16] max-w-[320px] mx-auto' },
-    '1:1': { label: 'Square (Instagram, Facebook)', className: 'aspect-square max-w-[500px] mx-auto' },
+    '9:16': { label: 'Vertical (TikTok, Reels)', className: 'aspect-[9/16] max-w-[320px]' },
+    '1:1': { label: 'Square (Instagram, Facebook)', className: 'aspect-square max-w-[500px]' },
     '16:9': { label: 'Widescreen (YouTube)', className: 'aspect-video' },
 };
 
