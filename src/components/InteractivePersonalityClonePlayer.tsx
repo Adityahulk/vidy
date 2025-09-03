@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, User, Type, Wand2 } from 'lucide-react';
+import { Play, Pause, User, Type, Wand2, Film, Target, Zap } from 'lucide-react';
 
 const demoPersonalities = [
   {
