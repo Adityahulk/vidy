@@ -158,22 +158,22 @@ export default function InteractivePersonalityClonePlayer({ isPreview = false }:
         </div>
 
         {/* Result Info */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-              <Film className="w-6 h-6 text-blue-500 mx-auto mb-2" />
-              <p className="text-white text-sm font-medium">Voice Cloned</p>
-              <p className="text-slate-400 text-xs">Multi-language suppport</p>
-            </div>
-            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-              <Target className="w-6 h-6 text-purple-500 mx-auto mb-2" />
-              <p className="text-white text-sm font-medium">Gestures Matchedg</p>
-              <p className="text-slate-400 text-xs">Sub-pixel accuracy</p>
-            </div>
-            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-              <Zap className="w-6 h-6 text-green-500 mx-auto mb-2" />
-              <p className="text-white text-sm font-medium">Script Delivered</p>
-              <p className="text-slate-400 text-xs">Matching compatibility</p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+            <Film className="w-6 h-6 text-blue-500 mx-auto mb-2" />
+            <p className="text-white text-sm font-medium">Voice Cloned</p>
+            <p className="text-slate-400 text-xs">Multi-language suppport</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+            <Target className="w-6 h-6 text-purple-500 mx-auto mb-2" />
+            <p className="text-white text-sm font-medium">Gestures Matchedg</p>
+            <p className="text-slate-400 text-xs">Sub-pixel accuracy</p>
+          </div>
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+            <Zap className="w-6 h-6 text-green-500 mx-auto mb-2" />
+            <p className="text-white text-sm font-medium">Script Delivered</p>
+            <p className="text-slate-400 text-xs">Matching compatibility</p>
+          </div>
         </div>
       </div>
     </div>
