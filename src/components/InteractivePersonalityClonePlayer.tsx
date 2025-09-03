@@ -175,6 +175,7 @@ export default function InteractivePersonalityClonePlayer({ isPreview = false }:
             <p className="text-slate-400 text-xs">Matching compatibility</p>
           </div>
       </div>
+      </div>
     </div>
   );
 }
