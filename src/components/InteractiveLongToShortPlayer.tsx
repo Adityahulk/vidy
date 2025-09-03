@@ -96,30 +96,28 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
             {/* SECTION 2: AI Generated Clips */}
             <div>
                 <h4 className="text-2xl font-bold text-white mb-4">AI-Generated Clips</h4>
-                {/* --- CHANGE HIGHLIGHT #2 ---
-                  Reduced the gap from `gap-8` to `gap-6`.
-                */}
-                <div className="grid lg:grid-cols-[22rem_1fr] lg:items-start gap-6">
+                {/* Mobile-first responsive layout */}
+                <div className="flex flex-col lg:grid lg:grid-cols-[22rem_1fr] lg:items-start gap-6">
                     {/* Column 1: The "Smart Sidebar" Navigator */}
-                    <aside className="bg-slate-900/50 rounded-xl p-4 border border-slate-800 space-y-6">
+                    <aside className="bg-slate-900/50 rounded-xl p-3 sm:p-4 border border-slate-800 space-y-4 sm:space-y-6">
                         {Object.entries(groupedClips).map(([ratio, clips]) => {
                             if (clips.length === 0) return null;
                             return (
                                 <div key={ratio}>
-                                    <h5 className="font-semibold text-white mb-3">{ASPECT_RATIO_INFO[ratio].label}</h5>
-                                    <div className="flex space-x-3 overflow-x-auto pb-2">
+                                    <h5 className="font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base">{ASPECT_RATIO_INFO[ratio].label}</h5>
+                                    <div className="flex space-x-2 sm:space-x-3 overflow-x-auto pb-2">
                                         {clips.map(clip => (
                                             <button
                                                 key={clip.id}
                                                 onClick={() => setSelectedClip(clip)}
                                                 disabled={isPreview}
-                                                className={`relative shrink-0 w-28 h-20 rounded-md overflow-hidden outline-none transition-all duration-200 ${
+                                                className={`relative shrink-0 w-20 h-14 sm:w-28 sm:h-20 rounded-md overflow-hidden outline-none transition-all duration-200 ${
                                                     selectedClip?.id === clip.id ? 'ring-2 ring-blue-500' : 'ring-1 ring-slate-700 hover:ring-slate-500'
                                                 }`}
                                             >
                                                 <img src={clip.thumbnail} alt={clip.title} className="w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/30"></div>
-                                                <div className="absolute bottom-1 right-1 bg-black/70 rounded px-1"><span className="text-white text-xs">{clip.duration}</span></div>
+                                                <div className="absolute bottom-0.5 right-0.5 sm:bottom-1 sm:right-1 bg-black/70 rounded px-1"><span className="text-white text-xs">{clip.duration}</span></div>
                                             </button>
                                         ))}
                                     </div>
@@ -131,29 +129,29 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                     {/* Column 2: The "Main Stage" Preview */}
                     <main>
                         {selectedClip ? (
-                            <div className="space-y-6">
+                            <div className="space-y-4 sm:space-y-6">
                                 <div className={`relative shadow-2xl shadow-black rounded-lg overflow-hidden ${ASPECT_RATIO_INFO[selectedClip.aspectRatio].className}`}>
                                     <img src={selectedClip.thumbnail} alt={selectedClip.title} className="w-full h-full object-cover" />
                                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                        <button className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"><Play className="w-8 h-8 text-white ml-1" /></button>
+                                        <button className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"><Play className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-1" /></button>
                                     </div>
                                 </div>
-                                <div className="space-y-3">
-                                    <h3 className="text-2xl font-bold text-white">{selectedClip.title}</h3>
-                                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1.5 rounded-md text-sm font-medium inline-block">{selectedClip.platform}</div>
-                                    <p className="text-slate-300 text-base leading-relaxed">"{selectedClip.caption}"</p>
+                                <div className="space-y-2 sm:space-y-3 px-2 sm:px-0">
+                                    <h3 className="text-xl sm:text-2xl font-bold text-white">{selectedClip.title}</h3>
+                                    <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-2 sm:px-3 py-1 sm:py-1.5 rounded-md text-xs sm:text-sm font-medium inline-block">{selectedClip.platform}</div>
+                                    <p className="text-slate-300 text-sm sm:text-base leading-relaxed">"{selectedClip.caption}"</p>
                                 </div>
                             </div>
-                        ) : <div className="flex items-center justify-center h-full bg-slate-900/50 rounded-xl"><p>No clips generated for this video.</p></div>}
+                        ) : <div className="flex items-center justify-center h-32 sm:h-full bg-slate-900/50 rounded-xl"><p className="text-sm sm:text-base text-slate-400">No clips generated for this video.</p></div>}
                     </main>
                 </div>
             </div>
 
             {/* Features Highlight */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
-                <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Target className="w-6 h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Smart Scene Detection</p></div>
-                <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Clock className="w-6 h-6 text-purple-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">AI-Powered Captions</p></div>
-                <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Zap className="w-6 h-6 text-green-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Multi-Platform Formatting</p></div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4">
+                <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Target className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Smart Scene Detection</p></div>
+                <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Clock className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">AI-Powered Captions</p></div>
+                <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Zap className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Multi-Platform Formatting</p></div>
             </div>
         </div>
     );
