@@ -43,7 +43,7 @@ export default function Features() {
             Built for Enterprise
           </h2>
           <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto px-4 sm:px-0">
-            Every feature designed with enterprise requirements in mind—security, 
+            Every feature designed with enterprise requirements in mind:  s zsecurity, 
             scalability, and reliability at the core.
           </p>
         </div>
