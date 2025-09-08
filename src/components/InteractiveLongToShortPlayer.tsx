@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import YouTube from 'react-youtube'; // Import the YouTube component
+import YouTube from 'react-youtube';
 import { Clock, Target, Zap } from 'lucide-react';
 
 const demoVideos = [
