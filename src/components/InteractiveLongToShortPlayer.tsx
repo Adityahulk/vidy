@@ -1,60 +1,52 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Play, Pause, Clock, Target, Zap } from 'lucide-react';
+import YouTube from 'react-youtube'; // Import the YouTube component
+import { Clock, Target, Zap } from 'lucide-react';
 
-// --- Demo Data (Updated: `duration` property removed) ---
+// --- Data Updated to use videoId ---
+// I've replaced videoUrl with the 11-character ID from the YouTube URL.
 const demoVideos = [
     { 
         id: 1, 
-        title: 'Business Webinar', 
-        thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', 
-        videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4',
+        title: 'Business Webinar',
+        videoId: '2c-b_5_t_gM', // Example Video ID
         clips: [ 
-            { id: 1, title: 'Key Insight #1', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '16:9', caption: 'The secret to scaling your business is not about working harder, it\'s about building systems that work for you 24/7.', platform: 'TikTok' }, 
-            { id: 4, title: 'Quick Growth Hack', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '16:9', caption: 'Try this marketing trick today! It increased our engagement by over 50%.', platform: 'Reels' }, 
-            { id: 2, title: 'Best Quote', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '9:16', caption: 'Success is not about luck. It\'s the result of preparation, hard work, and learning from failure.', platform: 'YouTube' }, 
-            { id: 3, title: 'Action Steps', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '1:1', caption: 'Here are 3 concrete steps to transform your strategy and see immediate results.', platform: 'Instagram' },
+            { id: 1, title: 'Key Insight #1', videoId: '2c-b_5_t_gM', aspectRatio: '16:9', caption: 'The secret to scaling your business is about building systems that work for you 24/7.', platform: 'TikTok' }, 
+            { id: 2, title: 'Best Quote', videoId: '2c-b_5_t_gM', aspectRatio: '9:16', caption: 'Success is the result of preparation, hard work, and learning from failure.', platform: 'YouTube' }, 
+            { id: 3, title: 'Action Steps', videoId: '2c-b_5_t_gM', aspectRatio: '1:1', caption: 'Here are 3 concrete steps to transform your strategy and see immediate results.', platform: 'Instagram' },
         ] 
     },
     { 
         id: 2, 
         title: 'Podcast Interview', 
-        thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', 
-        videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4',
+        videoId: 'HAnw1682g0g', // Example Video ID
         clips: [ 
-            { id: 10, title: 'Viral Moment', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', aspectRatio: '9:16', caption: 'This one moment changed everything for me, and it might for you too.', platform: 'TikTok' }, 
-            { id: 11, title: 'Expert Advice', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', aspectRatio: '16:9', caption: 'Here\'s the biggest mistake most people make in this industry.', platform: 'YouTube' }, 
-            { id: 12, title: 'Personal Story', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', aspectRatio: '1:1', caption: 'My biggest failure taught me the most important lesson about resilience.', platform: 'Instagram' },
+            { id: 10, title: 'Viral Moment', videoId: 'HAnw1682g0g', aspectRatio: '9:16', caption: 'This one moment changed everything for me, and it might for you too.', platform: 'TikTok' }, 
+            { id: 11, title: 'Expert Advice', videoId: 'HAnw1682g0g', aspectRatio: '16:9', caption: 'Here\'s the biggest mistake most people make in this industry.', platform: 'YouTube' },
         ] 
     },
     { 
       id: 3, 
       title: 'YouTube Livestream', 
-      thumbnail: 'https://i.ytimg.com/vi/sBws8MSXN_I/hqdefault.jpg', 
-      videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4',
+      videoId: 'sBws8MSXN_I', // The ID for the video you wanted
       clips: [ 
-        { id: 20, title: 'Stream Highlight #1', thumbnail: 'https://i.ytimg.com/vi/sBws8MSXN_I/hqdefault.jpg', videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4', aspectRatio: '16:9', caption: 'A key highlight from our recent livestream event about market trends.', platform: 'YouTube' }, 
-        { id: 22, title: 'Vertical Stream Cut', thumbnail: 'https://i.ytimg.com/vi/sBws8MSXN_I/hqdefault.jpg', videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4', aspectRatio: '9:16', caption: 'A powerful quote from the stream, perfect for Reels.', platform: 'Reels' }
+        { id: 20, title: 'Stream Highlight #1', videoId: 'sBws8MSXN_I', aspectRatio: '16:9', caption: 'A key highlight from our recent livestream event about market trends.', platform: 'YouTube' }, 
+        { id: 22, title: 'Vertical Stream Cut', videoId: 'sBws8MSXN_I', aspectRatio: '9:16', caption: 'A powerful quote from the stream, perfect for Reels.', platform: 'Reels' }
       ] 
     },
 ];
 
 const ASPECT_RATIO_INFO = {
-    '9:16': { label: 'Vertical (TikTok, Reels)', className: 'aspect-[9/16] max-w-[320px] mx-auto' },
-    '1:1': { label: 'Square (Instagram, Facebook)', className: 'aspect-square max-w-[500px] mx-auto' },
-    '16:9': { label: 'Widescreen (YouTube)', className: 'aspect-video' },
+    '9:16': { label: 'Vertical (TikTok, Reels)', className: 'aspect-[9/16] max-w-[320px] mx-auto', thumbnailClass: 'w-20 h-36' },
+    '1:1': { label: 'Square (Instagram, Facebook)', className: 'aspect-square max-w-[500px] mx-auto', thumbnailClass: 'w-24 h-24' },
+    '16:9': { label: 'Widescreen (YouTube)', className: 'aspect-video', thumbnailClass: 'w-28 h-20' },
 };
 
-interface InteractiveLongToShortPlayerProps { isPreview?: boolean; }
-
-export default function InteractiveLongToShortPlayer({ isPreview = false }: InteractiveLongToShortPlayerProps) {
+export default function InteractiveLongToShortPlayer({ isPreview = false }) {
     const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
     const [selectedClip, setSelectedClip] = useState(demoVideos[0].clips[0]);
-    
-    const [isMainPlaying, setIsMainPlaying] = useState(false);
-    const [isClipPlaying, setIsClipPlaying] = useState(false);
 
     const groupedClips = useMemo(() => {
-        const groups = { '16:9': [], '9:16': [], '1:1': [] }; // Pre-define order
+        const groups = { '16:9': [], '9:16': [], '1:1': [] };
         selectedVideo.clips.forEach(clip => {
             if (groups[clip.aspectRatio]) {
                 groups[clip.aspectRatio].push(clip);
@@ -65,30 +57,30 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
     useEffect(() => {
         setSelectedClip(selectedVideo.clips[0] || null);
-        setIsClipPlaying(false); // Stop clip playback when source video changes
     }, [selectedVideo]);
 
     const handleVideoSelect = (video) => { 
         if (isPreview) return; 
         setSelectedVideo(video); 
-        setIsMainPlaying(false); // Stop main video playback
-    };
-
-    const handleMainPlayPause = () => { 
-        if (isPreview) return; 
-        setIsMainPlaying(!isMainPlaying); 
-    };
-
-    const handleClipPlayPause = () => {
-        if (isPreview) return;
-        setIsClipPlaying(!isClipPlaying);
     };
 
     const handleClipSelect = (clip) => {
         if (isPreview) return;
         setSelectedClip(clip);
-        setIsClipPlaying(false); // Reset play state when a new clip is chosen
     };
+    
+    // YouTube player options
+    const playerOptions = {
+        height: '100%',
+        width: '100%',
+        playerVars: {
+            autoplay: 1, // Autoplay the video
+            controls: 1, // Show player controls
+        },
+    };
+
+    // Helper to get thumbnail URL from video ID
+    const getYouTubeThumbnail = (videoId) => `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
     return (
         <div className="space-y-12">
@@ -98,14 +90,12 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                 <div className="grid grid-cols-3 gap-4">
                     {demoVideos.map((video) => (
                         <button key={video.id} onClick={() => handleVideoSelect(video)} disabled={isPreview} className={`relative rounded-xl overflow-hidden transition-all duration-300 ${ selectedVideo.id === video.id ? 'ring-2 ring-blue-500 scale-105' : isPreview ? '' : 'hover:ring-1 hover:ring-white/50 hover:scale-102' }`}>
-                            <img src={video.thumbnail} alt={video.title} className="w-full h-32 object-cover"/>
+                            <img src={getYouTubeThumbnail(video.videoId)} alt={video.title} className="w-full h-32 object-cover"/>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
                                 <div className="p-3 w-full">
                                     <h5 className="text-white font-medium text-sm">{video.title}</h5>
-                                    {/* Duration text removed from here */}
                                 </div>
                             </div>
-                            {selectedVideo.id === video.id && (<div className="absolute top-2 right-2"><div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center"><Play className="w-3 h-3 text-white" /></div></div>)}
                         </button>
                     ))}
                 </div>
@@ -114,31 +104,13 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
             {/* Main Video Player */}
             <div>
                 <h4 className="text-xl font-bold text-white mb-4">Selected Video</h4>
-                <div className="relative bg-black rounded-xl overflow-hidden border border-slate-800">
-                    <div className="aspect-video bg-black relative">
-                        {isMainPlaying ? (
-                             <video
-                                key={selectedVideo.id} 
-                                className="absolute inset-0 w-full h-full object-cover"
-                                src={selectedVideo.videoUrl}
-                                autoPlay
-                                loop
-                                muted
-                                onClick={handleMainPlayPause} 
-                            />
-                        ) : (
-                             <img src={selectedVideo.thumbnail} alt={selectedVideo.title} className="absolute inset-0 w-full h-full object-cover" />
-                        )}
-                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
-                             <h5 className="text-white font-medium text-sm">{selectedVideo.title}</h5>
-                             {/* Duration text removed from here */}
-                        </div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <button onClick={handleMainPlayPause} className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300">
-                                {isMainPlaying ? <Pause className="w-8 h-8 text-white" /> : <Play className="w-8 h-8 text-white ml-1" />}
-                            </button>
-                        </div>
-                    </div>
+                <div className="relative bg-black rounded-xl overflow-hidden border border-slate-800 aspect-video">
+                    <YouTube
+                        videoId={selectedVideo.videoId}
+                        opts={playerOptions}
+                        className="absolute top-0 left-0 w-full h-full"
+                        key={selectedVideo.id} // Add key to force re-render on video change
+                    />
                 </div>
             </div>
 
@@ -154,10 +126,9 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                                     <h5 className="font-semibold text-white mb-2 sm:mb-3 text-sm sm:text-base">{ASPECT_RATIO_INFO[ratio].label}</h5>
                                     <div className="flex space-x-2 sm:space-x-3 overflow-x-auto pb-2">
                                         {clips.map(clip => (
-                                            <button key={clip.id} onClick={() => handleClipSelect(clip)} disabled={isPreview} className={`relative shrink-0 w-20 h-14 sm:w-28 sm:h-20 rounded-md overflow-hidden outline-none transition-all duration-200 ${ selectedClip?.id === clip.id ? 'ring-2 ring-blue-500' : 'ring-1 ring-slate-700 hover:ring-slate-500' }`}>
-                                                <img src={clip.thumbnail} alt={clip.title} className="w-full h-full object-cover" />
+                                            <button key={clip.id} onClick={() => handleClipSelect(clip)} disabled={isPreview} className={`relative shrink-0 rounded-md overflow-hidden outline-none transition-all duration-200 ${ASPECT_RATIO_INFO[clip.aspectRatio].thumbnailClass} ${ selectedClip?.id === clip.id ? 'ring-2 ring-blue-500' : 'ring-1 ring-slate-700 hover:ring-slate-500' }`}>
+                                                <img src={getYouTubeThumbnail(clip.videoId)} alt={clip.title} className="w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/30"></div>
-                                                {/* Duration text removed from here */}
                                             </button>
                                         ))}
                                     </div>
@@ -170,26 +141,12 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                         {selectedClip ? (
                             <div className="space-y-4 sm:space-y-6">
                                 <div className={`relative shadow-2xl shadow-black rounded-lg overflow-hidden ${ASPECT_RATIO_INFO[selectedClip.aspectRatio].className}`}>
-                                    {isClipPlaying ? (
-                                        <video
-                                            key={selectedClip.id}
-                                            className="w-full h-full object-cover"
-                                            src={selectedClip.videoUrl}
-                                            autoPlay
-                                            loop
-                                            muted
-                                            onClick={handleClipPlayPause}
-                                        />
-                                    ) : (
-                                        <>
-                                            <img src={selectedClip.thumbnail} alt={selectedClip.title} className="w-full h-full object-cover" />
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                                <button onClick={handleClipPlayPause} className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30">
-                                                    <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-1" />
-                                                </button>
-                                            </div>
-                                        </>
-                                    )}
+                                    <YouTube
+                                        videoId={selectedClip.videoId}
+                                        opts={playerOptions}
+                                        className="absolute top-0 left-0 w-full h-full"
+                                        key={selectedClip.id}
+                                    />
                                 </div>
                                 <div className="space-y-2 sm:space-y-3 px-2 sm:px-0">
                                     <h3 className="text-xl sm:text-2xl font-bold text-white">{selectedClip.title}</h3>
@@ -204,7 +161,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
             {/* Features Highlight */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4">
-                <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Target className="w-5 h-5 sm:w-6 sm-h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Smart Scene Detection</p></div>
+                <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Target className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Smart Scene Detection</p></div>
                 <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Clock className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">AI-Powered Captions</p></div>
                 <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Zap className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Multi-Platform Formatting</p></div>
             </div>
