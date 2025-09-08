@@ -1,19 +1,18 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Play, Pause, Clock, Target, Zap } from 'lucide-react';
 
-// --- Demo Data (Updated with videoUrl) ---
+// --- Demo Data (Updated: `duration` property removed) ---
 const demoVideos = [
     { 
         id: 1, 
         title: 'Business Webinar', 
         thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', 
         videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4',
-        duration: '45:30', 
         clips: [ 
-            { id: 1, title: 'Key Insight #1', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', duration: '0:15', aspectRatio: '16:9', caption: 'The secret to scaling your business is not about working harder, it\'s about building systems that work for you 24/7.', platform: 'TikTok' }, 
-            { id: 4, title: 'Quick Growth Hack', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', duration: '0:18', aspectRatio: '16:9', caption: 'Try this marketing trick today! It increased our engagement by over 50%.', platform: 'Reels' }, 
-            { id: 2, title: 'Best Quote', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', duration: '0:30', aspectRatio: '9:16', caption: 'Success is not about luck. It\'s the result of preparation, hard work, and learning from failure.', platform: 'YouTube' }, 
-            { id: 3, title: 'Action Steps', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', duration: '0:45', aspectRatio: '1:1', caption: 'Here are 3 concrete steps to transform your strategy and see immediate results.', platform: 'Instagram' },
+            { id: 1, title: 'Key Insight #1', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '16:9', caption: 'The secret to scaling your business is not about working harder, it\'s about building systems that work for you 24/7.', platform: 'TikTok' }, 
+            { id: 4, title: 'Quick Growth Hack', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '16:9', caption: 'Try this marketing trick today! It increased our engagement by over 50%.', platform: 'Reels' }, 
+            { id: 2, title: 'Best Quote', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '9:16', caption: 'Success is not about luck. It\'s the result of preparation, hard work, and learning from failure.', platform: 'YouTube' }, 
+            { id: 3, title: 'Action Steps', thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4', aspectRatio: '1:1', caption: 'Here are 3 concrete steps to transform your strategy and see immediate results.', platform: 'Instagram' },
         ] 
     },
     { 
@@ -21,22 +20,20 @@ const demoVideos = [
         title: 'Podcast Interview', 
         thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', 
         videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4',
-        duration: '1:20:15', 
         clips: [ 
-            { id: 10, title: 'Viral Moment', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', duration: '0:12', aspectRatio: '9:16', caption: 'This one moment changed everything for me, and it might for you too.', platform: 'TikTok' }, 
-            { id: 11, title: 'Expert Advice', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', duration: '0:25', aspectRatio: '16:9', caption: 'Here\'s the biggest mistake most people make in this industry.', platform: 'YouTube' }, 
-            { id: 12, title: 'Personal Story', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', duration: '0:35', aspectRatio: '1:1', caption: 'My biggest failure taught me the most important lesson about resilience.', platform: 'Instagram' },
+            { id: 10, title: 'Viral Moment', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', aspectRatio: '9:16', caption: 'This one moment changed everything for me, and it might for you too.', platform: 'TikTok' }, 
+            { id: 11, title: 'Expert Advice', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', aspectRatio: '16:9', caption: 'Here\'s the biggest mistake most people make in this industry.', platform: 'YouTube' }, 
+            { id: 12, title: 'Personal Story', thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400', videoUrl: 'https://videos.pexels.com/video-files/8245345/8245345-hd_1920_1080_24fps.mp4', aspectRatio: '1:1', caption: 'My biggest failure taught me the most important lesson about resilience.', platform: 'Instagram' },
         ] 
     },
     { 
       id: 3, 
       title: 'YouTube Livestream', 
-      thumbnail: 'https://www.youtube.com/watch?v=uJfGby1C3C4', 
+      thumbnail: 'https://i.ytimg.com/vi/sBws8MSXN_I/hqdefault.jpg', 
       videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4',
-      duration: '2:15:00', 
       clips: [ 
-        { id: 20, title: 'Stream Highlight #1', thumbnail: 'https://www.youtube.com/watch?v=uJfGby1C3C4', videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4', duration: '0:45', aspectRatio: '16:9', caption: 'A key highlight from our recent livestream event about market trends.', platform: 'YouTube' }, 
-        { id: 22, title: 'Vertical Stream Cut', thumbnail: 'https://www.youtube.com/watch?v=uJfGby1C3C4', videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4', duration: '0:32', aspectRatio: '9:16', caption: 'A powerful quote from the stream, perfect for Reels.', platform: 'Reels' }
+        { id: 20, title: 'Stream Highlight #1', thumbnail: 'https://i.ytimg.com/vi/sBws8MSXN_I/hqdefault.jpg', videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4', aspectRatio: '16:9', caption: 'A key highlight from our recent livestream event about market trends.', platform: 'YouTube' }, 
+        { id: 22, title: 'Vertical Stream Cut', thumbnail: 'https://i.ytimg.com/vi/sBws8MSXN_I/hqdefault.jpg', videoUrl: 'https://videos.pexels.com/video-files/7578544/7578544-hd_1920_1080_30fps.mp4', aspectRatio: '9:16', caption: 'A powerful quote from the stream, perfect for Reels.', platform: 'Reels' }
       ] 
     },
 ];
@@ -53,7 +50,6 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
     const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
     const [selectedClip, setSelectedClip] = useState(demoVideos[0].clips[0]);
     
-    // --- CHANGE HIGHLIGHT #1: Separate playing states for main video and clip preview ---
     const [isMainPlaying, setIsMainPlaying] = useState(false);
     const [isClipPlaying, setIsClipPlaying] = useState(false);
 
@@ -106,7 +102,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
                                 <div className="p-3 w-full">
                                     <h5 className="text-white font-medium text-sm">{video.title}</h5>
-                                    <p className="text-slate-300 text-xs">Duration: {video.duration}</p>
+                                    {/* Duration text removed from here */}
                                 </div>
                             </div>
                             {selectedVideo.id === video.id && (<div className="absolute top-2 right-2"><div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center"><Play className="w-3 h-3 text-white" /></div></div>)}
@@ -120,21 +116,23 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                 <h4 className="text-xl font-bold text-white mb-4">Selected Video</h4>
                 <div className="relative bg-black rounded-xl overflow-hidden border border-slate-800">
                     <div className="aspect-video bg-black relative">
-                        {/* --- CHANGE HIGHLIGHT #2: Conditional video rendering for Main Player --- */}
                         {isMainPlaying ? (
                              <video
-                                key={selectedVideo.id} // Add key to force re-render on video change
+                                key={selectedVideo.id} 
                                 className="absolute inset-0 w-full h-full object-cover"
                                 src={selectedVideo.videoUrl}
                                 autoPlay
                                 loop
                                 muted
-                                onClick={handleMainPlayPause} // Allow pausing by clicking video
+                                onClick={handleMainPlayPause} 
                             />
                         ) : (
                              <img src={selectedVideo.thumbnail} alt={selectedVideo.title} className="absolute inset-0 w-full h-full object-cover" />
                         )}
-                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2"><h5 className="text-white font-medium text-sm">{selectedVideo.title}</h5><p className="text-slate-300 text-xs">{selectedVideo.duration}</p></div>
+                        <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                             <h5 className="text-white font-medium text-sm">{selectedVideo.title}</h5>
+                             {/* Duration text removed from here */}
+                        </div>
                         <div className="absolute inset-0 flex items-center justify-center">
                             <button onClick={handleMainPlayPause} className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300">
                                 {isMainPlaying ? <Pause className="w-8 h-8 text-white" /> : <Play className="w-8 h-8 text-white ml-1" />}
@@ -159,7 +157,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                                             <button key={clip.id} onClick={() => handleClipSelect(clip)} disabled={isPreview} className={`relative shrink-0 w-20 h-14 sm:w-28 sm:h-20 rounded-md overflow-hidden outline-none transition-all duration-200 ${ selectedClip?.id === clip.id ? 'ring-2 ring-blue-500' : 'ring-1 ring-slate-700 hover:ring-slate-500' }`}>
                                                 <img src={clip.thumbnail} alt={clip.title} className="w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/30"></div>
-                                                <div className="absolute bottom-0.5 right-0.5 sm:bottom-1 sm:right-1 bg-black/70 rounded px-1"><span className="text-white text-xs">{clip.duration}</span></div>
+                                                {/* Duration text removed from here */}
                                             </button>
                                         ))}
                                     </div>
@@ -172,7 +170,6 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                         {selectedClip ? (
                             <div className="space-y-4 sm:space-y-6">
                                 <div className={`relative shadow-2xl shadow-black rounded-lg overflow-hidden ${ASPECT_RATIO_INFO[selectedClip.aspectRatio].className}`}>
-                                    {/* --- CHANGE HIGHLIGHT #3: Conditional video rendering for Clip Preview --- */}
                                     {isClipPlaying ? (
                                         <video
                                             key={selectedClip.id}
@@ -207,7 +204,7 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
 
             {/* Features Highlight */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-4">
-                <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Target className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Smart Scene Detection</p></div>
+                <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Target className="w-5 h-5 sm:w-6 sm-h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Smart Scene Detection</p></div>
                 <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Clock className="w-5 h-5 sm:w-6 sm:h-6 text-purple-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">AI-Powered Captions</p></div>
                 <div className="bg-slate-800/30 rounded-lg p-3 sm:p-4 text-center"><Zap className="w-5 h-5 sm:w-6 sm:h-6 text-green-500 mx-auto mb-2" /><p className="text-white text-xs sm:text-sm font-medium">Multi-Platform Formatting</p></div>
             </div>
