@@ -2,8 +2,6 @@ import React, { useState, useMemo, useEffect } from 'react';
 import YouTube from 'react-youtube'; // Import the YouTube component
 import { Clock, Target, Zap } from 'lucide-react';
 
-// --- Data Updated to use videoId ---
-// I've replaced videoUrl with the 11-character ID from the YouTube URL.
 const demoVideos = [
     { 
         id: 1, 
