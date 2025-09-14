@@ -8,7 +8,7 @@ const demoVideos = [
     isInteractive: true,
     audioOptions: [
       { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/mark_input.mp4' },
-      { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
+      { id: 'synced', name: 'Sunder Pichai\'s Voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
     ]
   },
   {
