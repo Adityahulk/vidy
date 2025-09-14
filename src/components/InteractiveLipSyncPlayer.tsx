@@ -27,7 +27,7 @@ const audioOptions = [
 const vimeoOriginalUrl = "https://player.vimeo.com/video/1118495258?badge=0&autoplay=1&loop=1&autopause=0&player_id=0&app_id=58479";
 const vimeoSyncedUrl = "https://player.vimeo.com/video/1118495279?badge=0&autoplay=1&loop=1&autopause=0&player_id=0&app_id=58479";
 
-
+<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1118495279?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="vidsimplify-4n8y9k"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
 interface InteractiveLipSyncPlayerProps {
   isPreview?: boolean;
 }
