@@ -1,4 +1,4 @@
-import React, 'useState'
+import React, { useState } from 'react';
 import { Play, Film, Target, Zap } from 'lucide-react';
 
 const demoVideos = [
