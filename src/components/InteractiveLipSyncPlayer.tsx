@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Film, Target, Zap, Volume2, VolumeX } from 'lucide-react';
+import { Play, Film, Target, Zap } from 'lucide-react';
+import { Player, ControlBar, BigPlayButton, LoadingSpinner } from 'video-react';
+import "video-react/dist/video-react.css"; // Import the CSS for the player
 
 const demoVideos = [
   {
     id: 1,
     name: "Taylor & Jordan",
-    thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
+    thumbnail: 'https://i.ibb.co/nspMVyw/Screenshot-2025-09-14-at-8-40-29-PM.png',
     isInteractive: true,
     audioOptions: [
       { id: 'original', name: 'Taylor\'s Voice', icon: '🎤', videoUrl: 'https://storage.googleapis.com/vidsimplify/taylor_input.mp4' },
@@ -13,21 +15,23 @@ const demoVideos = [
     ]
   },
   {
-    id: 2, // New Demo Video
+    id: 2,
+    name: "Trump & Journalist",
     thumbnail: 'https://i.ibb.co/Q79DCPkW/Screenshot-2025-09-14-at-7-49-22-PM.png',
     isInteractive: true,
     audioOptions: [
-      { id: 'original', name: 'Trump\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/drump_2_demo.mp4' },
-      { id: 'synced', name: 'Journalist\'s Voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com).mp4' }
+      { id: 'original', name: 'Trump\'s Voice', icon: '🎤', videoUrl: 'https://storage.googleapis.com/vidsimplify/drump_2_demo.mp4' },
+      { id: 'synced', name: 'Journalist\'s Voice', icon: '🔄', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com).mp4' }
     ]
   },
   {
     id: 3,
+    name: "Mark & Sundar",
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
     isInteractive: true,
     audioOptions: [
-      { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/mark_input.mp4' },
-      { id: 'synced', name: 'Sunder Pichai\'s Voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
+      { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoUrl: 'https://storage.googleapis.com/vidsimplify/mark_input.mp4' },
+      { id: 'synced', name: 'Sunder Pichai\'s Voice', icon: '🔄', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
     ]
   }
 ];
@@ -40,8 +44,7 @@ interface InteractiveLipSyncPlayerProps {
 export default function InteractiveLipSyncPlayer({ isPreview = false }: InteractiveLipSyncPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [selectedAudio, setSelectedAudio] = useState(demoVideos[0].audioOptions[0]);
-  const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const playerRef = useRef(null);
 
   // When the main video is changed, reset the audio selection
   useEffect(() => {
@@ -50,33 +53,23 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
     }
   }, [selectedVideo]);
 
-  // Effect to sync the video element's muted property with our state
+  // When the audio/video source changes, tell the player to load it
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
+    if (playerRef.current && selectedVideo.isInteractive) {
+      playerRef.current.load();
     }
-  }, [isMuted, selectedAudio]); // Also re-apply when audio source changes
-
-  const handleToggleMute = () => {
-    if (isPreview) return;
-    setIsMuted(!isMuted);
-  };
+  }, [selectedAudio]);
 
   return (
     <div className="space-y-6">
       {/* --- Video Selection section --- */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">Select Your Video</h4>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           {demoVideos.map((video) => (
             <button
               key={video.id}
-              onClick={() => {
-                if (!isPreview) {
-                  setSelectedVideo(video);
-                  setIsMuted(true);
-                }
-              }}
+              onClick={() => !isPreview && setSelectedVideo(video)}
               disabled={isPreview}
               className={`relative rounded-xl overflow-hidden transition-all duration-300 ${
                 selectedVideo.id === video.id 
@@ -84,11 +77,10 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
                   : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
               }`}
             >
-              <img src={video.thumbnail} alt="Video thumbnail" className="w-full h-32 object-cover"/>
+              <img src={video.thumbnail} alt={video.name} className="w-full h-32 object-cover"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
                 <div className="p-3 w-full">
-                  <h5 className="text-white font-medium text-sm">Demo Video {video.id}</h5>
-                  <p className="text-slate-300 text-xs">Ready for lip-sync</p>
+                  <h5 className="text-white font-medium text-sm">{video.name}</h5>
                 </div>
               </div>
               {selectedVideo.id === video.id && (
@@ -102,51 +94,44 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
       {/* Main Video Player */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">Lip-Sync Technology Demo</h4>
-        <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
-          <div className="aspect-video bg-black relative overflow-hidden">
+        <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto video-react-wrapper">
+          <div className="aspect-video bg-black relative">
             {selectedVideo.isInteractive ? (
-              <video
-                ref={videoRef}
+              <Player
+                ref={playerRef}
                 key={selectedAudio.videoUrl}
-                src={selectedAudio.videoUrl}
-                className="absolute inset-0 w-full h-full object-cover"
-                autoPlay
-                loop
+                poster={selectedVideo.thumbnail}
                 playsInline
-                title="Lip-Sync Demo"
-              ></video>
+                autoPlay={true}
+                muted={true} // Start muted for autoplay
+                src={selectedAudio.videoUrl}
+              >
+                <LoadingSpinner />
+                <BigPlayButton position="center" />
+                <ControlBar autoHide={true} />
+              </Player>
             ) : (
-              <img src={selectedVideo.thumbnail} alt="Video" className="absolute inset-0 w-full h-full object-cover"/>
+              <img src={selectedVideo.thumbnail} alt={selectedVideo.name} className="absolute inset-0 w-full h-full object-cover"/>
             )}
             
-            {/* Bottom Controls */}
-            <div className="absolute bottom-4 left-4 right-4">
+            {/* Custom Bottom Controls for Voice Selection */}
+            <div className="absolute bottom-16 sm:bottom-4 left-4 right-4 z-20">
               {selectedVideo.isInteractive && (
-                <div className="flex items-center justify-between">
-                    <div className="flex space-x-2">
-                        {selectedVideo.audioOptions.map((audio) => (
-                            <button
-                              key={audio.id}
-                              onClick={() => !isPreview && setSelectedAudio(audio)}
-                              className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                                  selectedAudio.id === audio.id 
-                                  ? 'bg-white text-black' 
-                                  : 'bg-black/50 text-white hover:bg-black/70'
-                              }`}
-                            >
-                              <span>{audio.icon}</span>
-                              <span className="font-medium">{audio.name}</span>
-                            </button>
-                        ))}
-                    </div>
-                    
-                    <button
-                        onClick={handleToggleMute}
-                        className="w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-                        aria-label={isMuted ? 'Unmute' : 'Mute'}
-                    >
-                        {isMuted ? <VolumeX className="w-5 h-5 text-white" /> : <Volume2 className="w-5 h-5 text-white" />}
-                    </button>
+                <div className="flex flex-wrap gap-2">
+                    {selectedVideo.audioOptions.map((audio) => (
+                        <button
+                          key={audio.id}
+                          onClick={() => !isPreview && setSelectedAudio(audio)}
+                          className={`flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 text-xs sm:text-sm ${
+                              selectedAudio.id === audio.id 
+                              ? 'bg-white text-black' 
+                              : 'bg-black/50 text-white hover:bg-black/70'
+                          }`}
+                        >
+                          <span>{audio.icon}</span>
+                          <span className="font-medium">{audio.name}</span>
+                        </button>
+                    ))}
                 </div>
               )}
             </div>
