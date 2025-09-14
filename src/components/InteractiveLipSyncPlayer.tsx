@@ -44,12 +44,14 @@ interface InteractiveLipSyncPlayerProps {
 export default function InteractiveLipSyncPlayer({ isPreview = false }: InteractiveLipSyncPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [selectedAudio, setSelectedAudio] = useState(demoVideos[0].audioOptions[0]);
+  const [isMuted, setIsMuted] = useState(true);
   const playerRef = useRef(null);
 
-  // When the main video is changed, reset the audio selection
+  // When the main video is changed, reset the audio selection and mute state
   useEffect(() => {
     if (selectedVideo.isInteractive) {
       setSelectedAudio(selectedVideo.audioOptions[0]);
+      setIsMuted(true); // Ensure new video starts muted for autoplay
     }
   }, [selectedVideo]);
 
@@ -59,6 +61,16 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
       playerRef.current.load();
     }
   }, [selectedAudio]);
+  
+  // Function to toggle mute state
+  const handleToggleMute = () => {
+    const nextMutedState = !isMuted;
+    setIsMuted(nextMutedState);
+    if (playerRef.current) {
+        playerRef.current.muted = nextMutedState;
+    }
+  };
+
 
   return (
     <div className="space-y-6">
@@ -97,19 +109,29 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
         <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto video-react-wrapper">
           <div className="aspect-video bg-black relative">
             {selectedVideo.isInteractive ? (
-              <Player
-                ref={playerRef}
-                key={selectedAudio.videoUrl}
-                poster={selectedVideo.thumbnail}
-                playsInline
-                autoPlay={true}
-                muted={true} // Start muted for autoplay
-                src={selectedAudio.videoUrl}
-              >
-                <LoadingSpinner />
-                <BigPlayButton position="center" />
-                <ControlBar autoHide={true} />
-              </Player>
+              <>
+                <Player
+                  ref={playerRef}
+                  key={selectedAudio.videoUrl}
+                  poster={selectedVideo.thumbnail}
+                  playsInline
+                  autoPlay={true}
+                  muted={isMuted} // Mute state is now controlled
+                  src={selectedAudio.videoUrl}
+                >
+                  <LoadingSpinner />
+                  <BigPlayButton position="center" />
+                  <ControlBar autoHide={true} />
+                </Player>
+                
+                <button
+                  onClick={handleToggleMute}
+                  className="absolute top-4 right-4 z-30 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 text-white text-sm font-medium hover:bg-black/70 transition-colors"
+                  aria-label={isMuted ? 'Unmute' : 'Mute'}
+                >
+                  {isMuted ? 'Unmute' : 'Mute'}
+                </button>
+              </>
             ) : (
               <img src={selectedVideo.thumbnail} alt={selectedVideo.name} className="absolute inset-0 w-full h-full object-cover"/>
             )}
