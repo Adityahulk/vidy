@@ -1,22 +1,20 @@
-import React, { useState } from 'react';
+import React, 'useState'
 import { Play, Film, Target, Zap } from 'lucide-react';
 
 const demoVideos = [
   {
     id: 1,
-    thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
+    thumbnail: 'https://i.vimeocdn.com/video/1858548179-6b809805445c99e9851e360439d56417531c3b1e33c7f66e01a4e1531e2d7877-d?mw=400&mh=225',
   },
   { id: 2, thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400' },
   { id: 3, thumbnail: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400' }
 ];
 
+// Updated with Google Cloud Storage URLs
 const audioOptions = [
-  { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoId: '1118495258' },
-  { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoId: '1118499959' }
+  { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/mark_input.mp4' },
+  { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
 ];
-
-// Vimeo player options
-const vimeoOptions = "?badge=0&autoplay=1&loop=1&autopause=0&player_id=0&app_id=58479";
 
 interface InteractiveLipSyncPlayerProps {
   isPreview?: boolean;
@@ -64,18 +62,20 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
         <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
           <div className="aspect-video bg-black relative overflow-hidden">
             {selectedVideo.id === 1 ? (
-              <iframe
-                // The KEY is crucial. When it changes, React replaces the iframe.
-                key={selectedAudio.videoId}
-                src={`https://player.vimeo.com/video/${selectedAudio.videoId}${vimeoOptions}`}
+              <video
+                // The key forces the video element to re-render when the src changes
+                key={selectedAudio.videoUrl}
+                src={selectedAudio.videoUrl}
                 className="absolute inset-0 w-full h-full"
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                title="Vimeo Lip-Sync Demo"
-              ></iframe>
+                autoPlay
+                loop
+                muted
+                playsInline // Important for autoplay on mobile devices
+                title="Lip-Sync Demo"
+              ></video>
             ) : (
               // Fallback for other non-Vimeo videos
-              <img src={selectedVideo.thumbnail} alt="Video" className="absolute inset-0 w-full h-full object-cover"/>
+              <img src={video.thumbnail} alt="Video" className="absolute inset-0 w-full h-full object-cover"/>
             )}
             
             {/* Bottom Controls */}
@@ -112,4 +112,3 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
     </div>
   );
 }
-
