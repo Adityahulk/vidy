@@ -1,25 +1,39 @@
-import React, { useState } from 'react';
-import { Play, Pause, Volume2, Globe, Mic } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Play, Film, Target, Zap, Volume2, VolumeX, Loader, Globe, Mic } from 'lucide-react';
 
 const demoVideos = [
   {
     id: 1,
-    thumbnail: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400'
+    name: "Tech Presentation",
+    thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
+    isInteractive: true,
+    languageOptions: [
+      { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/taylor_input.mp4' },
+      { code: 'pt', name: 'Portuguese', flag: '🇧🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com)%20(1).mp4' }
+    ]
   },
   {
     id: 2,
-    thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400'
+    name: "Political Interview",
+    thumbnail: 'https://i.ibb.co/Q79DCPkW/Screenshot-2025-09-14-at-7-49-22-PM.png',
+    isInteractive: true,
+    languageOptions: [
+      { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/drump_2_demo.mp4' },
+      { code: 'es', name: 'Spanish', flag: '🇪🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com).mp4' }
+    ]
   },
   {
     id: 3,
-    thumbnail: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400'
+    name: "Business Talk",
+    thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
+    isInteractive: true,
+    languageOptions: [
+      { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/mark_input.mp4' },
+      { code: 'fr', name: 'French', flag: '🇫🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
+    ]
   }
 ];
 
-const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'pt', name: 'Brazilian Portuguese', flag: '🇧🇷' }
-];
 
 interface InteractiveDubbingPlayerProps {
   isPreview?: boolean;
@@ -27,19 +41,40 @@ interface InteractiveDubbingPlayerProps {
 
 export default function InteractiveDubbingPlayer({ isPreview = false }: InteractiveDubbingPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(demoVideos[0].languageOptions[0]);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handlePlayPause = () => {
-    if (isPreview) return; // Disable interaction in preview mode
-    setIsPlaying(!isPlaying);
+  // When the main video is changed, reset the language selection and mute state
+  useEffect(() => {
+    if (selectedVideo.isInteractive) {
+      setSelectedLanguage(selectedVideo.languageOptions[0]);
+      setIsMuted(true); 
+      setIsLoading(true);
+    }
+  }, [selectedVideo]);
+  
+  // Also reset loading state when language source changes
+  useEffect(() => {
+      setIsLoading(true);
+  }, [selectedLanguage]);
+
+  // Function to toggle mute state
+  const handleToggleMute = () => {
+    if (isPreview) return;
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    if(videoRef.current) {
+        videoRef.current.muted = nextMuted;
+    }
   };
 
   return (
     <div className="space-y-6">
-      {/* Video Selection */}
-      <div>
-        <h4 className="text-xl font-bold text-white mb-4">Select Your Video</h4>
+      {/* --- Video Selection section (CENTERED) --- */}
+      <div className="max-w-4xl mx-auto">
+        <h4 className="text-xl font-bold text-white mb-4 text-center">Select Your Video</h4>
         <div className="grid grid-cols-3 gap-4">
           {demoVideos.map((video) => (
             <button
@@ -52,112 +87,103 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
                   : isPreview ? '' : 'hover:ring-1 hover:ring-white/50'
               }`}
             >
-              <img 
-                src={video.thumbnail} 
-                alt="Video thumbnail"
-                className="w-full h-32 object-cover"
-              />
+              <img src={video.thumbnail} alt={video.name} className="w-full h-32 object-cover"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end">
                 <div className="p-3 w-full">
-                  <h5 className="text-white font-medium text-sm">Demo Video {video.id}</h5>
-                  <p className="text-slate-300 text-xs">Ready for dubbing</p>
+                  <h5 className="text-white font-medium text-sm">{video.name}</h5>
                 </div>
               </div>
               {selectedVideo.id === video.id && (
-                <div className="absolute top-2 right-2">
-                  <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-                    <Play className="w-3 h-3 text-white" />
-                  </div>
-                </div>
+                <div className="absolute top-2 right-2"><div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center"><Play className="w-3 h-3 text-white" /></div></div>
               )}
             </button>
           ))}
         </div>
       </div>
-
+      
       {/* Main Video Player */}
       <div>
-        <h4 className="text-xl font-bold text-white mb-4">AI Dubbing Demo</h4>
+        <h4 className="text-xl font-bold text-white mb-4 text-center">AI Dubbing Technology Demo</h4>
         <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
-          <div className="aspect-video bg-black relative overflow-hidden">
-            {/* Video Background */}
-            <img 
-              src={selectedVideo.thumbnail} 
-              alt="Video"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            
-            {/* Video Controls Overlay */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <button
-                onClick={handlePlayPause}
-                className="w-16 h-16 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300"
-              >
-                {isPlaying ? (
-                  <Pause className="w-8 h-8 text-white" />
-                ) : (
-                  <Play className="w-8 h-8 text-white ml-1" />
+          <div className="aspect-video bg-black relative">
+            {selectedVideo.isInteractive ? (
+              <>
+                <video
+                  ref={videoRef}
+                  key={selectedLanguage.videoUrl}
+                  src={selectedLanguage.videoUrl}
+                  poster={selectedVideo.thumbnail}
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  playsInline
+                  onCanPlay={() => setIsLoading(false)}
+                  onWaiting={() => setIsLoading(true)}
+                  onPlaying={() => setIsLoading(false)}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                
+                {isLoading && (
+                   <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-20 pointer-events-none">
+                        <Loader className="w-12 h-12 text-white animate-spin" />
+                   </div>
                 )}
-              </button>
-            </div>
-
-            {/* Bottom Controls */}
-            <div className="absolute bottom-4 left-4 right-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <button
-                    onClick={handlePlayPause}
-                    className="w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-4 h-4 text-white" />
-                    ) : (
-                      <Play className="w-4 h-4 text-white ml-0.5" />
-                    )}
-                  </button>
-                  <Volume2 className="w-5 h-5 text-white" />
+                
+                <button
+                  onClick={handleToggleMute}
+                  className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 text-white text-sm font-medium hover:bg-black/70 transition-colors"
+                  aria-label={isMuted ? 'Unmute' : 'Mute'}
+                >
+                  {isMuted ? 'Unmute' : 'Mute'}
+                </button>
+              </>
+            ) : (
+              <img src={selectedVideo.thumbnail} alt={selectedVideo.name} className="absolute inset-0 w-full h-full object-cover"/>
+            )}
+            
+            {/* Custom Bottom Controls for Language Selection */}
+            <div className="absolute bottom-4 left-4 right-4 z-20">
+              {selectedVideo.isInteractive && (
+                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                    {selectedVideo.languageOptions.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => !isPreview && setSelectedLanguage(lang)}
+                          className={`flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-all duration-300 text-xs sm:text-sm ${
+                              selectedLanguage.code === lang.code
+                              ? 'bg-white text-black' 
+                              : 'bg-black/50 text-white hover:bg-black/70'
+                          }`}
+                        >
+                          <span>{lang.flag}</span>
+                          <span className="font-medium">{lang.name}</span>
+                        </button>
+                    ))}
                 </div>
-              </div>
-
-              {/* Language Selector */}
-              <div className="flex space-x-2 mt-4">
-                {languages.map((language) => (
-                  <button
-                    key={language.code}
-                    onClick={() => !isPreview && setSelectedLanguage(language)}
-                    disabled={isPreview}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                      selectedLanguage.code === language.code 
-                        ? 'bg-white text-black' 
-                        : 'bg-black/50 text-white hover:bg-black/70'
-                    }`}
-                  >
-                    <span className="text-sm">{language.flag}</span>
-                    <span className="text-sm font-medium">{language.name}</span>
-                  </button>
-                ))}
-              </div>
+              )}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Features Highlight */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-          <Volume2 className="w-6 h-6 text-blue-500 mx-auto mb-2" />
-          <p className="text-white text-sm font-medium">Voice Cloning</p>
-          <p className="text-slate-400 text-xs">Perfect voice replication</p>
-        </div>
-        <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-          <Globe className="w-6 h-6 text-purple-500 mx-auto mb-2" />
-          <p className="text-white text-sm font-medium">50+ Languages</p>
-          <p className="text-slate-400 text-xs">Global reach</p>
-        </div>
-        <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-          <Mic className="w-6 h-6 text-green-500 mx-auto mb-2" />
-          <p className="text-white text-sm font-medium">Perfect Lip-Sync</p>
-          <p className="text-slate-400 text-xs">Natural synchronization</p>
+      {/* --- Features Highlight section (CENTERED) --- */}
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+                <Volume2 className="w-6 h-6 text-blue-500 mx-auto mb-2" />
+                <p className="text-white text-sm font-medium">Voice Cloning</p>
+                <p className="text-slate-400 text-xs">Perfect voice replication</p>
+            </div>
+            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+                <Globe className="w-6 h-6 text-purple-500 mx-auto mb-2" />
+                <p className="text-white text-sm font-medium">50+ Languages</p>
+                <p className="text-slate-400 text-xs">Global reach</p>
+            </div>
+            <div className="bg-slate-800/30 rounded-lg p-4 text-center">
+                <Mic className="w-6 h-6 text-green-500 mx-auto mb-2" />
+                <p className="text-white text-sm font-medium">Perfect Lip-Sync</p>
+                <p className="text-slate-400 text-xs">Natural synchronization</p>
+            </div>
         </div>
       </div>
     </div>
