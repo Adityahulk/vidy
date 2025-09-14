@@ -306,34 +306,24 @@ export default function InteractiveLongToShortPlayer({ isPreview = false }: Inte
                         {selectedClip ? (
                             <div className="space-y-4 sm:space-y-6">
                                 <div className={`relative shadow-2xl shadow-black rounded-lg overflow-hidden ${ASPECT_RATIO_INFO[selectedClip.aspectRatio].className}`}>
-                                    {isYouTubeUrl(selectedClip.videoUrl) ? (
-                                        <iframe
-                                            src={`https://www.youtube.com/embed/${getYouTubeVideoId(selectedClip.videoUrl)}?enablejsapi=1`}
-                                            className="w-full h-full"
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
+                                    <>
+                                        <video 
+                                            ref={clipVideoRef}
+                                            src={selectedClip.videoUrl}
+                                            poster={selectedClip.thumbnail}
+                                            className="w-full h-full object-cover"
+                                            onPlay={() => setIsClipPlaying(true)}
+                                            onPause={() => setIsClipPlaying(false)}
                                         />
-                                    ) : (
-                                        <>
-                                            <video 
-                                                ref={clipVideoRef}
-                                                src={selectedClip.videoUrl}
-                                                poster={selectedClip.thumbnail}
-                                                className="w-full h-full object-cover"
-                                                onPlay={() => setIsClipPlaying(true)}
-                                                onPause={() => setIsClipPlaying(false)}
-                                            />
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                                <button 
-                                                    onClick={handleClipPlayPause}
-                                                    className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"
-                                                >
-                                                    {isClipPlaying ? <Pause className="w-6 h-6 sm:w-8 sm:h-8 text-white" /> : <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-1" />}
-                                                </button>
-                                            </div>
-                                        </>
-                                    )}
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                            <button 
+                                                onClick={handleClipPlayPause}
+                                                className="w-12 h-12 sm:w-16 sm:h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30"
+                                            >
+                                                {isClipPlaying ? <Pause className="w-6 h-6 sm:w-8 sm:h-8 text-white" /> : <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white ml-1" />}
+                                            </button>
+                                        </div>
+                                    </>
                                 </div>
                                 <div className="space-y-2 sm:space-y-3 px-2 sm:px-0">
                                     <h3 className="text-xl sm:text-2xl font-bold text-white">{selectedClip.title}</h3>
