@@ -4,7 +4,7 @@ import { Play, Film, Target, Zap } from 'lucide-react';
 const demoVideos = [
   {
     id: 1,
-    thumbnail: 'https://i.vimeocdn.com/video/1858548179-6b809805445c99e9851e360439d56417531c3b1e33c7f66e01a4e1531e2d7877-d?mw=400&mh=225',
+    thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
   },
   { id: 2, thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400' },
   { id: 3, thumbnail: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400' }
