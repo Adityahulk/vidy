@@ -20,7 +20,16 @@ const demoVideos = [
       { id: 'synced', name: 'Journalist\'s Voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com).mp4' }
     ]
   },
-  { id: 3, thumbnail: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400' }
+  {
+    id: 3,
+    name: "Taylor & Jordan",
+    thumbnail: 'https://i.ibb.co/3kGtq4v/taylor-thumb.png', // NOTE: Replace with a real thumbnail
+    isInteractive: true,
+    audioOptions: [
+      { id: 'original', name: 'Taylor\'s Voice', icon: '🎤', videoUrl: 'https://storage.googleapis.com/vidsimplify/taylor_input.mp4' },
+      { id: 'synced', name: 'Jordan\'s Voice', icon: '🔄', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com)%20(1).mp4' }
+    ]
+  }
 ];
 
 
