@@ -12,7 +12,7 @@ const demoVideos = [
 
 const audioOptions = [
   { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoId: '1118495258' },
-  { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoId: '1118495279' }
+  { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoId: '1118499959' }
 ];
 
 // Vimeo player options
