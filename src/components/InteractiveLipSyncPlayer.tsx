@@ -1,7 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Film, Target, Zap } from 'lucide-react';
-import { Player, ControlBar, BigPlayButton, LoadingSpinner } from 'video-react';
-import "video-react/dist/video-react.css"; // Import the CSS for the player
+import { Play, Film, Target, Zap, Volume2, VolumeX, Loader } from 'lucide-react';
 
 const demoVideos = [
   {
@@ -45,32 +43,32 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [selectedAudio, setSelectedAudio] = useState(demoVideos[0].audioOptions[0]);
   const [isMuted, setIsMuted] = useState(true);
-  const playerRef = useRef(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // When the main video is changed, reset the audio selection and mute state
   useEffect(() => {
     if (selectedVideo.isInteractive) {
       setSelectedAudio(selectedVideo.audioOptions[0]);
-      setIsMuted(true); // Ensure new video starts muted for autoplay
+      setIsMuted(true); 
+      setIsLoading(true);
     }
   }, [selectedVideo]);
-
-  // When the audio/video source changes, tell the player to load it
-  useEffect(() => {
-    if (playerRef.current && selectedVideo.isInteractive) {
-      playerRef.current.load();
-    }
-  }, [selectedAudio]);
   
+  // Also reset loading state when audio source changes
+  useEffect(() => {
+      setIsLoading(true);
+  }, [selectedAudio]);
+
   // Function to toggle mute state
   const handleToggleMute = () => {
-    const nextMutedState = !isMuted;
-    setIsMuted(nextMutedState);
-    if (playerRef.current) {
-        playerRef.current.muted = nextMutedState;
+    if (isPreview) return;
+    const nextMuted = !isMuted;
+    setIsMuted(nextMuted);
+    if(videoRef.current) {
+        videoRef.current.muted = nextMuted;
     }
   };
-
 
   return (
     <div className="space-y-6">
@@ -106,27 +104,34 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
       {/* Main Video Player */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4 text-center">Lip-Sync Technology Demo</h4>
-        <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto video-react-wrapper">
+        <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
           <div className="aspect-video bg-black relative">
             {selectedVideo.isInteractive ? (
               <>
-                <Player
-                  ref={playerRef}
+                <video
+                  ref={videoRef}
                   key={selectedAudio.videoUrl}
-                  poster={selectedVideo.thumbnail}
-                  playsInline
-                  autoPlay={true}
-                  muted={isMuted} // Mute state is now controlled
                   src={selectedAudio.videoUrl}
-                >
-                  <LoadingSpinner />
-                  <BigPlayButton position="center" />
-                  <ControlBar autoHide={true} />
-                </Player>
+                  poster={selectedVideo.thumbnail}
+                  autoPlay
+                  loop
+                  muted={isMuted}
+                  playsInline
+                  onCanPlay={() => setIsLoading(false)}
+                  onWaiting={() => setIsLoading(true)}
+                  onPlaying={() => setIsLoading(false)}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                
+                {isLoading && (
+                   <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-20 pointer-events-none">
+                        <Loader className="w-12 h-12 text-white animate-spin" />
+                   </div>
+                )}
                 
                 <button
                   onClick={handleToggleMute}
-                  className="absolute top-4 right-4 z-30 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 text-white text-sm font-medium hover:bg-black/70 transition-colors"
+                  className="absolute top-4 left-1/2 -translate-x-1/2 z-30 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1.5 text-white text-sm font-medium hover:bg-black/70 transition-colors"
                   aria-label={isMuted ? 'Unmute' : 'Mute'}
                 >
                   {isMuted ? 'Unmute' : 'Mute'}
@@ -137,7 +142,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
             )}
             
             {/* Custom Bottom Controls for Voice Selection */}
-            <div className="absolute bottom-16 sm:bottom-4 left-4 right-4 z-20">
+            <div className="absolute bottom-4 left-4 right-4 z-20">
               {selectedVideo.isInteractive && (
                 <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                     {selectedVideo.audioOptions.map((audio) => (
@@ -172,3 +177,4 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
     </div>
   );
 }
+
