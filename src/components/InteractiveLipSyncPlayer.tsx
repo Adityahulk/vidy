@@ -62,9 +62,9 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
 
   return (
     <div className="space-y-6">
-      {/* --- Video Selection section --- */}
-      <div>
-        <h4 className="text-xl font-bold text-white mb-4">Select Your Video</h4>
+      {/* --- Video Selection section (NOW CENTERED) --- */}
+      <div className="max-w-4xl mx-auto">
+        <h4 className="text-xl font-bold text-white mb-4 text-center">Select Your Video</h4>
         <div className="grid grid-cols-3 gap-4">
           {demoVideos.map((video) => (
             <button
@@ -93,7 +93,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
       
       {/* Main Video Player */}
       <div>
-        <h4 className="text-xl font-bold text-white mb-4">Lip-Sync Technology Demo</h4>
+        <h4 className="text-xl font-bold text-white mb-4 text-center">Lip-Sync Technology Demo</h4>
         <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto video-react-wrapper">
           <div className="aspect-video bg-black relative">
             {selectedVideo.isInteractive ? (
@@ -117,7 +117,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
             {/* Custom Bottom Controls for Voice Selection */}
             <div className="absolute bottom-16 sm:bottom-4 left-4 right-4 z-20">
               {selectedVideo.isInteractive && (
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                     {selectedVideo.audioOptions.map((audio) => (
                         <button
                           key={audio.id}
@@ -139,11 +139,13 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
         </div>
       </div>
 
-      {/* --- Features Highlight section --- */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Film className="w-6 h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Real-Time Sync</p><p className="text-slate-400 text-xs">Instant processing</p></div>
-        <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Target className="w-6 h-6 text-purple-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Precision Tracking</p><p className="text-slate-400 text-xs">Sub-pixel accuracy</p></div>
-        <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Zap className="w-6 h-6 text-green-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Multi-Language</p><p className="text-slate-400 text-xs">Global compatibility</p></div>
+      {/* --- Features Highlight section (NOW CENTERED) --- */}
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Film className="w-6 h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Real-Time Sync</p><p className="text-slate-400 text-xs">Instant processing</p></div>
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Target className="w-6 h-6 text-purple-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Precision Tracking</p><p className="text-slate-400 text-xs">Sub-pixel accuracy</p></div>
+          <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Zap className="w-6 h-6 text-green-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Multi-Language</p><p className="text-slate-400 text-xs">Global compatibility</p></div>
+        </div>
       </div>
     </div>
   );
