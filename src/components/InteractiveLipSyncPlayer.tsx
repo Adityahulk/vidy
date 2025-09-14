@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
-import Vimeo from '@vimeo/player'; // You may need to install this: npm install @vimeo/player
-import { Play, Volume2, Film, Target, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Play, Film, Target, Zap } from 'lucide-react';
 
-// --- (Keep your demoVideos and audioOptions constants the same) ---
 const demoVideos = [
   {
     id: 1,
@@ -17,7 +15,7 @@ const audioOptions = [
   { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoId: '1118495279' }
 ];
 
-// We don't need the full URLs anymore, just the IDs
+// Vimeo player options
 const vimeoOptions = "?badge=0&autoplay=1&loop=1&autopause=0&player_id=0&app_id=58479";
 
 interface InteractiveLipSyncPlayerProps {
@@ -27,37 +25,10 @@ interface InteractiveLipSyncPlayerProps {
 export default function InteractiveLipSyncPlayer({ isPreview = false }: InteractiveLipSyncPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
   const [selectedAudio, setSelectedAudio] = useState(audioOptions[0]);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  // Create a ref to hold the iframe DOM element
-  const vimeoPlayerRef = useRef(null);
-
-  useEffect(() => {
-    // This effect runs only when the selected video is the Vimeo demo (id: 1)
-    if (selectedVideo.id !== 1 || !vimeoPlayerRef.current) {
-        return;
-    }
-
-    // Initialize the Vimeo player on the iframe
-    const player = new Vimeo(vimeoPlayerRef.current);
-
-    // When the selected audio changes, load the new video ID
-    player.loadVideo(selectedAudio.videoId).then(() => {
-        player.play();
-    }).catch(error => {
-        console.error('Error loading video:', error);
-    });
-
-    // We don't need a cleanup function here as we want the player to persist
-    // as long as the component is mounted for video ID 1.
-  }, [selectedAudio, selectedVideo.id]); // Re-run when the audio or main video selection changes
-
-
-  // ... (handlePlayPause function and other logic remains the same)
 
   return (
     <div className="space-y-6">
-      {/* --- Video Selection section remains the same --- */}
+      {/* --- Video Selection section --- */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">Select Your Video</h4>
         <div className="grid grid-cols-3 gap-4">
@@ -94,9 +65,9 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
           <div className="aspect-video bg-black relative overflow-hidden">
             {selectedVideo.id === 1 ? (
               <iframe
-                ref={vimeoPlayerRef} // Attach the ref to the iframe
-                // Load the initial video. The API will handle changes.
-                src={`https://player.vimeo.com/video/${audioOptions[0].videoId}${vimeoOptions}`}
+                // The KEY is crucial. When it changes, React replaces the iframe.
+                key={selectedAudio.videoId}
+                src={`https://player.vimeo.com/video/${selectedAudio.videoId}${vimeoOptions}`}
                 className="absolute inset-0 w-full h-full"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
@@ -132,7 +103,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
         </div>
       </div>
 
-      {/* --- Features Highlight section remains the same --- */}
+      {/* --- Features Highlight section --- */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Film className="w-6 h-6 text-blue-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Real-Time Sync</p><p className="text-slate-400 text-xs">Instant processing</p></div>
         <div className="bg-slate-800/30 rounded-lg p-4 text-center"><Target className="w-6 h-6 text-purple-500 mx-auto mb-2" /><p className="text-white text-sm font-medium">Precision Tracking</p><p className="text-slate-400 text-xs">Sub-pixel accuracy</p></div>
@@ -141,3 +112,4 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
     </div>
   );
 }
+
