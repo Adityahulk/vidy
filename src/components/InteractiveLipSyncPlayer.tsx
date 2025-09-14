@@ -5,15 +5,24 @@ const demoVideos = [
   {
     id: 1,
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
+    isInteractive: true,
+    audioOptions: [
+      { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/mark_input.mp4' },
+      { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
+    ]
   },
-  { id: 2, thumbnail: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=400' },
+  {
+    id: 2, // New Demo Video
+    thumbnail: 'https://i.ibb.co/dD3s811/trump-thumb.png',
+    isInteractive: true,
+    audioOptions: [
+      { id: 'original', name: 'Trump\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/drump_2_demo.mp4' },
+      { id: 'synced', name: 'Journalist\'s Voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com).mp4' }
+    ]
+  },
   { id: 3, thumbnail: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400' }
 ];
 
-const audioOptions = [
-  { id: 'original', name: 'Mark\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/mark_input.mp4' },
-  { id: 'synced', name: 'Sunder Pichai\'s voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
-];
 
 interface InteractiveLipSyncPlayerProps {
   isPreview?: boolean;
@@ -21,9 +30,16 @@ interface InteractiveLipSyncPlayerProps {
 
 export default function InteractiveLipSyncPlayer({ isPreview = false }: InteractiveLipSyncPlayerProps) {
   const [selectedVideo, setSelectedVideo] = useState(demoVideos[0]);
-  const [selectedAudio, setSelectedAudio] = useState(audioOptions[0]);
+  const [selectedAudio, setSelectedAudio] = useState(demoVideos[0].audioOptions[0]);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // When the main video is changed, reset the audio selection
+  useEffect(() => {
+    if (selectedVideo.isInteractive) {
+      setSelectedAudio(selectedVideo.audioOptions[0]);
+    }
+  }, [selectedVideo]);
 
   // Effect to sync the video element's muted property with our state
   useEffect(() => {
@@ -42,14 +58,13 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
       {/* --- Video Selection section --- */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">Select Your Video</h4>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {demoVideos.map((video) => (
             <button
               key={video.id}
               onClick={() => {
                 if (!isPreview) {
                   setSelectedVideo(video);
-                  // Reset to muted when selecting a new video to ensure autoplay
                   setIsMuted(true);
                 }
               }}
@@ -80,7 +95,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
         <h4 className="text-xl font-bold text-white mb-4">Lip-Sync Technology Demo</h4>
         <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
           <div className="aspect-video bg-black relative overflow-hidden">
-            {selectedVideo.id === 1 ? (
+            {selectedVideo.isInteractive ? (
               <video
                 ref={videoRef}
                 key={selectedAudio.videoUrl}
@@ -89,7 +104,6 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
                 autoPlay
                 loop
                 playsInline
-                // The muted attribute is now controlled by the isMuted state via useEffect
                 title="Lip-Sync Demo"
               ></video>
             ) : (
@@ -98,41 +112,31 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
             
             {/* Bottom Controls */}
             <div className="absolute bottom-4 left-4 right-4">
-              {selectedVideo.id === 1 && (
+              {selectedVideo.isInteractive && (
                 <div className="flex items-center justify-between">
                     <div className="flex space-x-2">
-                        {audioOptions.map((audio) => (
+                        {selectedVideo.audioOptions.map((audio) => (
                             <button
-                            key={audio.id}
-                            onClick={() => {
-                                if (!isPreview) {
-                                setSelectedAudio(audio);
-                                // Keep the user's mute choice when switching voices
-                                }
-                            }}
-                            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
-                                selectedAudio.id === audio.id 
-                                ? 'bg-white text-black' 
-                                : 'bg-black/50 text-white hover:bg-black/70'
-                            }`}
+                              key={audio.id}
+                              onClick={() => !isPreview && setSelectedAudio(audio)}
+                              className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300 ${
+                                  selectedAudio.id === audio.id 
+                                  ? 'bg-white text-black' 
+                                  : 'bg-black/50 text-white hover:bg-black/70'
+                              }`}
                             >
-                            <span>{audio.icon}</span>
-                            <span className="font-medium">{audio.name}</span>
+                              <span>{audio.icon}</span>
+                              <span className="font-medium">{audio.name}</span>
                             </button>
                         ))}
                     </div>
                     
-                    {/* Mute/Unmute Button */}
                     <button
                         onClick={handleToggleMute}
                         className="w-10 h-10 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
                         aria-label={isMuted ? 'Unmute' : 'Mute'}
                     >
-                        {isMuted ? (
-                            <VolumeX className="w-5 h-5 text-white" />
-                        ) : (
-                            <Volume2 className="w-5 h-5 text-white" />
-                        )}
+                        {isMuted ? <VolumeX className="w-5 h-5 text-white" /> : <Volume2 className="w-5 h-5 text-white" />}
                     </button>
                 </div>
               )}
@@ -150,4 +154,3 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
     </div>
   );
 }
-
