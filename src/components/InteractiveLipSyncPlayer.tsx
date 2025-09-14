@@ -4,6 +4,16 @@ import { Play, Film, Target, Zap, Volume2, VolumeX } from 'lucide-react';
 const demoVideos = [
   {
     id: 1,
+    name: "Taylor & Jordan",
+    thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
+    isInteractive: true,
+    audioOptions: [
+      { id: 'original', name: 'Taylor\'s Voice', icon: '🎤', videoUrl: 'https://storage.googleapis.com/vidsimplify/taylor_input.mp4' },
+      { id: 'synced', name: 'Jordan\'s Voice', icon: '🔄', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com)%20(1).mp4' }
+    ]
+  },
+  {
+    id: 3,
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
     isInteractive: true,
     audioOptions: [
@@ -18,16 +28,6 @@ const demoVideos = [
     audioOptions: [
       { id: 'original', name: 'Trump\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/drump_2_demo.mp4' },
       { id: 'synced', name: 'Journalist\'s Voice', icon: '🔄', videoUrl: 'https://storage.cloud.google.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com).mp4' }
-    ]
-  },
-  {
-    id: 3,
-    name: "Taylor & Jordan",
-    thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
-    isInteractive: true,
-    audioOptions: [
-      { id: 'original', name: 'Taylor\'s Voice', icon: '🎤', videoUrl: 'https://storage.googleapis.com/vidsimplify/taylor_input.mp4' },
-      { id: 'synced', name: 'Jordan\'s Voice', icon: '🔄', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com)%20(1).mp4' }
     ]
   }
 ];
