@@ -13,7 +13,7 @@ const demoVideos = [
   },
   {
     id: 2, // New Demo Video
-    thumbnail: 'https://i.ibb.co/dD3s811/trump-thumb.png',
+    thumbnail: 'https://i.ibb.co/Q79DCPkW/Screenshot-2025-09-14-at-7-49-22-PM.png',
     isInteractive: true,
     audioOptions: [
       { id: 'original', name: 'Trump\'s Voice', icon: '🎤', videoUrl: 'https://storage.cloud.google.com/vidsimplify/drump_2_demo.mp4' },
