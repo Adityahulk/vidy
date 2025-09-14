@@ -7,7 +7,7 @@ const demoVideos = [
   {
     id: 1,
     name: "Taylor & Jordan",
-    thumbnail: 'https://i.ibb.co/nspMVyw/Screenshot-2025-09-14-at-8-40-29-PM.png',
+    thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
     isInteractive: true,
     audioOptions: [
       { id: 'original', name: 'Taylor\'s Voice', icon: '🎤', videoUrl: 'https://storage.googleapis.com/vidsimplify/taylor_input.mp4' },
