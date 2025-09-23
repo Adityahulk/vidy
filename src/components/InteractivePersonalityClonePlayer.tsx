@@ -4,22 +4,22 @@ import { Play, User, Brain, Mic, Video, Loader } from 'lucide-react';
 const demoVideos = [
   {
     id: 1,
-    name: "Dwayne - The Rock",
-    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-23%20at%2010.16.51%20PM.png',
-    isInteractive: true,
-    personalityOptions: [
-      { id: 'original', name: 'Original Video', icon: '👩‍💼', videoUrl: 'https://storage.googleapis.com/vidsimplify/rock_dummy.mp4' },
-      { id: 'clone', name: 'Cloned Video', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-63qems%20(online-video-cutter.com).mp4' }
-    ]
-  },
-  {
-    id: 2,
     name: "Sydney Sweeney - Founder's Crush",
     thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-23%20at%2011.20.31%20PM.png',
     isInteractive: true,
     personalityOptions: [
       { id: 'original', name: 'Original Sydney', icon: '👨‍🏫', videoUrl: 'https://storage.googleapis.com/vidsimplify/sydney%20(online-video-cutter.com).mp4' },
       { id: 'clone', name: 'Sydney Clone', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-6tqi5v%20(online-video-cutter.com).mp4' }
+    ]
+  },
+  {
+    id: 2,
+    name: "Dwayne - The Rock",
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-23%20at%2010.16.51%20PM.png',
+    isInteractive: true,
+    personalityOptions: [
+      { id: 'original', name: 'Original Video', icon: '👩‍💼', videoUrl: 'https://storage.googleapis.com/vidsimplify/rock_dummy.mp4' },
+      { id: 'clone', name: 'Cloned Video', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-63qems%20(online-video-cutter.com).mp4' }
     ]
   },
   {
