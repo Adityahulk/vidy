@@ -85,41 +85,8 @@ export default function InteractivePersonalityClonePlayer({ isPreview = false }:
         </div>
       </div>
 
-      {/* Step 2: Input Script */}
-      <div>
-        <h4 className="text-xl font-bold text-white mb-4">Enter Your Script</h4>
-        <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4">
-          <div className="flex items-center space-x-2 mb-3">
-            <Type className="w-5 h-5 text-blue-400" />
-            <span className="text-slate-300 text-sm">Script Input</span>
-          </div>
-          <textarea
-            value={currentScript}
-            onChange={(e) => !isPreview && setCurrentScript(e.target.value)}
-            disabled={isPreview}
-            className="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
-            rows={3}
-            placeholder="Enter your script here..."
-          />
-          <div className="flex justify-between items-center mt-3">
-            <div className="flex space-x-2">
-              {sampleScripts.map((script, index) => (
-                <button
-                  key={index}
-                  onClick={() => !isPreview && setCurrentScript(script)}
-                  disabled={isPreview}
-                  className="text-xs bg-slate-600 hover:bg-slate-500 text-slate-300 px-2 py-1 rounded transition-colors"
-                >
-                  Sample {index + 1}
-                </button>
-              ))}
-            </div>
-            <span className="text-xs text-slate-400">{currentScript.length} characters</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Step 3: Generated Result - Always Visible */}
+      {/* Generated Result - Always Visible */}
       <div>
         <h4 className="text-xl font-bold text-white mb-4">Your Generated Video</h4>
         <div className="relative bg-black rounded-xl overflow-hidden">
