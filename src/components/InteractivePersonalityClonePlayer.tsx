@@ -5,7 +5,7 @@ const demoVideos = [
   {
     id: 1,
     name: "Dwayne - The Rock",
-    thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-23%20at%2010.16.51%20PM.png',
     isInteractive: true,
     personalityOptions: [
       { id: 'original', name: 'Original Video', icon: '👩‍💼', videoUrl: 'https://storage.googleapis.com/vidsimplify/rock_dummy.mp4' },
