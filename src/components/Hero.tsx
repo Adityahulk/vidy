@@ -66,8 +66,7 @@ export default function Hero() {
   };
 
   const handleDemoClick = (path: string) => {
-    // Scroll to services section instead of navigating to service page
-    document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+    navigate(path);
   };
 
   const currentDemo = demos[currentDemoIndex];
