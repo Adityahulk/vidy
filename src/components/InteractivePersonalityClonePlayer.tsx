@@ -4,7 +4,7 @@ import { Play, User, Brain, Mic, Video, Loader } from 'lucide-react';
 const demoVideos = [
   {
     id: 1,
-    name: "Sarah - CEO",
+    name: "Dwayne - The Rock",
     thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
     isInteractive: true,
     personalityOptions: [
