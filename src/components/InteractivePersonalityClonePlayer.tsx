@@ -14,8 +14,8 @@ const demoVideos = [
   },
   {
     id: 2,
-    name: "Mike - Educator",
-    thumbnail: 'https://i.ibb.co/Q79DCPkW/Screenshot-2025-09-14-at-7-49-22-PM.png',
+    name: "Sydney Sweeney - Founder's Crush",
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-23%20at%2011.20.31%20PM.png',
     isInteractive: true,
     personalityOptions: [
       { id: 'original', name: 'Original Sydney', icon: '👨‍🏫', videoUrl: 'https://storage.googleapis.com/vidsimplify/sydney%20(online-video-cutter.com).mp4' },
