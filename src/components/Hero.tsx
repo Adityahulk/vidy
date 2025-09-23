@@ -65,10 +65,6 @@ export default function Hero() {
     setCurrentDemoIndex((prev) => (prev + 1) % demos.length);
   };
 
-  const handleDemoClick = (path: string) => {
-    navigate(path);
-  };
-
   const currentDemo = demos[currentDemoIndex];
 
   return (
@@ -163,26 +159,11 @@ export default function Hero() {
                 <div className="text-center mb-6">
                   <h4 className="text-xl font-bold text-white mb-2">{currentDemo.title}</h4>
                   <p className="text-slate-400">{currentDemo.description}</p>
-                  <button 
-                    onClick={() => handleDemoClick(currentDemo.path)}
-                    className="mt-3 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
-                  >
-                    Try Interactive Demo →
-                  </button>
                 </div>
                 
                 {/* Demo Component */}
-                <div 
-                  className="transition-all duration-500 ease-in-out cursor-pointer relative"
-                  onClick={() => handleDemoClick(currentDemo.path)}
-                >
-                  {currentDemo.component}
-                  {/* Overlay to prevent interaction but allow clicks */}
-                  <div className="absolute inset-0 bg-transparent hover:bg-blue-500/5 transition-colors rounded-lg flex items-center justify-center opacity-0 hover:opacity-100">
-                    <div className="bg-blue-500/90 backdrop-blur-sm text-white px-4 py-2 rounded-lg font-medium">
-                      Click to Try Full Demo
-                    </div>
-                  </div>
+                <div className="transition-all duration-500 ease-in-out">
+                  {React.cloneElement(currentDemo.component, { isPreview: false })}
                 </div>
               </div>
 
