@@ -102,7 +102,7 @@ export default function InteractivePersonalityClonePlayer({ isPreview = false }:
       
       {/* Main Video Player */}
       <div>
-        <h4 className="text-xl font-bold text-white mb-4 text-center"> Check their Vidsimplify ad.</h4>
+        <h4 className="text-xl font-bold text-white mb-4 text-center"> Check their VidSimplify ad.</h4>
         <div className="relative bg-black rounded-xl overflow-hidden max-w-4xl mx-auto">
           <div className="aspect-video bg-black relative">
             {selectedVideo.isInteractive ? (
