@@ -5,12 +5,6 @@ import { Scissors, User, Volume2, Zap, Film, Wand2 } from 'lucide-react';
 
 const services = [
   {
-    icon: Scissors,
-    title: 'Long-Form to Short Clips',
-    description: 'AI-powered content extraction that identifies the most engaging moments from long videos and creates perfect short clips for social media.',
-    features: ['Smart scene detection', 'Automatic highlights', 'Multi-platform optimization']
-  },
-  {
     icon: User,
     title: 'Personality Clone',
     description: 'Clone your complete personality including face, voice, gestures, and natural movements. Generate unlimited personalized content from any script while maintaining your authentic presence.',
@@ -27,6 +21,12 @@ const services = [
     title: 'AI Lip-Syncing',
     description: 'Perfect lip-sync alignment for dubbed content and avatar videos using advanced facial recognition and motion tracking.',
     features: ['Real-time sync', 'Multi-language support', 'Facial expression matching']
+  },
+  {
+    icon: Scissors,
+    title: 'Long-Form to Short Clips',
+    description: 'AI-powered content extraction that identifies the most engaging moments from long videos and creates perfect short clips for social media.',
+    features: ['Smart scene detection', 'Automatic highlights', 'Multi-platform optimization']
   },
   {
     icon: Zap,
@@ -68,10 +68,10 @@ export default function Services() {
             <div
               key={index}
               onClick={() => handleServiceClick(
-                index === 0 ? "/services/long-to-short-clips" :
-                index === 1 ? "/services/personality-clone" :
-                index === 2 ? "/services/ai-video-dubbing" :
-                index === 3 ? "/services/ai-lip-syncing" :
+                index === 0 ? "/services/personality-clone" :
+                index === 1 ? "/services/ai-video-dubbing" :
+                index === 2 ? "/services/ai-lip-syncing" :
+                index === 3 ? "/services/long-to-short-clips" :
                 index === 4 ? "/services/automated-editing" :
                 index === 5 ? "/services/custom-solutions" : "#"
               )}

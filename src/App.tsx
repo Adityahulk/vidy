@@ -31,10 +31,10 @@ function App() {
             <Footer />
           </>
         } />
-        <Route path="/services/long-to-short-clips" element={<LongToShortService />} />
         <Route path="/services/personality-clone" element={<PersonalityCloneService />} />
         <Route path="/services/ai-video-dubbing" element={<DubbingService />} />
         <Route path="/services/ai-lip-syncing" element={<LipSyncService />} />
+        <Route path="/services/long-to-short-clips" element={<LongToShortService />} />
         <Route path="/services/automated-editing" element={<AutoEditingService />} />
         <Route path="/services/custom-solutions" element={<CustomSolutionsService />} />
       </Routes>

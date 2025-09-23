@@ -17,12 +17,6 @@ export default function Hero() {
 
   const demos = [
     {
-      title: 'Long-Form to Short Clips',
-      description: 'AI extracts the most engaging moments from long videos',
-      component: <InteractiveLongToShortPlayer isPreview={true} />,
-      path: '/services/long-to-short-clips'
-    },
-    {
       title: 'Personality Clone',
       description: 'Clone your complete personality - face, voice, gestures, and movements',
       component: <InteractivePersonalityClonePlayer isPreview={true} />,
@@ -39,6 +33,12 @@ export default function Hero() {
       description: 'Perfect audio-visual synchronization',
       component: <InteractiveLipSyncPlayer isPreview={true} />,
       path: '/services/ai-lip-syncing'
+    },
+    {
+      title: 'Long-Form to Short Clips',
+      description: 'AI extracts the most engaging moments from long videos',
+      component: <InteractiveLongToShortPlayer isPreview={true} />,
+      path: '/services/long-to-short-clips'
     },
     {
       title: 'Automated Editing',
