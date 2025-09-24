@@ -8,8 +8,8 @@ const demoVideos = [
     thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
     isInteractive: true,
     languageOptions: [
-      { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/messi_speaking.mp4' },
-      { code: 'pt', name: 'Portuguese', flag: '🇧🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com)%20(1).mp4' }
+      { code: 'en', name: 'Spanish', flag: '🇪🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/messi_speaking.mp4' },
+      { code: 'pt', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-3naw7g%20(online-video-cutter.com)%20(1).mp4' }
     ]
   },
   {
