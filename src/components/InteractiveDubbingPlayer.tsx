@@ -14,7 +14,7 @@ const demoVideos = [
   },
   {
     id: 2,
-    name: "Trump Speech",
+    name: "Trump's Speech",
     thumbnail: 'https://i.ibb.co/Q79DCPkW/Screenshot-2025-09-14-at-7-49-22-PM.png',
     isInteractive: true,
     languageOptions: [
