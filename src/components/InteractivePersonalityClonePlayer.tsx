@@ -28,8 +28,8 @@ const demoVideos = [
     thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-24%20at%209.33.50%20PM.png',
     isInteractive: true,
     personalityOptions: [
-      { id: 'original', name: 'Original Emma', icon: '👩‍🎨', videoUrl: 'https://storage.googleapis.com/vidsimplify/joker_input.mp4' },
-      { id: 'clone', name: 'Emma Clone', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/joker_vid.mp4' }
+      { id: 'original', name: 'Original Joker', icon: '👩‍🎨', videoUrl: 'https://storage.googleapis.com/vidsimplify/joker_input.mp4' },
+      { id: 'clone', name: 'Vidsimplify Joker', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/joker_vid.mp4' }
     ]
   }
 ];
