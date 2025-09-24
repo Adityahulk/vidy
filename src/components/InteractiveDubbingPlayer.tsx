@@ -24,7 +24,7 @@ const demoVideos = [
   },
   {
     id: 3,
-    name: "Putin Announcements",
+    name: "Putin's Announcement",
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
     isInteractive: true,
     languageOptions: [
