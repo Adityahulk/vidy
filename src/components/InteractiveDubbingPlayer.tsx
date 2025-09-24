@@ -25,7 +25,7 @@ const demoVideos = [
   {
     id: 3,
     name: "Putin's Announcement",
-    thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-25%20at%2012.20.51%20AM.png',
     isInteractive: true,
     languageOptions: [
       { code: 'ru', name: 'Russian', flag: '🇷🇺', videoUrl: 'https://storage.googleapis.com/vidsimplify/putin.mp4' },
