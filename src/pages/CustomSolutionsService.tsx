@@ -66,19 +66,114 @@ export default function CustomSolutionsService() {
                   <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">Custom Solutions Demo</h3>
                   <p className="text-slate-400">See how we build tailored AI solutions for enterprises</p>
                 </div>
-                <div className="relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl overflow-hidden">
-                  <div className="aspect-video bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Wand2 className="w-10 h-10 text-white" />
-                      </div>
-                      <h4 className="text-xl font-semibold text-white mb-2">Custom Solutions Demo</h4>
-                      <p className="text-slate-400 text-sm">Explore enterprise integration examples</p>
-                    </div>
+                
+                {/* Interactive Solutions Showcase */}
+                <div className="relative bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-xl p-8 overflow-hidden">
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20"></div>
+                    <div className="absolute top-4 left-4 w-32 h-32 border border-blue-500/30 rounded-full"></div>
+                    <div className="absolute bottom-4 right-4 w-24 h-24 border border-purple-500/30 rounded-full"></div>
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-slate-500/20 rounded-full"></div>
                   </div>
-                  <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors cursor-pointer flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
-                      <Play className="w-8 h-8 text-white ml-1" />
+                  
+                  {/* Main Content */}
+                  <div className="relative z-10">
+                    <div className="text-center mb-12">
+                      <div className="inline-flex items-center space-x-3 mb-6">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                          <Wand2 className="w-6 h-6 text-white" />
+                        </div>
+                        <h4 className="text-2xl font-bold text-white">Enterprise Solutions Architecture</h4>
+                      </div>
+                      <p className="text-slate-400 max-w-2xl mx-auto">
+                        Discover how we integrate AI video capabilities into your existing infrastructure
+                      </p>
+                    </div>
+
+                    {/* Solution Types Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                      <div className="group bg-slate-900/50 border border-slate-600/50 rounded-lg p-6 hover:border-blue-500/50 transition-all duration-300">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <Code className="w-8 h-8 text-blue-500" />
+                          <h5 className="text-lg font-semibold text-white">API Integration</h5>
+                        </div>
+                        <p className="text-slate-400 text-sm mb-4">RESTful APIs and SDKs for seamless integration into your existing systems.</p>
+                        <div className="flex items-center text-blue-400 text-sm">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                          Real-time processing
+                        </div>
+                      </div>
+
+                      <div className="group bg-slate-900/50 border border-slate-600/50 rounded-lg p-6 hover:border-purple-500/50 transition-all duration-300">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <Settings className="w-8 h-8 text-purple-500" />
+                          <h5 className="text-lg font-semibold text-white">Workflow Automation</h5>
+                        </div>
+                        <p className="text-slate-400 text-sm mb-4">Custom workflows that automate your video processing pipeline end-to-end.</p>
+                        <div className="flex items-center text-purple-400 text-sm">
+                          <span className="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                          Automated triggers
+                        </div>
+                      </div>
+
+                      <div className="group bg-slate-900/50 border border-slate-600/50 rounded-lg p-6 hover:border-green-500/50 transition-all duration-300">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <Wand2 className="w-8 h-8 text-green-500" />
+                          <h5 className="text-lg font-semibold text-white">White-Label Platform</h5>
+                        </div>
+                        <p className="text-slate-400 text-sm mb-4">Complete platform deployment under your brand with custom UI/UX.</p>
+                        <div className="flex items-center text-green-400 text-sm">
+                          <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                          Your branding
+                        </div>
+                      </div>
+
+                      <div className="group bg-slate-900/50 border border-slate-600/50 rounded-lg p-6 hover:border-orange-500/50 transition-all duration-300">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <Cog className="w-8 h-8 text-orange-500" />
+                          <h5 className="text-lg font-semibold text-white">Private Cloud</h5>
+                        </div>
+                        <p className="text-slate-400 text-sm mb-4">Dedicated infrastructure with enterprise-grade security and compliance.</p>
+                        <div className="flex items-center text-orange-400 text-sm">
+                          <span className="w-2 h-2 bg-orange-500 rounded-full mr-2"></span>
+                          Dedicated resources
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Integration Flow */}
+                    <div className="bg-slate-900/30 border border-slate-600/30 rounded-lg p-6">
+                      <h5 className="text-lg font-semibold text-white mb-4 text-center">Integration Process</h5>
+                      <div className="flex items-center justify-between">
+                        <div className="text-center flex-1">
+                          <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <span className="text-white font-bold text-sm">1</span>
+                          </div>
+                          <p className="text-slate-400 text-xs">Analysis</p>
+                        </div>
+                        <div className="flex-1 h-px bg-slate-600 mx-2"></div>
+                        <div className="text-center flex-1">
+                          <div className="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <span className="text-white font-bold text-sm">2</span>
+                          </div>
+                          <p className="text-slate-400 text-xs">Development</p>
+                        </div>
+                        <div className="flex-1 h-px bg-slate-600 mx-2"></div>
+                        <div className="text-center flex-1">
+                          <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <span className="text-white font-bold text-sm">3</span>
+                          </div>
+                          <p className="text-slate-400 text-xs">Deployment</p>
+                        </div>
+                        <div className="flex-1 h-px bg-slate-600 mx-2"></div>
+                        <div className="text-center flex-1">
+                          <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <span className="text-white font-bold text-sm">4</span>
+                          </div>
+                          <p className="text-slate-400 text-xs">Support</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
