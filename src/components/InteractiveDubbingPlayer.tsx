@@ -28,7 +28,7 @@ const demoVideos = [
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
     isInteractive: true,
     languageOptions: [
-      { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/mark_input.mp4' },
+      { code: 'en', name: 'Russian', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/putin.mp4' },
       { code: 'fr', name: 'French', flag: '🇫🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
     ]
   }
