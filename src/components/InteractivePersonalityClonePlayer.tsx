@@ -25,7 +25,7 @@ const demoVideos = [
   {
     id: 3,
     name: "Joker - Kill Batman",
-    thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-24%20at%209.33.50%20PM.png',
     isInteractive: true,
     personalityOptions: [
       { id: 'original', name: 'Original Emma', icon: '👩‍🎨', videoUrl: 'https://storage.googleapis.com/vidsimplify/joker_input.mp4' },
