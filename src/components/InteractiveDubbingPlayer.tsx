@@ -19,7 +19,7 @@ const demoVideos = [
     isInteractive: true,
     languageOptions: [
       { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/drump_2_demo.mp4' },
-      { code: 'es', name: 'Portuguese', flag: '🇧🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/tmphy7lsz2b.mp4 }
+      { code: 'es', name: 'Portuguese', flag: '🇧🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/tmphy7lsz2b.mp4' }
     ]
   },
   {
