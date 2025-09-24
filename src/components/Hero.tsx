@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Play, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import InteractiveLongToShortPlayer from './InteractiveLongToShortPlayer';
 import InteractivePersonalityClonePlayer from './InteractivePersonalityClonePlayer';
 import InteractiveDubbingPlayer from './InteractiveDubbingPlayer';
 import InteractiveLipSyncPlayer from './InteractiveLipSyncPlayer';
-import InteractiveAutoEditingPlayer from './InteractiveAutoEditingPlayer';
 
 export default function Hero() {
   const [currentDemoIndex, setCurrentDemoIndex] = useState(0);
@@ -34,18 +32,6 @@ export default function Hero() {
       component: <InteractiveLipSyncPlayer isPreview={true} />,
       path: '/services/ai-lip-syncing'
     },
-    {
-      title: 'Long-Form to Short Clips',
-      description: 'AI extracts the most engaging moments from long videos',
-      component: <InteractiveLongToShortPlayer isPreview={true} />,
-      path: '/services/long-to-short-clips'
-    },
-    {
-      title: 'Automated Editing',
-      description: 'Intelligent editing with professional decisions',
-      component: <InteractiveAutoEditingPlayer isPreview={true} />,
-      path: '/services/automated-editing'
-    }
   ];
 
   // Auto-advance to next demo every 15 seconds

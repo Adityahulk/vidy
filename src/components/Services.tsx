@@ -23,18 +23,6 @@ const services = [
     features: ['Real-time sync', 'Multi-language support', 'Facial expression matching']
   },
   {
-    icon: Scissors,
-    title: 'Long-Form to Short Clips',
-    description: 'AI-powered content extraction that identifies the most engaging moments from long videos and creates perfect short clips for social media.',
-    features: ['Smart scene detection', 'Automatic highlights', 'Multi-platform optimization']
-  },
-  {
-    icon: Zap,
-    title: 'Automated Editing',
-    description: 'Intelligent video editing that understands context, pacing, and narrative flow for seamless content creation.',
-    features: ['Smart transitions', 'Auto-pacing', 'Template generation']
-  },
-  {
     icon: Wand2,
     title: 'Custom Solutions',
     description: 'Tailored AI video solutions designed specifically for your enterprise needs and workflow requirements.',
@@ -71,9 +59,7 @@ export default function Services() {
                 index === 0 ? "/services/personality-clone" :
                 index === 1 ? "/services/ai-video-dubbing" :
                 index === 2 ? "/services/ai-lip-syncing" :
-                index === 3 ? "/services/long-to-short-clips" :
-                index === 4 ? "/services/automated-editing" :
-                index === 5 ? "/services/custom-solutions" : "#"
+                index === 3 ? "/services/custom-solutions" : "#"
               )}
               className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"
             >
