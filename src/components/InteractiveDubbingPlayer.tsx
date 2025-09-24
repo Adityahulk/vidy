@@ -8,8 +8,8 @@ const demoVideos = [
     thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-24%20at%2011.59.34%20PM.png',
     isInteractive: true,
     languageOptions: [
-      { code: 'en', name: 'Spanish', flag: '🇪🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/messi_speaking.mp4' },
-      { code: 'pt', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/tmp45pbs4ml%20(online-video-cutter.com).mp4' }
+      { code: 'es', name: 'Spanish', flag: '🇪🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/messi_speaking.mp4' },
+      { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/tmp45pbs4ml%20(online-video-cutter.com).mp4' }
     ]
   },
   {
@@ -19,7 +19,7 @@ const demoVideos = [
     isInteractive: true,
     languageOptions: [
       { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/drump_2_demo.mp4' },
-      { code: 'es', name: 'Portuguese', flag: '🇧🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/tmphy7lsz2b.mp4' }
+      { code: 'pt', name: 'Portuguese', flag: '🇧🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/tmphy7lsz2b.mp4' }
     ]
   },
   {
@@ -28,8 +28,8 @@ const demoVideos = [
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
     isInteractive: true,
     languageOptions: [
-      { code: 'en', name: 'Russian', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/putin.mp4' },
-      { code: 'fr', name: 'French', flag: '🇫🇷', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
+      { code: 'ru', name: 'Russian', flag: '🇷🇺', videoUrl: 'https://storage.googleapis.com/vidsimplify/putin.mp4' },
+      { code: 'en', name: 'English', flag: '🇺🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/tmp45pbs4ml%20(online-video-cutter.com)%20(1).mp4' }
     ]
   }
 ];
