@@ -5,7 +5,7 @@ const demoVideos = [
   {
     id: 1,
     name: "Messi Speech",
-    thumbnail: 'https://i.ibb.co/nspMVywB/Screenshot-2025-09-14-at-8-40-29-PM.png',
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-09-24%20at%2011.59.34%20PM.png',
     isInteractive: true,
     languageOptions: [
       { code: 'en', name: 'Spanish', flag: '🇪🇸', videoUrl: 'https://storage.googleapis.com/vidsimplify/messi_speaking.mp4' },
