@@ -24,12 +24,12 @@ const demoVideos = [
   },
   {
     id: 3,
-    name: "Emma - Creator",
+    name: "Joker - Kill Batman",
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
     isInteractive: true,
     personalityOptions: [
-      { id: 'original', name: 'Original Emma', icon: '👩‍🎨', videoUrl: 'https://storage.googleapis.com/vidsimplify/mark_input.mp4' },
-      { id: 'clone', name: 'Emma Clone', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-4n8y9k%20(online-video-cutter.com).mp4' }
+      { id: 'original', name: 'Original Emma', icon: '👩‍🎨', videoUrl: 'https://storage.googleapis.com/vidsimplify/joker_input.mp4' },
+      { id: 'clone', name: 'Emma Clone', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/joker_vid.mp4' }
     ]
   }
 ];
