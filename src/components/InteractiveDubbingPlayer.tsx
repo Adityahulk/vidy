@@ -14,7 +14,7 @@ const demoVideos = [
   },
   {
     id: 2,
-    name: "Political Interview",
+    name: "Trump Speech",
     thumbnail: 'https://i.ibb.co/Q79DCPkW/Screenshot-2025-09-14-at-7-49-22-PM.png',
     isInteractive: true,
     languageOptions: [
@@ -24,7 +24,7 @@ const demoVideos = [
   },
   {
     id: 3,
-    name: "Business Talk",
+    name: "Putin Announcements",
     thumbnail: 'https://i.ibb.co/QjC7vYmn/Screenshot-2025-09-14-at-7-19-39-PM.png',
     isInteractive: true,
     languageOptions: [
