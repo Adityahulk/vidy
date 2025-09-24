@@ -19,7 +19,7 @@ const demoVideos = [
     isInteractive: true,
     personalityOptions: [
       { id: 'original', name: 'Original Video', icon: '👩‍💼', videoUrl: 'https://storage.googleapis.com/vidsimplify/rock_dummy.mp4' },
-      { id: 'clone', name: 'Cloned Video', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/vidsimplify-63qems%20(online-video-cutter.com).mp4' }
+      { id: 'clone', name: 'Cloned Video', icon: '🤖', videoUrl: 'https://storage.googleapis.com/vidsimplify/rocky_vid.mp4' }
     ]
   },
   {
