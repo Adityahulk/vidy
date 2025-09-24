@@ -11,16 +11,16 @@ const services = [
     features: ['Complete personality cloning', 'Voice & gesture replication', 'Unlimited content generation']
   },
   {
-    icon: Volume2,
-    title: 'AI Video Dubbing',
-    description: 'Professional-grade voice cloning and dubbing in 50+ languages while maintaining perfect lip-sync accuracy.',
-    features: ['Voice cloning', 'Lip-sync accuracy', '50+ languages']
-  },
-  {
     icon: Film,
     title: 'AI Lip-Syncing',
     description: 'Perfect lip-sync alignment for dubbed content and avatar videos using advanced facial recognition and motion tracking.',
     features: ['Real-time sync', 'Multi-language support', 'Facial expression matching']
+  },
+  {
+    icon: Volume2,
+    title: 'AI Video Dubbing',
+    description: 'Professional-grade voice cloning and dubbing in 50+ languages while maintaining perfect lip-sync accuracy.',
+    features: ['Voice cloning', 'Lip-sync accuracy', '50+ languages']
   },
   {
     icon: Wand2,
@@ -57,8 +57,8 @@ export default function Services() {
               key={index}
               onClick={() => handleServiceClick(
                 index === 0 ? "/services/personality-clone" :
-                index === 1 ? "/services/ai-video-dubbing" :
-                index === 2 ? "/services/ai-lip-syncing" :
+                index === 1 ? "/services/ai-lip-syncing" :
+                index === 2 ? "/services/ai-video-dubbing" :
                 index === 3 ? "/services/custom-solutions" : "#"
               )}
               className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 sm:p-8 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"

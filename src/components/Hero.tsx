@@ -21,16 +21,16 @@ export default function Hero() {
       path: '/services/personality-clone'
     },
     {
-      title: 'AI Video Dubbing',
-      description: 'Professional voice cloning in 50+ languages',
-      component: <InteractiveDubbingPlayer isPreview={true} />,
-      path: '/services/ai-video-dubbing'
-    },
-    {
       title: 'AI Lip-Syncing',
       description: 'Perfect audio-visual synchronization',
       component: <InteractiveLipSyncPlayer isPreview={true} />,
       path: '/services/ai-lip-syncing'
+    },
+    {
+      title: 'AI Video Dubbing',
+      description: 'Professional voice cloning in 50+ languages',
+      component: <InteractiveDubbingPlayer isPreview={true} />,
+      path: '/services/ai-video-dubbing'
     },
   ];
 
