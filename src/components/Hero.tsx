@@ -79,8 +79,8 @@ export default function Hero() {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-            Revolutionize your content strategy with our enterprise AI platform. 
-            Create short clips, avatars, dubbing, and more, all powered by cutting-edge artificial intelligence.
+            Clone complete personalities, sync lips perfectly, and dub content globally. 
+            Professional AI video solutions with voice cloning, facial replication, and seamless synchronization.
           </p>
 
           {/* CTAs */}
