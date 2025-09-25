@@ -51,7 +51,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6 sm:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
@@ -61,19 +61,19 @@ export default function Services() {
                 index === 2 ? "/services/ai-video-dubbing" :
                 index === 3 ? "/services/custom-solutions" : "#"
               )}
-              className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4 sm:p-6 lg:p-4 xl:p-5 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"
+              className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4 sm:p-6 lg:p-5 xl:p-6 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"
             >
               {/* Subtle glow effect on hover */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               
-              <div className="flex flex-col items-start mb-4 sm:mb-6 lg:mb-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-10 lg:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3 lg:mb-2 group-hover:scale-110 transition-transform">
+              <div className="flex flex-col items-start mb-4 sm:mb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
                   <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h3 className="text-base sm:text-lg lg:text-base xl:text-base font-bold text-white">{service.title}</h3>
+                <h3 className="text-base sm:text-lg lg:text-base xl:text-lg font-bold text-white">{service.title}</h3>
               </div>
               
-              <p className="text-xs sm:text-sm lg:text-xs xl:text-xs text-slate-400 mb-4 sm:mb-6 lg:mb-4 leading-relaxed">
+              <p className="text-xs sm:text-sm lg:text-xs xl:text-sm text-slate-400 mb-4 sm:mb-6 leading-relaxed">
                 {service.description}
               </p>
               
@@ -87,11 +87,11 @@ export default function Services() {
               </ul>
               
               {/* Bottom call-to-action */}
-              <div className="mt-4 sm:mt-6 lg:mt-4 pt-3 sm:pt-4 lg:pt-3 border-t border-slate-600/30">
+              <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-slate-600/30">
                 <div className="flex items-center justify-between">
                   <span className="text-xs sm:text-sm text-slate-400">Learn more</span>
                   <div className="flex items-center text-blue-400 group-hover:text-blue-300 transition-colors">
-                    <span className="text-xs sm:text-sm lg:text-xs font-medium mr-1">Explore</span>
+                    <span className="text-xs sm:text-sm font-medium mr-1">Explore</span>
                     <svg className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
