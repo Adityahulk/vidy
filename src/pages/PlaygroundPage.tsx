@@ -59,15 +59,6 @@ const services = [
     color: 'green',
     gradient: 'from-green-500 to-blue-600',
     bgGlow: 'from-green-500/20 to-blue-500/20'
-  },
-  {
-    id: 'custom' as ServiceType,
-    title: 'Custom Solutions',
-    icon: Wand2,
-    description: 'Tailored AI processing for your specific needs',
-    color: 'orange',
-    gradient: 'from-orange-500 to-red-600',
-    bgGlow: 'from-orange-500/20 to-red-500/20'
   }
 ];
 
@@ -92,13 +83,6 @@ const processingStages = {
     'Translating content...',
     'Generating dubbed audio...',
     'Syncing with video...'
-  ],
-  'custom': [
-    'Initializing AI pipeline...',
-    'Processing with custom models...',
-    'Applying transformations...',
-    'Quality optimization...',
-    'Finalizing output...'
   ]
 };
 
@@ -206,8 +190,6 @@ export default function PlaygroundPage() {
         return uploadState.video && uploadState.audio;
       case 'dubbing':
         return uploadState.video && uploadState.language;
-      case 'custom':
-        return uploadState.video;
       default:
         return false;
     }
@@ -265,7 +247,7 @@ export default function PlaygroundPage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-24">
+      <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 lg:pt-40 lg:pb-20">
         <div className="relative container mx-auto px-6">
           {/* Back Button */}
           <Link 
@@ -330,12 +312,12 @@ export default function PlaygroundPage() {
       </section>
 
       {/* Main Playground Interface */}
-      <section className="py-16 sm:py-20 lg:py-24 relative">
+      <section className="py-8 sm:py-12 lg:py-16 relative">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             
             {/* AI Service Neural Network Selector */}
-            <div className="mb-16">
+            <div className="mb-12">
               <div className="text-center mb-12">
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 flex items-center justify-center space-x-3">
                   <Brain className="w-8 h-8 text-blue-400 animate-pulse" />
@@ -344,7 +326,7 @@ export default function PlaygroundPage() {
                 <p className="text-slate-400 max-w-2xl mx-auto">Choose your AI processing pipeline and configure parameters for optimal results</p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map((service) => (
                   <button
                     key={service.id}
@@ -613,49 +595,6 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                   </div>
                 )}
 
-                {selectedService === 'custom' && (
-                  <div className="bg-slate-900/30 rounded-xl p-8 border border-slate-700">
-                    <div className="text-center mb-6">
-                      <h4 className="text-xl font-semibold text-white mb-3 flex items-center justify-center space-x-2">
-                        <Settings className="w-5 h-5" />
-                        <span>Custom AI Pipeline Configuration</span>
-                      </h4>
-                      <p className="text-slate-400 text-sm mb-6">
-                        Advanced neural processing with custom parameters and enterprise-grade optimization
-                      </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                      <div className="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-600 hover:border-orange-500/50 transition-colors">
-                        <Wand2 className="w-8 h-8 text-orange-500 mx-auto mb-3" />
-                        <p className="text-white text-sm font-medium mb-2">Custom AI Models</p>
-                        <p className="text-slate-400 text-xs">Tailored neural networks</p>
-                        <div className="flex items-center justify-center space-x-1 mt-3">
-                          <div className="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
-                          <span className="text-xs text-orange-400">Active</span>
-                        </div>
-                      </div>
-                      <div className="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-600 hover:border-blue-500/50 transition-colors">
-                        <Film className="w-8 h-8 text-blue-500 mx-auto mb-3" />
-                        <p className="text-white text-sm font-medium mb-2">Advanced Processing</p>
-                        <p className="text-slate-400 text-xs">Multi-layer analysis</p>
-                        <div className="flex items-center justify-center space-x-1 mt-3">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-100"></div>
-                          <span className="text-xs text-blue-400">Ready</span>
-                        </div>
-                      </div>
-                      <div className="text-center p-6 bg-slate-800/50 rounded-xl border border-slate-600 hover:border-green-500/50 transition-colors">
-                        <CheckCircle className="w-8 h-8 text-green-500 mx-auto mb-3" />
-                        <p className="text-white text-sm font-medium mb-2">Quality Assurance</p>
-                        <p className="text-slate-400 text-xs">Automated validation</p>
-                        <div className="flex items-center justify-center space-x-1 mt-3">
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse delay-200"></div>
-                          <span className="text-xs text-green-400">Enabled</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 {/* Advanced Process Button */}
                 <div className="pt-8">
@@ -909,37 +848,6 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                 </>
               )}
 
-              {selectedService === 'custom' && (
-                <>
-                  <div className="bg-slate-800/30 rounded-xl p-6 text-center border border-slate-700 hover:border-blue-500/50 transition-colors">
-                    <Wand2 className="w-8 h-8 text-blue-500 mx-auto mb-3" />
-                    <p className="text-white text-sm font-medium mb-2">Custom Neural Networks</p>
-                    <p className="text-slate-400 text-xs mb-3">Tailored AI processing pipelines</p>
-                    <div className="flex items-center justify-center space-x-1">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                      <span className="text-xs text-blue-400">Configured</span>
-                    </div>
-                  </div>
-                  <div className="bg-slate-800/30 rounded-xl p-6 text-center border border-slate-700 hover:border-purple-500/50 transition-colors">
-                    <CheckCircle className="w-8 h-8 text-purple-500 mx-auto mb-3" />
-                    <p className="text-white text-sm font-medium mb-2">Enterprise Grade</p>
-                    <p className="text-slate-400 text-xs mb-3">Professional quality assurance</p>
-                    <div className="flex items-center justify-center space-x-1">
-                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-100"></div>
-                      <span className="text-xs text-purple-400">Validated</span>
-                    </div>
-                  </div>
-                  <div className="bg-slate-800/30 rounded-xl p-6 text-center border border-slate-700 hover:border-green-500/50 transition-colors">
-                    <Film className="w-8 h-8 text-green-500 mx-auto mb-3" />
-                    <p className="text-white text-sm font-medium mb-2">Flexible Output</p>
-                    <p className="text-slate-400 text-xs mb-3">Multiple format compatibility</p>
-                    <div className="flex items-center justify-center space-x-1">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse delay-200"></div>
-                      <span className="text-xs text-green-400">Available</span>
-                    </div>
-                  </div>
-                </>
-              )}
             </div>
           </div>
         </div>
