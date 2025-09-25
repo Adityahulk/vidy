@@ -12,7 +12,7 @@ import PersonalityCloneService from './pages/PersonalityCloneService';
 import DubbingService from './pages/DubbingService';
 import LipSyncService from './pages/LipSyncService';
 import CustomSolutionsService from './pages/CustomSolutionsService';
-import UploadPage from './pages/UploadPage';
+import PlaygroundPage from './pages/PlaygroundPage';
 
 function App() {
   return (
@@ -34,7 +34,7 @@ function App() {
         <Route path="/services/ai-video-dubbing" element={<DubbingService />} />
         <Route path="/services/ai-lip-syncing" element={<LipSyncService />} />
         <Route path="/services/custom-solutions" element={<CustomSolutionsService />} />
-        <Route path="/upload" element={<UploadPage />} />
+        <Route path="/playground" element={<PlaygroundPage />} />
       </Routes>
     </div>
   );
