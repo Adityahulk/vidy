@@ -311,10 +311,10 @@ export default function PlaygroundPage() {
         </div>
 
         {/* AI Status Dashboard - Fills the void */}
-        <div className="container mx-auto px-6 pb-8">
+        <div className="container mx-auto px-6 pb-4">
           <div className="max-w-6xl mx-auto">
             {/* Live AI System Status */}
-            <div className="bg-slate-800/20 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 mb-8 relative overflow-hidden">
+            <div className="bg-slate-800/20 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 mb-4 relative overflow-hidden">
               {/* Animated Background Pattern */}
               <div className="absolute inset-0 opacity-5">
                 <div className="absolute inset-0" style={{
@@ -400,12 +400,12 @@ export default function PlaygroundPage() {
       </section>
 
       {/* Main Playground Interface */}
-      <section className="py-8 sm:py-12 lg:py-16 relative">
+      <section className="py-4 sm:py-6 lg:py-8 relative">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             
             {/* AI Service Neural Network Selector */}
-            <div className="mb-12">
+            <div className="mb-8">
               <div className="text-center mb-12">
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 flex items-center justify-center space-x-3">
                   <Brain className="w-8 h-8 text-blue-400 animate-pulse" />
