@@ -414,12 +414,12 @@ export default function PlaygroundPage() {
                 <p className="text-slate-400 max-w-2xl mx-auto">Choose your AI processing pipeline and configure parameters for optimal results</p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
                 {services.map((service) => (
                   <button
                     key={service.id}
                     onClick={() => handleServiceChange(service.id)}
-                    className={`group relative p-6 rounded-xl border-2 transition-all duration-500 text-left overflow-hidden ${
+                    className={`group relative p-6 lg:p-8 rounded-xl border-2 transition-all duration-500 text-left overflow-hidden ${
                       selectedService === service.id
                         ? `border-${service.color}-500 bg-gradient-to-br ${service.bgGlow} shadow-2xl scale-105`
                         : 'border-slate-700 bg-slate-800/30 hover:border-slate-600 hover:scale-102'
@@ -443,8 +443,8 @@ export default function PlaygroundPage() {
                       <service.icon className="w-6 h-6 text-white" />
                     </div>
                     
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">{service.title}</h3>
-                    <p className="text-slate-400 text-sm mb-4 leading-relaxed">{service.description}</p>
+                    <h3 className="text-lg lg:text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{service.title}</h3>
+                    <p className="text-slate-400 text-sm lg:text-base mb-4 leading-relaxed">{service.description}</p>
                     
                     {/* Status Indicator */}
                     <div className="flex items-center space-x-2">
@@ -839,7 +839,7 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
             )}
 
             {/* Service Features Tech Display */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {selectedService === 'personality-clone' && (
                 <>
                   <div className="bg-slate-800/30 rounded-xl p-6 text-center border border-slate-700 hover:border-blue-500/50 transition-colors">
