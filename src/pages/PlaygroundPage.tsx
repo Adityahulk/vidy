@@ -414,13 +414,11 @@ export default function PlaygroundPage() {
                 <p className="text-slate-400 max-w-2xl mx-auto">Choose your AI processing pipeline and configure parameters for optimal results</p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {services.map((service) => (
                   <button
                     key={service.id}
                     onClick={() => handleServiceChange(service.id)}
-                    className={`group relative p-6 lg:p-8 rounded-xl border-2 transition-all duration-500 text-left overflow-hidden ${
                     className={`group relative p-6 sm:p-6 lg:p-5 xl:p-6 rounded-xl border-2 transition-all duration-500 text-left overflow-hidden ${
                       selectedService === service.id
                         ? `border-${service.color}-500 bg-gradient-to-br ${service.bgGlow} shadow-2xl scale-105`
@@ -445,8 +443,6 @@ export default function PlaygroundPage() {
                       <service.icon className="w-6 h-6 text-white" />
                     </div>
                     
-                    <h3 className="text-lg lg:text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{service.title}</h3>
-                    <p className="text-slate-400 text-sm lg:text-base mb-4 leading-relaxed">{service.description}</p>
                     <h3 className="text-base sm:text-lg lg:text-base xl:text-lg font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">{service.title}</h3>
                     <p className="text-slate-400 text-xs sm:text-sm lg:text-xs xl:text-sm mb-4 leading-relaxed">{service.description}</p>
                     
@@ -506,7 +502,7 @@ export default function PlaygroundPage() {
                   </label>
                   <div 
                     onClick={() => videoInputRef.current?.click()}
-                    className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
+                    className={\`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
                       uploadState.video 
                         ? `border-${currentService.color}-500 bg-gradient-to-br ${currentService.bgGlow}`
                         : `border-slate-600 hover:border-${currentService.color}-500 hover:bg-slate-800/50`
@@ -515,7 +511,7 @@ export default function PlaygroundPage() {
                     {/* Tech Pattern Overlay */}
                     <div className="absolute inset-0 opacity-5">
                       <div className="w-full h-full" style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+                        backgroundImage: \`radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
                         backgroundSize: '20px 20px'
                       }}></div>
                     </div>
@@ -596,7 +592,7 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                     </label>
                     <div 
                       onClick={() => audioInputRef.current?.click()}
-                      className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
+                      className={\`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
                         uploadState.audio 
                           ? 'border-purple-500 bg-gradient-to-br from-purple-500/10 to-pink-500/10'
                           : 'border-slate-600 hover:border-purple-500 hover:bg-slate-800/50'
@@ -674,7 +670,7 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                             <span>Advanced Lip-Sync Adjustment</span>
                           </label>
                         </div>
-                        <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        <div className={\`px-3 py-1 rounded-full text-xs font-medium ${
                           uploadState.enableLipSync ? 'bg-green-500/20 text-green-400' : 'bg-slate-600/20 text-slate-400'
                         }`}>
                           {uploadState.enableLipSync ? 'Enabled' : 'Disabled'}
@@ -693,7 +689,7 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                   <button
                     onClick={handleProcess}
                     disabled={!canProcess() || uploadState.isProcessing}
-                    className={`w-full px-8 py-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-3 text-lg relative overflow-hidden ${
+                    className={\`w-full px-8 py-6 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center space-x-3 text-lg relative overflow-hidden ${
                       canProcess() && !uploadState.isProcessing
                         ? `bg-gradient-to-r ${currentService.gradient} text-white hover:scale-105 transform shadow-2xl`
                         : 'bg-slate-600 text-slate-400 cursor-not-allowed'
@@ -728,7 +724,7 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                 <div className="relative z-10">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center space-x-4">
-                      <div className={`w-12 h-12 bg-gradient-to-br ${currentService.gradient} rounded-xl flex items-center justify-center`}>
+                      <div className={\`w-12 h-12 bg-gradient-to-br ${currentService.gradient} rounded-xl flex items-center justify-center`}>
                         <Loader className="w-6 h-6 text-white animate-spin" />
                       </div>
                       <div>
@@ -747,8 +743,8 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                   <div className="relative">
                     <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
                       <div 
-                        className={`bg-gradient-to-r ${currentService.gradient} h-3 rounded-full transition-all duration-500 relative`}
-                        style={{ width: `${uploadState.progress}%` }}
+                        className={\`bg-gradient-to-r ${currentService.gradient} h-3 rounded-full transition-all duration-500 relative`}
+                        style={{ width: \`${uploadState.progress}%` }}
                       >
                         <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
                       </div>
@@ -757,12 +753,12 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
                     {/* Processing Stages */}
                     <div className="flex justify-between mt-4 text-xs">
                       {processingStages[selectedService].map((stage, index) => (
-                        <div key={index} className={`flex items-center space-x-1 ${
+                        <div key={index} className={\`flex items-center space-x-1 ${
                           index <= (uploadState.progress / 100) * processingStages[selectedService].length - 1
                             ? `text-${currentService.color}-400` 
                             : 'text-slate-500'
                         }`}>
-                          <div className={`w-2 h-2 rounded-full ${
+                          <div className={\`w-2 h-2 rounded-full ${
                             index <= (uploadState.progress / 100) * processingStages[selectedService].length - 1
                               ? `bg-${currentService.color}-400` 
                               : 'bg-slate-600'
