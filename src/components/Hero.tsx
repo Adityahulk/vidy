@@ -71,16 +71,16 @@ export default function Hero() {
 
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-            Clone Personalities, Sync Lips &{' '}
+            Transform Videos with{' '}
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Dub Globally
+              AI Precision
             </span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-            Complete personality cloning with face, voice & gestures. Perfect lip-sync technology for any audio. 
-            Professional AI dubbing in 50+ languages. All powered by enterprise-grade artificial intelligence.
+            Revolutionize your content strategy with our enterprise AI platform. 
+            Create short clips, avatars, dubbing, and more, all powered by cutting-edge artificial intelligence.
           </p>
 
           {/* CTAs */}
