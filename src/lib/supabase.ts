@@ -122,4 +122,14 @@ export const db = {
       .single();
     return { data, error };
   },
+
+  updateUserCredits: async (userId: string, credits: number) => {
+    const { data, error } = await supabase
+      .from('profiles')
+      .update({ credits })
+      .eq('id', userId)
+      .select()
+      .single();
+    return { data, error };
+  },
 };

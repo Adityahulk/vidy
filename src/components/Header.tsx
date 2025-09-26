@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Play } from 'lucide-react';
+import { Menu, X, Play, User } from 'lucide-react';
+import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +55,12 @@ export default function Header() {
             <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base">
               Contact
             </button>
+            {user && (
+              <a href="/profile" className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base flex items-center space-x-2">
+                <User className="w-4 h-4" />
+                <span>Profile</span>
+              </a>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -80,6 +88,12 @@ export default function Header() {
               <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors text-left">
                 Contact
               </button>
+              {user && (
+                <a href="/profile" className="text-slate-300 hover:text-white transition-colors text-left flex items-center space-x-2">
+                  <User className="w-4 h-4" />
+                  <span>Profile</span>
+                </a>
+              )}
             </div>
           </div>
         )}
