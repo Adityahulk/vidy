@@ -146,7 +146,10 @@ export default function Contact() {
               <p className="text-slate-400 mb-4 text-sm sm:text-base">
                 See our platform in action with a personalized demo tailored to your use case.
               </p>
-              <button className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg font-semibold transition-colors text-sm sm:text-base">
+              <button
+                onClick={() => window.open('https://calendly.com/aditya-vidsimplify/demo-call', '_blank')}
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white px-4 py-3 rounded-lg font-semibold transition-colors text-sm sm:text-base"
+              >
                 Book Demo Call
               </button>
             </div>
