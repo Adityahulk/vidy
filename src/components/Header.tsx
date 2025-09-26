@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Play } from 'lucide-react';
 import Logo from './Logo';
+import { useAuth } from '../contexts/AuthContext';
+import UserMenu from './UserMenu';
+import AuthModal from './AuthModal';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authMode, setAuthMode] = useState<'signin' | 'signup'>('signin');
+  const { user, loading } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +26,12 @@ export default function Header() {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
     }
+  };
+
+  const handleAuthClick = (mode: 'signin' | 'signup') => {
+    setAuthMode(mode);
+    setShowAuthModal(true);
+    setIsMenuOpen(false);
   };
 
   const scrollToContact = () => {
@@ -53,6 +65,27 @@ export default function Header() {
             <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base">
               Contact
             </button>
+            
+            {loading ? (
+              <div className="w-20 h-10 bg-slate-700 rounded-lg animate-pulse"></div>
+            ) : user ? (
+              <UserMenu />
+            ) : (
+              <div className="flex items-center space-x-3">
+                <button 
+                  onClick={() => handleAuthClick('signin')}
+                  className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base"
+                >
+                  Sign In
+                </button>
+                <button 
+                  onClick={() => handleAuthClick('signup')}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 xl:px-6 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 text-sm xl:text-base"
+                >
+                  Get Started
+                </button>
+              </div>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -80,10 +113,33 @@ export default function Header() {
               <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors text-left">
                 Contact
               </button>
+              
+              {!loading && !user && (
+                <>
+                  <button 
+                    onClick={() => handleAuthClick('signin')}
+                    className="text-slate-300 hover:text-white transition-colors text-left"
+                  >
+                    Sign In
+                  </button>
+                  <button 
+                    onClick={() => handleAuthClick('signup')}
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 text-left"
+                  >
+                    Get Started
+                  </button>
+                </>
+              )}
             </div>
           </div>
         )}
       </nav>
+      
+      <AuthModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)} 
+        initialMode={authMode}
+      />
     </header>
   );
 }
