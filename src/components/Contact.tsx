@@ -123,7 +123,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-white font-semibold text-sm sm:text-base">Phone</div>
-                    <div className="text-slate-400 text-sm sm:text-base">+1 (555) 123-4567</div>
+                    <div className="text-slate-400 text-sm sm:text-base">+91 8292 09 8293</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
