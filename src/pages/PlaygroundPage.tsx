@@ -743,7 +743,7 @@ export default function PlaygroundPage() {
                         ) : (
                           <>
                             <Wand2 className="w-4 h-4" />
-                            <span>Start AI Processing</span>
+                            <span>Start Processing</span>
                           </>
                         )}
                       </button>
@@ -757,15 +757,7 @@ export default function PlaygroundPage() {
             {uploadState.isProcessing && (
               <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 mb-8">
                 <div className="text-center">
-                  <div className="flex items-center justify-center space-x-3 mb-6">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${currentService.gradient} rounded-xl flex items-center justify-center animate-pulse`}>
-                      <Brain className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white">AI Processing Active</h3>
-                      <p className="text-slate-400 text-sm">Neural networks are analyzing your content</p>
-                    </div>
-                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4">Processing Video...</h3>
                   
                   <div className="space-y-4">
                     <div className="text-white font-medium">{uploadState.processingStage}</div>
