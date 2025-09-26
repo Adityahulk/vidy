@@ -621,12 +621,9 @@ export default function PlaygroundPage() {
                           value={uploadState.script}
                           onChange={(e) => setUploadState(prev => ({ ...prev, script: e.target.value }))}
                           rows={6}
-                          className="w-full px-6 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors"
-                          placeholder="Enter the script for your AI personality clone. This text will be used to generate speech and lip-sync movements..."
+                          className="w-full px-6 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                          placeholder="Enter your script here... The AI will generate a video of your personality speaking this text naturally."
                         />
-                        <div className="absolute bottom-3 right-3 text-xs text-slate-500">
-                          {uploadState.script.length}/2000 characters
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -636,31 +633,31 @@ export default function PlaygroundPage() {
                   <div>
                     <label className="block text-slate-300 mb-4 font-medium flex items-center space-x-2">
                       <Mic className="w-4 h-4" />
-                      <span>Audio Track Input</span>
+                      <span>Audio Input for Lip-Sync</span>
                       <span className="text-red-400">*</span>
                     </label>
                     <div 
                       onClick={() => audioInputRef.current?.click()}
-                      className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
+                      className={`relative border-2 border-dashed rounded-xl p-6 text-center transition-all duration-300 cursor-pointer group ${
                         uploadState.audio 
                           ? `border-${currentService.color}-500 bg-gradient-to-br ${currentService.bgGlow}`
                           : `border-slate-600 hover:border-${currentService.color}-500 hover:bg-slate-800/50`
                       }`}
                     >
                       <div className="relative z-10">
-                        <Volume2 className="w-16 h-16 text-slate-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                        <Volume2 className="w-12 h-12 text-slate-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
                         {uploadState.audio ? (
                           <div className="space-y-2">
                             <p className="text-white font-medium flex items-center justify-center space-x-2">
-                              <CheckCircle className="w-5 h-5 text-green-400" />
+                              <CheckCircle className="w-4 h-4 text-green-400" />
                               <span>{uploadState.audio.name}</span>
                             </p>
-                            <p className="text-slate-400 text-sm">{(uploadState.audio.size / 1024 / 1024).toFixed(2)} MB • Audio ready</p>
+                            <p className="text-slate-400 text-sm">{(uploadState.audio.size / 1024 / 1024).toFixed(2)} MB</p>
                           </div>
                         ) : (
-                          <div className="space-y-3">
-                            <p className="text-white mb-2 font-medium">Upload Audio File</p>
-                            <p className="text-slate-400 text-sm">MP3, WAV, AAC • Max 100MB • High Quality Recommended</p>
+                          <div>
+                            <p className="text-white mb-2">Upload Audio File</p>
+                            <p className="text-slate-400 text-sm">MP3, WAV, M4A • Max 100MB</p>
                           </div>
                         )}
                       </div>
@@ -682,223 +679,167 @@ export default function PlaygroundPage() {
                       <span>Target Language</span>
                       <span className="text-red-400">*</span>
                     </label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                    <select
+                      value={uploadState.language}
+                      onChange={(e) => setUploadState(prev => ({ ...prev, language: e.target.value }))}
+                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition-colors"
+                    >
                       {languages.map((lang) => (
-                        <button
-                          key={lang.code}
-                          onClick={() => setUploadState(prev => ({ ...prev, language: lang.code }))}
-                          className={`p-4 rounded-lg border-2 transition-all duration-300 text-center ${
-                            uploadState.language === lang.code
-                              ? `border-${currentService.color}-500 bg-gradient-to-br ${currentService.bgGlow}`
-                              : 'border-slate-600 hover:border-slate-500 bg-slate-800/30'
-                          }`}
-                        >
-                          <div className="text-2xl mb-2">{lang.flag}</div>
-                          <div className="text-white text-sm font-medium">{lang.name}</div>
-                        </button>
+                        <option key={lang.code} value={lang.code}>
+                          {lang.flag} {lang.name}
+                        </option>
                       ))}
-                    </div>
+                    </select>
                   </div>
                 )}
 
-                {/* Processing Controls */}
-                <div className="border-t border-slate-700 pt-8">
-                  <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
-                    <div className="flex items-center space-x-4">
-                      <div className="flex items-center space-x-2 text-slate-400">
-                        <Target className="w-4 h-4" />
-                        <span className="text-sm">Processing ready</span>
-                      </div>
-                      {canProcess() && (
-                        <div className="flex items-center space-x-2 text-green-400">
-                          <CheckCircle className="w-4 h-4" />
-                          <span className="text-sm">All requirements met</span>
-                        </div>
-                      )}
-                    </div>
-                    
-                    <div className="flex items-center space-x-4">
-                      <button
-                        onClick={resetForm}
-                        className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors flex items-center space-x-2"
-                      >
-                        <Settings className="w-4 h-4" />
-                        <span>Reset</span>
-                      </button>
-                      
-                      <button
-                        onClick={handleProcess}
-                        disabled={!canProcess() || uploadState.isProcessing}
-                        className={`px-8 py-3 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2 ${
-                          canProcess() && !uploadState.isProcessing
-                            ? `bg-gradient-to-r ${currentService.gradient} hover:scale-105 text-white shadow-lg`
-                            : 'bg-slate-600 text-slate-400 cursor-not-allowed'
-                        }`}
-                      >
-                        {uploadState.isProcessing ? (
-                          <>
-                            <Loader className="w-4 h-4 animate-spin" />
-                            <span>Processing...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Wand2 className="w-4 h-4" />
-                            <span>
-                              {selectedService === 'personality-clone' && 'Initialize AI Cloning'}
-                              {selectedService === 'lip-sync' && 'Initialize Lip-Sync'}
-                              {selectedService === 'dubbing' && 'Initialize AI Dubbing'}
-                            </span>
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </div>
+                {/* Processing Button */}
+                <div className="pt-6 border-t border-slate-700">
+                  <button
+                    onClick={handleProcess}
+                    disabled={!canProcess() || uploadState.isProcessing}
+                    className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center space-x-3 ${
+                      canProcess() && !uploadState.isProcessing
+                        ? `bg-gradient-to-r ${currentService.gradient} hover:scale-105 shadow-lg`
+                        : 'bg-slate-600 cursor-not-allowed opacity-50'
+                    }`}
+                  >
+                    {uploadState.isProcessing ? (
+                      <>
+                        <Loader className="w-5 h-5 animate-spin" />
+                        <span>Neural Processing...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-5 h-5" />
+                        <span>Start AI Processing</span>
+                      </>
+                    )}
+                  </button>
                 </div>
-              </div>
-            </div>
 
-            {/* Processing Status */}
-            {uploadState.isProcessing && (
-              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 mb-8">
-                <div className="text-center">
-                  <h3 className="text-xl font-bold text-white mb-4">Processing Video...</h3>
-                  
-                  <div className="space-y-4">
-                    <div className="text-white font-medium">{uploadState.processingStage}</div>
+                {/* Processing Status */}
+                {uploadState.isProcessing && (
+                  <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <Brain className="w-4 h-4 text-white animate-pulse" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold">AI Neural Processing</h4>
+                        <p className="text-slate-400 text-sm">{uploadState.processingStage}</p>
+                      </div>
+                    </div>
                     
-                    <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+                    <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
                       <div 
-                        className={`h-full bg-gradient-to-r ${currentService.gradient} transition-all duration-500 rounded-full`}
+                        className={`h-2 rounded-full bg-gradient-to-r ${currentService.gradient} transition-all duration-500`}
                         style={{ width: `${uploadState.progress}%` }}
                       ></div>
                     </div>
                     
-                    <div className="text-slate-400 text-sm">{Math.round(uploadState.progress)}% Complete</div>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-400">Progress: {Math.round(uploadState.progress)}%</span>
+                      <span className="text-blue-400">GPU Acceleration Active</span>
+                    </div>
                   </div>
-                </div>
-              </div>
-            )}
+                )}
 
-            {/* Results or Error Display */}
-            {(uploadState.result || uploadState.error) && (
-              <div className={`border rounded-2xl p-8 mb-8 ${
-                uploadState.error 
-                  ? 'bg-red-900/20 border-red-500/50' 
-                  : 'bg-green-900/20 border-green-500/50'
-              }`}>
-                <div className="flex items-center space-x-3 mb-4">
-                  {uploadState.error ? (
-                    <AlertCircle className="w-6 h-6 text-red-400" />
-                  ) : (
-                    <CheckCircle className="w-6 h-6 text-green-400" />
-                  )}
-                  <h3 className={`text-xl font-bold ${uploadState.error ? 'text-red-400' : 'text-green-400'}`}>
-                    {uploadState.error ? 'Processing Error' : 'Processing Complete'}
-                  </h3>
-                </div>
-                
-                <p className="text-slate-300 mb-4">
-                  {uploadState.error || 'Your video has been processed successfully!'}
-                </p>
-                
-                {uploadState.result && (
-                  <div className="flex items-center space-x-4">
-                    <button className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors flex items-center space-x-2">
-                      <Play className="w-4 h-4" />
-                      <span>View Result</span>
-                    </button>
-                    <button className="px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors">
-                      Download
-                    </button>
+                {/* Error Display */}
+                {uploadState.error && (
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-6">
+                    <div className="flex items-center space-x-3">
+                      <AlertCircle className="w-6 h-6 text-red-400" />
+                      <div>
+                        <h4 className="text-red-400 font-semibold">Processing Error</h4>
+                        <p className="text-red-300 text-sm">{uploadState.error}</p>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
-            )}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Credits Dialog */}
       {showCreditsDialog && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 max-w-md w-full relative">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl p-8 w-full max-w-md relative border border-slate-700">
             <button
               onClick={() => setShowCreditsDialog(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
-            
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CreditCard className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">Credits Required</h3>
-              <p className="text-slate-400">You need credits to process videos with our AI models.</p>
+              <h2 className="text-2xl font-bold text-white mb-2">Insufficient Credits</h2>
+              <p className="text-slate-400">You have 0 credits remaining. Get more credits to continue processing.</p>
             </div>
-            
+
             <div className="space-y-4">
-              <div className="bg-slate-900/50 rounded-lg p-4 text-center">
-                <div className="text-3xl font-bold text-white mb-1">0</div>
-                <div className="text-slate-400 text-sm">Credits Remaining</div>
-              </div>
+              <button
+                onClick={handleBookDemo}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <Calendar className="w-5 h-5" />
+                <span>Book Demo Call to Get Free Credits</span>
+              </button>
               
-              <div className="space-y-3">
-                <button
-                  onClick={handleBookDemo}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white rounded-lg transition-all duration-300 flex items-center justify-center space-x-2"
-                >
-                  <Calendar className="w-4 h-4" />
-                  <span>Book Demo Call</span>
-                </button>
-                
-                <button
-                  onClick={handleRequestCredits}
-                  className="w-full px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors flex items-center justify-center space-x-2"
-                >
-                  <CreditCard className="w-4 h-4" />
-                  <span>Request Credits</span>
-                </button>
-              </div>
+              <button
+                onClick={handleRequestCredits}
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+              >
+                <CreditCard className="w-5 h-5" />
+                <span>Request Credits</span>
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Credit Request Form */}
+      {/* Credit Request Dialog */}
       {showCreditRequest && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 border border-slate-700 rounded-2xl p-8 max-w-md w-full relative">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl p-8 w-full max-w-lg relative border border-slate-700">
             <button
               onClick={() => setShowCreditRequest(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-white"
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
             >
-              <X className="w-5 h-5" />
+              <X className="w-6 h-6" />
             </button>
-            
-            <div className="text-center mb-6">
-              <h3 className="text-2xl font-bold text-white mb-2">Request Credits</h3>
-              <p className="text-slate-400">Tell us about your use case and we'll get you set up.</p>
+
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2">Request Credits</h2>
+              <p className="text-slate-400">Tell us about your use case and we'll provide the credits you need.</p>
             </div>
-            
-            <div className="space-y-4">
+
+            <div className="space-y-6">
               <div>
-                <label className="block text-slate-300 mb-2 text-sm">Use Case</label>
+                <label className="block text-slate-300 mb-2 text-sm">Use Case Description</label>
                 <textarea
                   value={creditRequestData.useCase}
                   onChange={(e) => setCreditRequestData(prev => ({ ...prev, useCase: e.target.value }))}
-                  rows={3}
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
-                  placeholder="Describe how you plan to use our AI services..."
+                  rows={4}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                  placeholder="Describe how you plan to use our AI video services..."
                 />
               </div>
-              
+
               <div>
                 <label className="block text-slate-300 mb-2 text-sm">Service Needed</label>
                 <select
                   value={creditRequestData.service}
                   onChange={(e) => setCreditRequestData(prev => ({ ...prev, service: e.target.value }))}
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none"
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition-colors"
                 >
                   <option value="">Select a service</option>
                   <option value="personality-clone">Personality Clone</option>
@@ -907,13 +848,29 @@ export default function PlaygroundPage() {
                   <option value="all">All Services</option>
                 </select>
               </div>
-              
+
+              <div>
+                <label className="block text-slate-300 mb-2 text-sm">Credits Needed</label>
+                <select
+                  value={creditRequestData.creditsNeeded}
+                  onChange={(e) => setCreditRequestData(prev => ({ ...prev, creditsNeeded: e.target.value }))}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition-colors"
+                >
+                  <option value="">Select amount</option>
+                  <option value="10">10 Credits</option>
+                  <option value="25">25 Credits</option>
+                  <option value="50">50 Credits</option>
+                  <option value="100">100 Credits</option>
+                  <option value="custom">Custom Amount</option>
+                </select>
+              </div>
+
               <button
                 onClick={handleSubmitCreditRequest}
-                disabled={!creditRequestData.useCase || !creditRequestData.service}
-                className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 disabled:from-slate-600 disabled:to-slate-600 disabled:cursor-not-allowed text-white rounded-lg transition-all duration-300"
+                disabled={!creditRequestData.useCase || !creditRequestData.service || !creditRequestData.creditsNeeded}
+                className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
-                Submit Request
+                Submit Credit Request
               </button>
             </div>
           </div>
@@ -921,9 +878,11 @@ export default function PlaygroundPage() {
       )}
 
       {/* Auth Modal */}
-      {showAuthModal && (
-        <AuthModal onClose={() => setShowAuthModal(false)} />
-      )}
+      <AuthModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)} 
+        initialMode="signin"
+      />
 
       <Footer />
     </div>
