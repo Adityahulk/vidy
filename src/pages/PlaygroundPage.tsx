@@ -621,4 +621,4 @@ export default function PlaygroundPage() {
                           value={uploadState.script}
                           onChange={(e) => setUploadState(prev => ({ ...prev, script: e.target.value }))}
                           rows={6}
-                          className="w-full px-6 py-4 bg-slate
+                          className="w-full px-6 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors"
