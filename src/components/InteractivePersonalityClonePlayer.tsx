@@ -73,7 +73,7 @@ export default function InteractivePersonalityClonePlayer({ isPreview = false }:
     <div className="space-y-6">
       {/* Video Selection section */}
       <div className="max-w-4xl mx-auto">
-        <h4 className="text-xl font-bold text-white mb-4 text-center">Select Your Personality</h4>
+        <h4 className="text-xl font-bold text-white mb-4 text-center">Select Your Personality/Avatar</h4>
         <div className="grid grid-cols-3 gap-4">
           {demoVideos.map((video) => (
             <button
