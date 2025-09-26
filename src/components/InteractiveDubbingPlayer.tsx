@@ -156,7 +156,12 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
                           }`}
                         >
                           <span>{lang.flag}</span>
-                          <span className="font-medium">{lang.name}</span>
+                          <div className="flex flex-col items-start">
+                            <span className="font-medium">{lang.name}</span>
+                            <span className={`text-xs ${selectedLanguage.code === lang.code ? 'text-gray-600' : 'text-gray-300'}`}>
+                              {lang.label}
+                            </span>
+                          </div>
                         </button>
                     ))}
                 </div>

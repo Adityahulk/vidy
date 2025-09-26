@@ -156,7 +156,12 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
                           }`}
                         >
                           <span>{audio.icon}</span>
-                          <span className="font-medium">{audio.name}</span>
+                          <div className="flex flex-col items-start">
+                            <span className="font-medium">{audio.name}</span>
+                            <span className={`text-xs ${selectedAudio.id === audio.id ? 'text-gray-600' : 'text-gray-300'}`}>
+                              {audio.label}
+                            </span>
+                          </div>
                         </button>
                     ))}
                 </div>
