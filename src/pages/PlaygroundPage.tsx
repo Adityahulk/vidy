@@ -3,6 +3,9 @@ import { ArrowLeft, Upload, Play, User, Film, Volume2, Wand2, CheckCircle, Alert
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useAuth } from '../contexts/AuthContext';
+import { db } from '../lib/supabase';
+import AuthModal from '../components/AuthModal';
 
 type ServiceType = 'personality-clone' | 'lip-sync' | 'dubbing' | 'custom';
 
@@ -100,6 +103,9 @@ export default function PlaygroundPage() {
     error: null,
     processingStage: ''
   });
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  
+  const { user } = useAuth();
 
   const videoInputRef = useRef<HTMLInputElement>(null);
   const audioInputRef = useRef<HTMLInputElement>(null);
@@ -150,6 +156,13 @@ export default function PlaygroundPage() {
   };
 
   const handleProcess = async () => {
+    // Check if user is authenticated
+    if (!user) {
+      setShowAuthModal(true);
+      return;
+    }
+
+    // Create project in database
     const stages = processingStages[selectedService];
     setUploadState(prev => ({
       ...prev,
@@ -159,6 +172,18 @@ export default function PlaygroundPage() {
       result: null,
       processingStage: stages[0]
     }));
+
+    try {
+      // Save project to database
+      await db.createProject({
+        project_name: `${currentService.title} - ${new Date().toLocaleDateString()}`,
+        service_type: selectedService,
+        video_url: uploadState.video ? URL.createObjectURL(uploadState.video) : undefined,
+      });
+    } catch (error) {
+      console.error('Error saving project:', error);
+      // Continue with processing even if database save fails
+    }
 
     // Simulate processing with stages
     for (let i = 0; i < stages.length; i++) {
@@ -942,6 +967,12 @@ Hello, I'm excited to demonstrate this AI technology. This clone will replicate 
       </section>
 
       <Footer />
+      
+      <AuthModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)} 
+        initialMode="signup"
+      />
       
       {/* Custom Animations */}
       <style jsx>{`
