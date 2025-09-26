@@ -47,12 +47,13 @@ export default function DubbingService() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
-              <button className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center">
-                <Link to="/playground" className="flex items-center space-x-2">
-                  <span>Start Dubbing</span>
-                  <Volume2 className="w-5 h-5" />
-                </Link>
-              </button>
+              <Link 
+                to="/playground" 
+                className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center"
+              >
+                <span>Start Dubbing</span>
+                <Volume2 className="w-5 h-5" />
+              </Link>
               <button 
                 onClick={() => document.getElementById('demo-video')?.scrollIntoView({ behavior: 'smooth' })}
                 className="group bg-slate-800/50 backdrop-blur-sm border border-slate-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-slate-800/70 transition-all duration-300 flex items-center space-x-2 w-full sm:w-auto justify-center"

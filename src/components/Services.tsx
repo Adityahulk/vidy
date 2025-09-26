@@ -35,7 +35,6 @@ export default function Services() {
 
   const handleServiceClick = (path: string) => {
     navigate(path);
-    window.scrollTo(0, 0);
   };
 
   return (
