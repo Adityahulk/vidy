@@ -728,6 +728,8 @@ export default function PlaygroundPage() {
                       <div>
                         <h4 className="text-white font-semibold">AI Neural Processing</h4>
                         <p className="text-slate-400 text-sm">{uploadState.processingStage}</p>
+                        <h4 className="text-white font-semibold">AI Neural Processing</h4>
+                        <p className="text-slate-400 text-sm">{uploadState.processingStage}</p>
                       </div>
                     </div>
                     
@@ -754,6 +756,18 @@ export default function PlaygroundPage() {
                         <h4 className="text-red-400 font-semibold">Processing Error</h4>
                         <p className="text-red-300 text-sm">{uploadState.error}</p>
                       </div>
+                    </div>
+                    
+                    <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
+                      <div 
+                        className={`h-2 rounded-full bg-gradient-to-r ${currentService.gradient} transition-all duration-500`}
+                        style={{ width: `${uploadState.progress}%` }}
+                      ></div>
+                    </div>
+                    
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-400">Progress: {Math.round(uploadState.progress)}%</span>
+                      <span className="text-blue-400">GPU Acceleration Active</span>
                     </div>
                   </div>
                 )}
