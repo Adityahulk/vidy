@@ -239,10 +239,13 @@ export default function PlaygroundPage() {
     switch (selectedService) {
       case 'personality-clone':
         navigate(`/services/personality-clone`);
+        break;
       case 'lip-sync':
         navigate(`/services/ai-lip-syncing`);
+        break;
       case 'dubbing':
         navigate(`/services/ai-video-dubbing`);
+        break;
       default:
         navigate(`/services/personality-clone`);
     }
