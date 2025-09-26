@@ -134,4 +134,36 @@ export const db = {
       .single();
     return { data, error };
   },
+
+  createCreditRequest: async (request: {
+    use_case: string;
+    service: string;
+    credits_needed: string;
+  }) => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) throw new Error('User not authenticated');
+
+    const { data, error } = await supabase
+      .from('credit_requests')
+      .insert({
+        ...request,
+        user_id: user.id,
+        status: 'pending',
+      })
+      .select()
+      .single();
+    return { data, error };
+  },
+
+  getUserCreditRequests: async () => {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) throw new Error('User not authenticated');
+
+    const { data, error } = await supabase
+      .from('credit_requests')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false });
+    return { data, error };
+  },
 };

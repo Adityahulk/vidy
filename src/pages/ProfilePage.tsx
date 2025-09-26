@@ -28,13 +28,24 @@ interface Project {
   created_at: string;
 }
 
+interface CreditRequest {
+  id: string;
+  use_case: string;
+  service: string;
+  credits_needed: string;
+  status: string;
+  created_at: string;
+}
+
 export default function ProfilePage() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [projects, setProjects] = useState<Project[]>([]);
+  const [creditRequests, setCreditRequests] = useState<CreditRequest[]>([]);
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [loadingProjects, setLoadingProjects] = useState(true);
+  const [loadingCreditRequests, setLoadingCreditRequests] = useState(true);
   const [showRequestCredits, setShowRequestCredits] = useState(false);
 
   useEffect(() => {
@@ -46,6 +57,7 @@ export default function ProfilePage() {
     if (user) {
       loadProfile();
       loadProjects();
+      loadCreditRequests();
     }
   }, [user, loading, navigate]);
 
@@ -77,6 +89,18 @@ export default function ProfilePage() {
       console.error('Error loading projects:', error);
     } finally {
       setLoadingProjects(false);
+    }
+  };
+
+  const loadCreditRequests = async () => {
+    try {
+      const { data, error } = await db.getUserCreditRequests();
+      if (error) throw error;
+      setCreditRequests(data || []);
+    } catch (error) {
+      console.error('Error loading credit requests:', error);
+    } finally {
+      setLoadingCreditRequests(false);
     }
   };
 
@@ -288,6 +312,64 @@ export default function ProfilePage() {
                           </a>
                         </div>
                       )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Credit Requests History */}
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 mt-8">
+              <div className="flex items-center space-x-3 mb-6">
+                <CreditCard className="w-6 h-6 text-purple-500" />
+                <h2 className="text-2xl font-bold text-white">Credit Requests</h2>
+              </div>
+
+              {loadingCreditRequests ? (
+                <div className="flex items-center justify-center py-12">
+                  <Loader className="w-8 h-8 text-purple-500 animate-spin" />
+                </div>
+              ) : creditRequests.length === 0 ? (
+                <div className="text-center py-12">
+                  <CreditCard className="w-16 h-16 text-slate-600 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-slate-400 mb-2">No Credit Requests</h3>
+                  <p className="text-slate-500">Your credit requests will appear here.</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {creditRequests.map((request) => (
+                    <div
+                      key={request.id}
+                      className="bg-slate-900/50 border border-slate-600 rounded-lg p-6 hover:border-slate-500 transition-colors"
+                    >
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                            <CreditCard className="w-5 h-5 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white">
+                              {request.credits_needed} Credits Request
+                            </h3>
+                            <p className="text-slate-400 text-sm capitalize">
+                              {request.service.replace('-', ' ')}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(request.status)}`}>
+                            {request.status.charAt(0).toUpperCase() + request.status.slice(1)}
+                          </div>
+                          <p className="text-slate-500 text-xs mt-1">
+                            {formatDate(request.created_at)}
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-4 p-4 bg-slate-800/50 rounded-lg">
+                        <h4 className="text-white font-medium mb-2">Use Case:</h4>
+                        <p className="text-slate-300 text-sm">{request.use_case}</p>
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -267,11 +267,22 @@ export default function PlaygroundPage() {
   };
 
   const handleSubmitCreditRequest = () => {
-    // Here you would typically send this data to your backend
-    console.log('Credit request:', creditRequestData);
-    alert('Credit request submitted! Our team will contact you shortly.');
-    setShowCreditRequest(false);
-    setCreditRequestData({ useCase: '', service: '', creditsNeeded: '' });
+    try {
+      const { data, error } = await db.createCreditRequest({
+        use_case: creditRequestData.useCase,
+        service: creditRequestData.service,
+        credits_needed: creditRequestData.creditsNeeded,
+      });
+
+      if (error) throw error;
+
+      alert('Credit request submitted successfully! Our team will contact you shortly.');
+      setShowCreditRequest(false);
+      setCreditRequestData({ useCase: '', service: '', creditsNeeded: '' });
+    } catch (error) {
+      console.error('Error submitting credit request:', error);
+      alert('Failed to submit credit request. Please try again.');
+    }
   };
 
   return (
