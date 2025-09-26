@@ -159,7 +159,7 @@ export default function InteractiveLipSyncPlayer({ isPreview = false }: Interact
                           <div className="flex flex-col items-start">
                             <span className="font-medium">{audio.name}</span>
                             <span className={`text-xs ${selectedAudio.id === audio.id ? 'text-gray-600' : 'text-gray-300'}`}>
-                              {audio.label}
+                              {audio.id === 'original' ? 'Original' : 'AI Lip-synced'}
                             </span>
                           </div>
                         </button>

@@ -159,7 +159,8 @@ export default function InteractiveDubbingPlayer({ isPreview = false }: Interact
                           <div className="flex flex-col items-start">
                             <span className="font-medium">{lang.name}</span>
                             <span className={`text-xs ${selectedLanguage.code === lang.code ? 'text-gray-600' : 'text-gray-300'}`}>
-                              {lang.label}
+                              {/* Show "Original" for first option, "Dubbed" for second option */}
+                              {selectedVideo.languageOptions.indexOf(lang) === 0 ? 'Original' : 'Dubbed'}
                             </span>
                           </div>
                         </button>
