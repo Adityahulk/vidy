@@ -621,4 +621,270 @@ export default function PlaygroundPage() {
                           value={uploadState.script}
                           onChange={(e) => setUploadState(prev => ({ ...prev, script: e.target.value }))}
                           rows={6}
-                          className="w-full px-6 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors"
+                          className="w-full px-6 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                          placeholder="Enter your script here... The AI will generate a video of your personality speaking this text naturally."
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {selectedService === 'lip-sync' && (
+                  <div>
+                    <label className="block text-slate-300 mb-4 font-medium flex items-center space-x-2">
+                      <Mic className="w-4 h-4" />
+                      <span>Audio Input for Lip-Sync</span>
+                      <span className="text-red-400">*</span>
+                    </label>
+                    <div 
+                      onClick={() => audioInputRef.current?.click()}
+                      className={`relative border-2 border-dashed rounded-xl p-6 text-center transition-all duration-300 cursor-pointer group ${
+                        uploadState.audio 
+                          ? `border-${currentService.color}-500 bg-gradient-to-br ${currentService.bgGlow}`
+                          : `border-slate-600 hover:border-${currentService.color}-500 hover:bg-slate-800/50`
+                      }`}
+                    >
+                      <div className="relative z-10">
+                        <Volume2 className="w-12 h-12 text-slate-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                        {uploadState.audio ? (
+                          <div className="space-y-2">
+                            <p className="text-white font-medium flex items-center justify-center space-x-2">
+                              <CheckCircle className="w-4 h-4 text-green-400" />
+                              <span>{uploadState.audio.name}</span>
+                            </p>
+                            <p className="text-slate-400 text-sm">{(uploadState.audio.size / 1024 / 1024).toFixed(2)} MB</p>
+                          </div>
+                        ) : (
+                          <div>
+                            <p className="text-white mb-2">Upload Audio File</p>
+                            <p className="text-slate-400 text-sm">MP3, WAV, M4A • Max 100MB</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    <input
+                      ref={audioInputRef}
+                      type="file"
+                      accept="audio/*"
+                      onChange={(e) => e.target.files?.[0] && handleFileUpload('audio', e.target.files[0])}
+                      className="hidden"
+                    />
+                  </div>
+                )}
+
+                {selectedService === 'dubbing' && (
+                  <div>
+                    <label className="block text-slate-300 mb-4 font-medium flex items-center space-x-2">
+                      <Globe className="w-4 h-4" />
+                      <span>Target Language</span>
+                      <span className="text-red-400">*</span>
+                    </label>
+                    <select
+                      value={uploadState.language}
+                      onChange={(e) => setUploadState(prev => ({ ...prev, language: e.target.value }))}
+                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition-colors"
+                    >
+                      {languages.map((lang) => (
+                        <option key={lang.code} value={lang.code}>
+                          {lang.flag} {lang.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {/* Processing Button */}
+                <div className="pt-6 border-t border-slate-700">
+                  <button
+                    onClick={handleProcess}
+                    disabled={!canProcess() || uploadState.isProcessing}
+                    className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 flex items-center justify-center space-x-3 ${
+                      canProcess() && !uploadState.isProcessing
+                        ? `bg-gradient-to-r ${currentService.gradient} hover:scale-105 shadow-lg`
+                        : 'bg-slate-600 cursor-not-allowed opacity-50'
+                    }`}
+                  >
+                    {uploadState.isProcessing ? (
+                      <>
+                        <Loader className="w-5 h-5 animate-spin" />
+                        <span>Neural Processing...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-5 h-5" />
+                        <span>Start AI Processing</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+
+                {/* Processing Status */}
+                {uploadState.isProcessing && (
+                  <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <Brain className="w-4 h-4 text-white animate-pulse" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold">AI Neural Processing</h4>
+                        <p className="text-slate-400 text-sm">{uploadState.processingStage}</p>
+                      </div>
+                    </div>
+                    
+                    <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
+                      <div 
+                        className={`h-2 rounded-full bg-gradient-to-r ${currentService.gradient} transition-all duration-500`}
+                        style={{ width: `${uploadState.progress}%` }}
+                      ></div>
+                    </div>
+                    
+                    <div className="flex justify-between text-sm">
+                      <span className="text-slate-400">Progress: {Math.round(uploadState.progress)}%</span>
+                      <span className="text-blue-400">GPU Acceleration Active</span>
+                    </div>
+                  </div>
+                )}
+
+                {/* Error Display */}
+                {uploadState.error && (
+                  <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-6">
+                    <div className="flex items-center space-x-3">
+                      <AlertCircle className="w-6 h-6 text-red-400" />
+                      <div>
+                        <h4 className="text-red-400 font-semibold">Processing Error</h4>
+                        <p className="text-red-300 text-sm">{uploadState.error}</p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Credits Dialog */}
+      {showCreditsDialog && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl p-8 w-full max-w-md relative border border-slate-700">
+            <button
+              onClick={() => setShowCreditsDialog(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2">Insufficient Credits</h2>
+              <p className="text-slate-400">You have 0 credits remaining. Get more credits to continue processing.</p>
+            </div>
+
+            <div className="space-y-4">
+              <button
+                onClick={handleBookDemo}
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <Calendar className="w-5 h-5" />
+                <span>Book Demo Call to Get Free Credits</span>
+              </button>
+              
+              <button
+                onClick={handleRequestCredits}
+                className="w-full bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
+              >
+                <CreditCard className="w-5 h-5" />
+                <span>Request Credits</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Credit Request Dialog */}
+      {showCreditRequest && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-slate-800 rounded-2xl p-8 w-full max-w-lg relative border border-slate-700">
+            <button
+              onClick={() => setShowCreditRequest(false)}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-2">Request Credits</h2>
+              <p className="text-slate-400">Tell us about your use case and we'll provide the credits you need.</p>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <label className="block text-slate-300 mb-2 text-sm">Use Case Description</label>
+                <textarea
+                  value={creditRequestData.useCase}
+                  onChange={(e) => setCreditRequestData(prev => ({ ...prev, useCase: e.target.value }))}
+                  rows={4}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                  placeholder="Describe how you plan to use our AI video services..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-300 mb-2 text-sm">Service Needed</label>
+                <select
+                  value={creditRequestData.service}
+                  onChange={(e) => setCreditRequestData(prev => ({ ...prev, service: e.target.value }))}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition-colors"
+                >
+                  <option value="">Select a service</option>
+                  <option value="personality-clone">Personality Clone</option>
+                  <option value="lip-sync">AI Lip-Syncing</option>
+                  <option value="dubbing">AI Video Dubbing</option>
+                  <option value="all">All Services</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-slate-300 mb-2 text-sm">Credits Needed</label>
+                <select
+                  value={creditRequestData.creditsNeeded}
+                  onChange={(e) => setCreditRequestData(prev => ({ ...prev, creditsNeeded: e.target.value }))}
+                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition-colors"
+                >
+                  <option value="">Select amount</option>
+                  <option value="10">10 Credits</option>
+                  <option value="25">25 Credits</option>
+                  <option value="50">50 Credits</option>
+                  <option value="100">100 Credits</option>
+                  <option value="custom">Custom Amount</option>
+                </select>
+              </div>
+
+              <button
+                onClick={handleSubmitCreditRequest}
+                disabled={!creditRequestData.useCase || !creditRequestData.service || !creditRequestData.creditsNeeded}
+                className="w-full bg-gradient-to-r from-green-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                Submit Credit Request
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={showAuthModal} 
+        onClose={() => setShowAuthModal(false)} 
+        initialMode="signin"
+      />
+
+      <Footer />
+    </div>
+  );
+}
