@@ -114,6 +114,11 @@ export default function PlaygroundPage() {
   
   const { user } = useAuth();
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const videoInputRef = useRef<HTMLInputElement>(null);
   const audioInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();

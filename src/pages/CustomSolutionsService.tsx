@@ -1,10 +1,15 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { ArrowLeft, Play, Wand2, Code, Cog, Settings, CheckCircle, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function CustomSolutionsService() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Header />

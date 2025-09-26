@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { ArrowLeft, Play, Volume2, Globe, Mic, Settings, CheckCircle, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -6,6 +7,10 @@ import Footer from '../components/Footer';
 import InteractiveDubbingPlayer from '../components/InteractiveDubbingPlayer';
 
 export default function DubbingService() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Header />

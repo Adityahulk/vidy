@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { ArrowLeft, Play, User, Brain, Mic, Video, CheckCircle, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
@@ -6,6 +7,10 @@ import Footer from '../components/Footer';
 import InteractivePersonalityClonePlayer from '../components/InteractivePersonalityClonePlayer';
 
 export default function PersonalityCloneService() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Header />
