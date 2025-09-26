@@ -95,6 +95,7 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
+                onClick={() => window.open('https://calendly.com/aditya-vidsimplify/demo-call', '_blank')}
                 className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm sm:text-base"
               >
                 <Send className="w-5 h-5" />
