@@ -29,13 +29,6 @@ export default function PlaygroundPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loadingProjects, setLoadingProjects] = useState(false);
 
-  // Check authentication and show modal if needed
-  useEffect(() => {
-    if (!loading && !user) {
-      setShowAuthModal(true);
-    }
-  }, [user, loading]);
-
   // Load user projects when authenticated
   useEffect(() => {
     if (user) {
@@ -57,19 +50,10 @@ export default function PlaygroundPage() {
   };
 
   const handleServiceSelect = (service: string) => {
-    if (!user) {
-      setShowAuthModal(true);
-      return;
-    }
     setSelectedService(service);
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (!user) {
-      setShowAuthModal(true);
-      return;
-    }
-    
     const file = event.target.files?.[0];
     if (file) {
       setVideoFile(file);
@@ -77,6 +61,7 @@ export default function PlaygroundPage() {
   };
 
   const handleProcessVideo = async () => {
+    // Check authentication first
     if (!user) {
       setShowAuthModal(true);
       return;
@@ -116,60 +101,16 @@ export default function PlaygroundPage() {
 
   const handleAuthSuccess = () => {
     setShowAuthModal(false);
+    // After successful auth, automatically process the video if form is complete
+    if (projectName && videoFile) {
+      handleProcessVideo();
+    }
   };
-
-  // Show loading screen while checking authentication
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <Loader className="w-12 h-12 text-blue-500 animate-spin mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-white mb-2">Loading...</h2>
-          <p className="text-slate-400">Checking authentication status</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-slate-900">
       <Header />
       
-      {/* Auth Required Overlay */}
-      {!user && (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 flex items-center justify-center">
-          <div className="bg-slate-800 rounded-2xl p-8 max-w-md mx-4 text-center border border-slate-700">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Lock className="w-8 h-8 text-white" />
-            </div>
-            <h2 className="text-2xl font-bold text-white mb-4">Authentication Required</h2>
-            <p className="text-slate-400 mb-6">
-              Please sign in to access the AI video processing playground and start creating amazing content.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <button
-                onClick={() => {
-                  setAuthMode('signin');
-                  setShowAuthModal(true);
-                }}
-                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
-              >
-                Sign In
-              </button>
-              <button
-                onClick={() => {
-                  setAuthMode('signup');
-                  setShowAuthModal(true);
-                }}
-                className="flex-1 bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-600 transition-colors"
-              >
-                Sign Up
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Main Content */}
       <section className="relative pt-24 pb-16 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-24 bg-gradient-to-br from-slate-900 via-slate-800 to-purple-900 overflow-hidden">
         {/* Background Animation */}
@@ -232,64 +173,62 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Project Configuration */}
-            {user && (
-              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 mb-8">
-                <h3 className="text-xl font-bold text-white mb-6">Project Configuration</h3>
-                
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-slate-300 mb-2 text-left">Project Name</label>
-                    <input
-                      type="text"
-                      value={projectName}
-                      onChange={(e) => setProjectName(e.target.value)}
-                      className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors"
-                      placeholder="Enter a name for your project"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-slate-300 mb-2 text-left">Upload Video</label>
-                    <div className="border-2 border-dashed border-slate-600 rounded-lg p-8 text-center hover:border-slate-500 transition-colors">
-                      <input
-                        type="file"
-                        accept="video/*"
-                        onChange={handleFileUpload}
-                        className="hidden"
-                        id="video-upload"
-                      />
-                      <label htmlFor="video-upload" className="cursor-pointer">
-                        <Upload className="w-12 h-12 text-slate-400 mx-auto mb-4" />
-                        <p className="text-slate-300 mb-2">
-                          {videoFile ? videoFile.name : 'Click to upload or drag and drop'}
-                        </p>
-                        <p className="text-slate-500 text-sm">MP4, MOV, AVI up to 100MB</p>
-                      </label>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={handleProcessVideo}
-                    disabled={isProcessing || !projectName || !videoFile}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
-                  >
-                    {isProcessing ? (
-                      <>
-                        <Loader className="w-5 h-5 animate-spin" />
-                        <span>Processing...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Play className="w-5 h-5" />
-                        <span>Start AI Processing</span>
-                      </>
-                    )}
-                  </button>
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 mb-8">
+              <h3 className="text-xl font-bold text-white mb-6">Project Configuration</h3>
+              
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-slate-300 mb-2 text-left">Project Name</label>
+                  <input
+                    type="text"
+                    value={projectName}
+                    onChange={(e) => setProjectName(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors"
+                    placeholder="Enter a name for your project"
+                  />
                 </div>
-              </div>
-            )}
 
-            {/* Projects History */}
+                <div>
+                  <label className="block text-slate-300 mb-2 text-left">Upload Video</label>
+                  <div className="border-2 border-dashed border-slate-600 rounded-lg p-8 text-center hover:border-slate-500 transition-colors">
+                    <input
+                      type="file"
+                      accept="video/*"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                      id="video-upload"
+                    />
+                    <label htmlFor="video-upload" className="cursor-pointer">
+                      <Upload className="w-12 h-12 text-slate-400 mx-auto mb-4" />
+                      <p className="text-slate-300 mb-2">
+                        {videoFile ? videoFile.name : 'Click to upload or drag and drop'}
+                      </p>
+                      <p className="text-slate-500 text-sm">MP4, MOV, AVI up to 100MB</p>
+                    </label>
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleProcessVideo}
+                  disabled={isProcessing || !projectName || !videoFile}
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
+                >
+                  {isProcessing ? (
+                    <>
+                      <Loader className="w-5 h-5 animate-spin" />
+                      <span>Processing...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Play className="w-5 h-5" />
+                      <span>Start AI Processing</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Projects History - Only show if user is authenticated */}
             {user && (
               <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
                 <h3 className="text-xl font-bold text-white mb-6">Your Projects</h3>
