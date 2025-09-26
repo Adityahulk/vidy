@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Play, User } from 'lucide-react';
+import { Menu, X, Play, User, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import Logo from './Logo';
+import UserMenu from './UserMenu';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,6 +62,7 @@ export default function Header() {
                 <span>Profile</span>
               </a>
             )}
+            {user && <UserMenu />}
           </div>
 
           {/* Mobile menu button */}
@@ -93,6 +95,15 @@ export default function Header() {
                   <User className="w-4 h-4" />
                   <span>Profile</span>
                 </a>
+              )}
+              {user && (
+                <button 
+                  onClick={signOut}
+                  className="text-slate-300 hover:text-white transition-colors text-left flex items-center space-x-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span>Sign Out</span>
+                </button>
               )}
             </div>
           </div>
