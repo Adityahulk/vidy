@@ -14,7 +14,6 @@ import LipSyncService from './pages/LipSyncService';
 import CustomSolutionsService from './pages/CustomSolutionsService';
 import PlaygroundPage from './pages/PlaygroundPage';
 import AuthCallback from './pages/AuthCallback';
-import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -38,7 +37,6 @@ function App() {
         <Route path="/services/custom-solutions" element={<CustomSolutionsService />} />
         <Route path="/playground" element={<PlaygroundPage />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
-        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>
   );
