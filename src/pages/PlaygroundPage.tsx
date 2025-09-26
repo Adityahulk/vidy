@@ -912,17 +912,6 @@ export default function PlaygroundPage() {
                 </select>
               </div>
               
-              <div>
-                <label className="block text-slate-300 mb-2 text-sm">Credits Needed</label>
-                <input
-                  type="text"
-                  value={creditRequestData.creditsNeeded}
-                  onChange={(e) => setCreditRequestData(prev => ({ ...prev, creditsNeeded: e.target.value }))}
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none"
-                  placeholder="e.g., 100 credits"
-                />
-              </div>
-              
               <button
                 onClick={handleSubmitCreditRequest}
                 disabled={!creditRequestData.useCase || !creditRequestData.service}
