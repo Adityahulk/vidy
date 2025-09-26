@@ -844,6 +844,14 @@ export default function PlaygroundPage() {
                 <CreditCard className="w-5 h-5" />
                 <span>Request Credits</span>
               </button>
+
+              <button
+                onClick={handleCheckDemo} // Use the new handler
+                className="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-3 rounded-lg font-semibold hover:from-teal-600 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <Play className="w-5 h-5" /> {/* Better icon */}
+                <span>Check Demo</span>
+              </button>
             </div>
           </div>
         </div>
