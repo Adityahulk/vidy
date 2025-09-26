@@ -132,7 +132,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="text-white font-semibold text-sm sm:text-base">Office</div>
-                    <div className="text-slate-400 text-sm sm:text-base">San Francisco, CA</div>
+                    <div className="text-slate-400 text-sm sm:text-base">Hyderabad, India</div>
                   </div>
                 </div>
               </div>
