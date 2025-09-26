@@ -5,6 +5,7 @@ import { auth } from '../lib/supabase';
 interface AuthContextType {
   user: User | null;
   loading: boolean;
+  signInWithGoogle: () => Promise<any>;
   signUp: (email: string, password: string, fullName: string) => Promise<any>;
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<any>;
@@ -37,6 +38,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return result;
   };
 
+  const signInWithGoogle = async () => {
+    const result = await auth.signInWithGoogle();
+    return result;
+  };
+
   const signIn = async (email: string, password: string) => {
     const result = await auth.signIn(email, password);
     return result;
@@ -50,6 +56,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const value = {
     user,
     loading,
+    signInWithGoogle,
     signUp,
     signIn,
     signOut,

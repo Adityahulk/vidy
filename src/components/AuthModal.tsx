@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Mail, Lock, User, Loader } from 'lucide-react';
+import { X, Mail, Lock, User, Loader, Chrome } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 interface AuthModalProps {
@@ -17,7 +17,7 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const { signIn, signUp } = useAuth();
+  const { signIn, signUp, signInWithGoogle } = useAuth();
 
   if (!isOpen) return null;
 
@@ -40,6 +40,20 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
     } catch (err: any) {
       setError(err.message || 'An error occurred');
     } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    setError('');
+    
+    try {
+      const { error } = await signInWithGoogle();
+      if (error) throw error;
+      // Don't close modal here - user will be redirected
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in with Google');
       setLoading(false);
     }
   };
@@ -90,6 +104,25 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'signin' }: A
             <p className="text-green-400 text-sm">{success}</p>
           </div>
         )}
+
+        {/* Google Sign In Button */}
+        <button
+          onClick={handleGoogleSignIn}
+          disabled={loading}
+          className="w-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-300 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2 mb-6"
+        >
+          <Chrome className="w-5 h-5 text-blue-500" />
+          <span>{mode === 'signin' ? 'Sign in with Google' : 'Sign up with Google'}</span>
+        </button>
+
+        <div className="relative mb-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-600"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-slate-800 text-slate-400">Or continue with email</span>
+          </div>
+        </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           {mode === 'signup' && (

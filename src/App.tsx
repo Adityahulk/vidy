@@ -13,6 +13,7 @@ import DubbingService from './pages/DubbingService';
 import LipSyncService from './pages/LipSyncService';
 import CustomSolutionsService from './pages/CustomSolutionsService';
 import PlaygroundPage from './pages/PlaygroundPage';
+import AuthCallback from './pages/AuthCallback';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/services/ai-lip-syncing" element={<LipSyncService />} />
         <Route path="/services/custom-solutions" element={<CustomSolutionsService />} />
         <Route path="/playground" element={<PlaygroundPage />} />
+        <Route path="/auth/callback" element={<AuthCallback />} />
       </Routes>
     </div>
   );

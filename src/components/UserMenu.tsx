@@ -31,9 +31,17 @@ export default function UserMenu() {
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center space-x-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-lg px-3 py-2 hover:bg-slate-800/70 transition-colors"
       >
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-          <User className="w-4 h-4 text-white" />
-        </div>
+        {user.user_metadata?.avatar_url ? (
+          <img 
+            src={user.user_metadata.avatar_url} 
+            alt="Profile" 
+            className="w-8 h-8 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+            <User className="w-4 h-4 text-white" />
+          </div>
+        )}
         <span className="text-white text-sm hidden sm:block">
           {user.user_metadata?.full_name || user.email?.split('@')[0]}
         </span>
