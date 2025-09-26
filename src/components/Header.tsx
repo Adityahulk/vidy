@@ -57,12 +57,14 @@ export default function Header() {
               Contact
             </button>
             {user && (
-              <a href="/profile" className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base flex items-center space-x-2">
-                <User className="w-4 h-4" />
-                <span>Profile</span>
-              </a>
+              <button 
+                onClick={signOut}
+                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm xl:text-base flex items-center space-x-2"
+              >
+                <LogOut className="w-4 h-4" />
+                <span>Sign Out</span>
+              </button>
             )}
-            {user && <UserMenu />}
           </div>
 
           {/* Mobile menu button */}
@@ -91,15 +93,9 @@ export default function Header() {
                 Contact
               </button>
               {user && (
-                <a href="/profile" className="text-slate-300 hover:text-white transition-colors text-left flex items-center space-x-2">
-                  <User className="w-4 h-4" />
-                  <span>Profile</span>
-                </a>
-              )}
-              {user && (
                 <button 
                   onClick={signOut}
-                  className="text-slate-300 hover:text-white transition-colors text-left flex items-center space-x-2"
+                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-left flex items-center space-x-2 w-full justify-center"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>Sign Out</span>
