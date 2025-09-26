@@ -712,7 +712,12 @@ export default function PlaygroundPage() {
                     ) : (
                       <>
                         <Zap className="w-5 h-5" />
-                        <span>Start AI Processing</span>
+                        <span>
+                          {selectedService === 'personality-clone' ? 'Initialize Video Cloning' :
+                           selectedService === 'lip-sync' ? 'Initialize AI Lip-Sync' :
+                           selectedService === 'dubbing' ? 'Initialize AI Dubbing' :
+                           'Start AI Processing'}
+                        </span>
                       </>
                     )}
                   </button>
@@ -720,27 +725,68 @@ export default function PlaygroundPage() {
 
                 {/* Processing Status */}
                 {uploadState.isProcessing && (
-                  <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700">
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                        <Brain className="w-4 h-4 text-white animate-pulse" />
-                      </div>
-                      <div>
-                        <h4 className="text-white font-semibold">AI Neural Processing</h4>
-                        <p className="text-slate-400 text-sm">{uploadState.processingStage}</p>
-                      </div>
-                    </div>
+                  <div className="relative bg-slate-900/50 rounded-xl p-8 border border-slate-700 overflow-hidden">
+                    {/* Animated Background */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-pink-500/5 animate-pulse"></div>
                     
-                    <div className="w-full bg-slate-700 rounded-full h-2 mb-4">
-                      <div 
-                        className={`h-2 rounded-full bg-gradient-to-r ${currentService.gradient} transition-all duration-500`}
-                        style={{ width: `${uploadState.progress}%` }}
-                      ></div>
-                    </div>
-                    
-                    <div className="flex justify-between text-sm">
-                      <span className="text-slate-400">Progress: {Math.round(uploadState.progress)}%</span>
-                      <span className="text-blue-400">GPU Acceleration Active</span>
+                    <div className="relative z-10">
+                      <div className="flex items-center space-x-4 mb-6">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                          <Brain className="w-6 h-6 text-white animate-pulse" />
+                        </div>
+                        <div>
+                          <h4 className="text-xl font-bold text-white">AI Neural Processing Engine</h4>
+                          <p className="text-slate-400 text-sm">{uploadState.processingStage}</p>
+                        </div>
+                      </div>
+                      
+                      {/* Enhanced Progress Bar */}
+                      <div className="mb-6">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-slate-300 font-medium">Processing Progress</span>
+                          <span className="text-blue-400 font-bold text-lg">{Math.round(uploadState.progress)}%</span>
+                        </div>
+                        <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+                          <div 
+                            className={`h-3 rounded-full bg-gradient-to-r ${currentService.gradient} transition-all duration-500 relative`}
+                            style={{ width: `${uploadState.progress}%` }}
+                          >
+                            <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* System Status Grid */}
+                      <div className="grid grid-cols-3 gap-4 mb-6">
+                        <div className="bg-slate-800/50 rounded-lg p-4 text-center border border-slate-600/50">
+                          <div className="text-blue-400 font-bold text-lg mb-1">98.7%</div>
+                          <div className="text-slate-400 text-xs">GPU Utilization</div>
+                        </div>
+                        <div className="bg-slate-800/50 rounded-lg p-4 text-center border border-slate-600/50">
+                          <div className="text-purple-400 font-bold text-lg mb-1">2.3GB/s</div>
+                          <div className="text-slate-400 text-xs">Network Speed</div>
+                        </div>
+                        <div className="bg-slate-800/50 rounded-lg p-4 text-center border border-slate-600/50">
+                          <div className="text-green-400 font-bold text-lg mb-1">47</div>
+                          <div className="text-slate-400 text-xs">Active Models</div>
+                        </div>
+                      </div>
+                      
+                      {/* Status Indicators */}
+                      <div className="flex flex-wrap items-center justify-center gap-4">
+                        <div className="flex items-center space-x-2 bg-slate-800/50 rounded-lg px-3 py-2">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                          <span className="text-slate-300 text-sm">Neural Networks: Active</span>
+                        </div>
+                        <div className="flex items-center space-x-2 bg-slate-800/50 rounded-lg px-3 py-2">
+                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse delay-100"></div>
+                          <span className="text-slate-300 text-sm">Cloud Sync: Connected</span>
+                        </div>
+                        <div className="flex items-center space-x-2 bg-slate-800/50 rounded-lg px-3 py-2">
+                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-200"></div>
+                          <span className="text-slate-300 text-sm">Processing Queue: Running</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
