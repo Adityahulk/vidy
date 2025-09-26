@@ -116,7 +116,7 @@ export default function PlaygroundPage() {
 
   const videoInputRef = useRef<HTMLInputElement>(null);
   const audioInputRef = useRef<HTMLInputElement>(null);
-
+  const navigate = useNavigate();
   const currentService = services.find(s => s.id === selectedService)!;
   const IconComponent = currentService.icon;
 
