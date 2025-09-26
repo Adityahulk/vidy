@@ -248,6 +248,7 @@ export default function PlaygroundPage() {
         break;
       default:
         navigate(`/services/personality-clone`);
+        break;
     }
   };
 
