@@ -266,7 +266,7 @@ export default function PlaygroundPage() {
     setShowCreditRequest(true);
   };
 
-  const handleSubmitCreditRequest = () => {
+  const handleSubmitCreditRequest = async () => {
     try {
       const { data, error } = await db.createCreditRequest({
         use_case: creditRequestData.useCase,
