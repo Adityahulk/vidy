@@ -234,6 +234,11 @@ export default function PlaygroundPage() {
     }
   };
 
+  const handleCheckDemo = () => {
+    // This will redirect to a dynamic URL like /demo/personality-clone
+    navigate(`/services/${selectedService}`);
+  };
+
   const handleBookDemo = () => {
     window.open('https://calendly.com/aditya-vidsimplify/demo-call', '_blank');
   };
