@@ -86,6 +86,7 @@ export const db = {
     project_name: string;
     service_type: string;
     video_url?: string;
+    status?: string;
   }) => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) throw new Error('User not authenticated');
@@ -95,6 +96,7 @@ export const db = {
       .insert({
         ...project,
         user_id: user.id,
+        status: project.status || 'processing',
       })
       .select()
       .single();
