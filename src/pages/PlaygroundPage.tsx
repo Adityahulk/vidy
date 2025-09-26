@@ -743,7 +743,11 @@ export default function PlaygroundPage() {
                         ) : (
                           <>
                             <Wand2 className="w-4 h-4" />
-                            <span>Start Processing</span>
+                            <span>
+                              {selectedService === 'personality-clone' && 'Initialize AI Cloning'}
+                              {selectedService === 'lip-sync' && 'Initialize Lip-Sync'}
+                              {selectedService === 'dubbing' && 'Initialize AI Dubbing'}
+                            </span>
                           </>
                         )}
                       </button>
