@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Upload, Play, User, Film, Volume2, Wand2, CheckCircle, AlertCircle, Loader, Globe, Mic, Zap, Brain, Code, Settings, Activity, Cpu, Database, Target, Calendar, CreditCard, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { useAuth } from '../contexts/AuthContext';
