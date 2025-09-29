@@ -130,6 +130,278 @@ export default function CorporateElearningPage() {
         </div>
       </section>
 
+      {/* Comprehensive Demo Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-slate-800">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              Interactive Training Demos
+            </h2>
+            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
+              Experience how AI avatars transform different types of corporate training content
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Employee Onboarding Demo */}
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                  <Building className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">🏢 Employee Onboarding</h3>
+                  <p className="text-slate-400 text-sm">Company culture & policies</p>
+                </div>
+              </div>
+              <div className="aspect-video bg-black rounded-lg mb-4 relative overflow-hidden">
+                <img 
+                  src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Employee Onboarding Demo" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white ml-1" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                    <p className="text-white text-sm">"Welcome to our company! Let me guide you through our values and culture..."</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-slate-300 text-sm">AI avatar welcomes new hires with personalized company introduction in their native language</p>
+            </div>
+
+            {/* Compliance Training Demo */}
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-green-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">📋 Compliance Training</h3>
+                  <p className="text-slate-400 text-sm">GDPR & data privacy</p>
+                </div>
+              </div>
+              <div className="aspect-video bg-black rounded-lg mb-4 relative overflow-hidden">
+                <img 
+                  src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Compliance Training Demo" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white ml-1" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                    <p className="text-white text-sm">"Understanding GDPR compliance is crucial for our data handling practices..."</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-slate-300 text-sm">Legal expert avatar explains complex compliance requirements in simple, understandable terms</p>
+            </div>
+
+            {/* Security Training Demo */}
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mr-4">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">🔒 Security Training</h3>
+                  <p className="text-slate-400 text-sm">Cybersecurity awareness & phishing</p>
+                </div>
+              </div>
+              <div className="aspect-video bg-black rounded-lg mb-4 relative overflow-hidden">
+                <img 
+                  src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Security Training Demo" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white ml-1" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                    <p className="text-white text-sm">"Let me show you how to identify and avoid common phishing attacks..."</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-slate-300 text-sm">Security expert avatar demonstrates real phishing examples and prevention techniques</p>
+            </div>
+
+            {/* Anti-Harassment Training Demo */}
+            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mr-4">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">⚖️ Anti-Harassment Training</h3>
+                  <p className="text-slate-400 text-sm">Workplace respect & sensitivity</p>
+                </div>
+              </div>
+              <div className="aspect-video bg-black rounded-lg mb-4 relative overflow-hidden">
+                <img 
+                  src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Anti-Harassment Training Demo" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                    <Play className="w-8 h-8 text-white ml-1" />
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-2">
+                    <p className="text-white text-sm">"Creating a respectful workplace starts with understanding boundaries..."</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-slate-300 text-sm">HR expert avatar addresses sensitive topics with cultural awareness and empathy</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Complete AI Training Suite */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-slate-900">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              Complete AI Training Suite
+            </h2>
+            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
+              All 4 AI technologies working together for comprehensive corporate training solutions
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* AI Avatar Training */}
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <User className="w-12 h-12 text-blue-500 mr-4" />
+                <div>
+                  <h3 className="text-2xl font-bold text-white">👤 AI Avatar Training</h3>
+                  <p className="text-slate-400">Document to video conversion</p>
+                </div>
+              </div>
+              <p className="text-slate-300 mb-6">
+                Transform your existing documents, PPTs, and wikis into engaging avatar-based training videos. 
+                Upload content and watch AI create professional training materials instantly.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>PPT/PDF/Wiki to video conversion</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Professional avatar selection</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Automatic script generation</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Personality Cloning */}
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <User className="w-12 h-12 text-purple-500 mr-4" />
+                <div>
+                  <h3 className="text-2xl font-bold text-white">🧬 Personality Cloning</h3>
+                  <p className="text-slate-400">CEO/expert cloning for consistency</p>
+                </div>
+              </div>
+              <p className="text-slate-300 mb-6">
+                Clone your CEO, subject matter experts, or key trainers to deliver consistent messaging 
+                across all training content while maintaining their authentic presence.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Complete personality replication</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Voice & gesture cloning</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Unlimited content generation</span>
+                </div>
+              </div>
+            </div>
+
+            {/* AI Dubbing & Localization */}
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-green-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <Volume2 className="w-12 h-12 text-green-500 mr-4" />
+                <div>
+                  <h3 className="text-2xl font-bold text-white">🎤 AI Dubbing & Localization</h3>
+                  <p className="text-slate-400">50+ language voice cloning</p>
+                </div>
+              </div>
+              <p className="text-slate-300 mb-6">
+                Instantly localize your training content into 50+ languages while maintaining the original 
+                speaker's voice characteristics and emotional tone.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Voice cloning in 50+ languages</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Perfect lip-sync technology</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Cultural adaptation</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Custom AI Solutions */}
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300">
+              <div className="flex items-center mb-6">
+                <Wand2 className="w-12 h-12 text-orange-500 mr-4" />
+                <div>
+                  <h3 className="text-2xl font-bold text-white">🪄 Custom AI Solutions</h3>
+                  <p className="text-slate-400">LMS integration & white-label</p>
+                </div>
+              </div>
+              <p className="text-slate-300 mb-6">
+                Seamlessly integrate with your existing LMS, HR systems, and training platforms. 
+                White-label solutions available for training companies.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>LMS & HR system integration</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>White-label platform</span>
+                </div>
+                <div className="flex items-center text-slate-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
+                  <span>Custom workflow automation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Solution Demo */}
       <section id="demo-section" className="py-16 sm:py-20 lg:py-24 bg-slate-800">
         <div className="container mx-auto px-6">
