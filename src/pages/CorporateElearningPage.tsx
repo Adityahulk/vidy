@@ -306,7 +306,10 @@ export default function CorporateElearningPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* AI Avatar Training */}
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-all duration-300">
+            <div 
+              onClick={() => navigate('/services/avatar-videos')}
+              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-all duration-300 cursor-pointer"
+            >
               <div className="flex items-center mb-6">
                 <User className="w-12 h-12 text-blue-500 mr-4" />
                 <div>
@@ -335,9 +338,10 @@ export default function CorporateElearningPage() {
             </div>
 
             {/* Personality Cloning */}
-            <Link>
-            to="/playground" 
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300">
+            <div 
+              onClick={() => navigate('/services/personality-clone')}
+              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300 cursor-pointer"
+            >
               <div className="flex items-center mb-6">
                 <User className="w-12 h-12 text-purple-500 mr-4" />
                 <div>
@@ -364,10 +368,12 @@ export default function CorporateElearningPage() {
                 </div>
               </div>
             </div>
-            </Link>
 
             {/* AI Dubbing & Localization */}
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-green-500/50 transition-all duration-300">
+            <div 
+              onClick={() => navigate('/services/ai-video-dubbing')}
+              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-green-500/50 transition-all duration-300 cursor-pointer"
+            >
               <div className="flex items-center mb-6">
                 <Volume2 className="w-12 h-12 text-green-500 mr-4" />
                 <div>
@@ -396,7 +402,10 @@ export default function CorporateElearningPage() {
             </div>
 
             {/* Custom AI Solutions */}
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300">
+            <div 
+              onClick={() => navigate('/services/custom-solutions')}
+              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-orange-500/50 transition-all duration-300 cursor-pointer"
+            >
               <div className="flex items-center mb-6">
                 <Wand2 className="w-12 h-12 text-orange-500 mr-4" />
                 <div>
