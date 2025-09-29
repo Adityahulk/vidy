@@ -335,6 +335,8 @@ export default function CorporateElearningPage() {
             </div>
 
             {/* Personality Cloning */}
+            <Link>
+            to="/playground" 
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-purple-500/50 transition-all duration-300">
               <div className="flex items-center mb-6">
                 <User className="w-12 h-12 text-purple-500 mr-4" />
@@ -362,6 +364,7 @@ export default function CorporateElearningPage() {
                 </div>
               </div>
             </div>
+            </Link>
 
             {/* AI Dubbing & Localization */}
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-8 hover:border-green-500/50 transition-all duration-300">
