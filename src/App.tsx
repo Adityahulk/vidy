@@ -15,6 +15,7 @@ import CustomSolutionsService from './pages/CustomSolutionsService';
 import PlaygroundPage from './pages/PlaygroundPage';
 import AuthCallback from './pages/AuthCallback';
 import ProfilePage from './pages/ProfilePage';
+import CorporateElearningPage from './pages/CorporateElearningPage';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/playground" element={<PlaygroundPage />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/corporate-elearning" element={<CorporateElearningPage />} />
       </Routes>
     </div>
   );
