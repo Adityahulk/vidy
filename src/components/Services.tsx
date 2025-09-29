@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { Scissors, User, Volume2, Zap, Film, Wand2 } from 'lucide-react';
+import { Scissors, User, Volume2, Zap, Film, Wand2, Building, ArrowRight } from 'lucide-react';
 
 const services = [
   {
