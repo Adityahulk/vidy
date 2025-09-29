@@ -556,6 +556,5 @@ export default function CorporateElearningPage() {
 
       <Footer />
     </div>
-  )
   );
 }
