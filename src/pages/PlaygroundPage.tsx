@@ -39,7 +39,7 @@ const services = [
   {
     id: 'personality-clone' as ServiceType,
     title: 'Personality Clone',
-    icon: User,
+    icon: Users,
     description: 'Clone your complete personality with face, voice, and gestures',
     color: 'blue',
     gradient: 'from-blue-500 to-purple-600',
