@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCircle, Star, Building, Target, Zap, Shield, BarChart3, Award } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCircle, Star, Building, Target, Zap, Shield, BarChart3, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
