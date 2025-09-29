@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCirc
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import InteractiveDubbingPlayer from '../components/InteractiveDubbingPlayer';
 
 export default function CorporateElearningPage() {
   useEffect(() => {
