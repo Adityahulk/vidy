@@ -67,7 +67,7 @@ export default function CorporateElearningPage() {
                 onClick={scrollToContact}
                 className="group bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-green-700 transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center"
               >
-                <span>Get Enterprise Demo</span>
+                <span>Request a Pilot</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button 
