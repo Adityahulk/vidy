@@ -10,6 +10,8 @@ export default function CorporateElearningPage() {
     window.scrollTo(0, 0);
   }, []);
 
+  const navigate = useNavigate();
+  
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
