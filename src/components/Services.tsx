@@ -23,16 +23,16 @@ const services = [
     features: ['Voice cloning', 'Lip-sync accuracy', '50+ languages']
   },
   {
-    icon: Wand2,
-    title: 'Custom Solutions',
-    description: 'Tailored AI video solutions designed specifically for your enterprise needs and workflow requirements.',
-    features: ['Custom integrations', 'API access', 'White-label options']
-  },
-  {
     icon: Users,
     title: 'AI Avatar Videos',
     description: 'Create professional videos with AI avatars. Choose from diverse avatars or create custom ones for any purpose.',
     features: ['Diverse avatar library', 'Custom avatars', 'Multi-language support']
+  },
+  {
+    icon: Wand2,
+    title: 'Custom Solutions',
+    description: 'Tailored AI video solutions designed specifically for your enterprise needs and workflow requirements.',
+    features: ['Custom integrations', 'API access', 'White-label options']
   }
 ];
 

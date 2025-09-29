@@ -7,7 +7,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { db } from '../lib/supabase';
 import AuthModal from '../components/AuthModal';
 
-type ServiceType = 'personality-clone' | 'lip-sync' | 'dubbing' | 'custom';
+type ServiceType = 'personality-clone' | 'lip-sync' | 'dubbing' | 'avatar-videos' | 'custom';
 
 interface UploadState {
   video: File | null;
@@ -62,6 +62,15 @@ const services = [
     color: 'green',
     gradient: 'from-green-500 to-blue-600',
     bgGlow: 'from-green-500/20 to-blue-500/20'
+  },
+  {
+    id: 'avatar-videos' as ServiceType,
+    title: 'AI Avatar Videos',
+    icon: Users,
+    description: 'Create professional videos with realistic AI avatars',
+    color: 'orange',
+    gradient: 'from-orange-500 to-red-600',
+    bgGlow: 'from-orange-500/20 to-red-500/20'
   }
 ];
 
@@ -86,6 +95,13 @@ const processingStages = {
     'Translating content...',
     'Generating dubbed audio...',
     'Syncing with video...'
+  ],
+  'avatar-videos': [
+    'Loading avatar model...',
+    'Processing script content...',
+    'Generating facial expressions...',
+    'Synchronizing lip movements...',
+    'Rendering final video...'
   ]
 };
 
@@ -234,6 +250,8 @@ export default function PlaygroundPage() {
         return uploadState.video && uploadState.audio;
       case 'dubbing':
         return uploadState.video && uploadState.language;
+      case 'avatar-videos':
+        return uploadState.script.trim() && uploadState.language;
       default:
         return false;
     }
@@ -250,6 +268,9 @@ export default function PlaygroundPage() {
         break;
       case 'dubbing':
         navigate(`/services/ai-video-dubbing`);
+        break;
+      case 'avatar-videos':
+        navigate(`/services/avatar-videos`);
         break;
       default:
         navigate(`/services/personality-clone`);
@@ -727,6 +748,44 @@ export default function PlaygroundPage() {
                   </div>
                 )}
 
+                {selectedService === 'avatar-videos' && (
+                  <div className="space-y-6">
+                    <div>
+                      <label className="block text-slate-300 mb-4 font-medium flex items-center space-x-2">
+                        <Brain className="w-4 h-4" />
+                        <span>Avatar Script</span>
+                        <span className="text-red-400">*</span>
+                      </label>
+                      <div className="relative">
+                        <textarea
+                          value={uploadState.script}
+                          onChange={(e) => setUploadState(prev => ({ ...prev, script: e.target.value }))}
+                          rows={6}
+                          className="w-full px-6 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
+                          placeholder="Enter your script here... The AI avatar will speak this text with realistic expressions and perfect lip-sync."
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-slate-300 mb-4 font-medium flex items-center space-x-2">
+                        <Globe className="w-4 h-4" />
+                        <span>Avatar Language</span>
+                        <span className="text-red-400">*</span>
+                      </label>
+                      <select
+                        value={uploadState.language}
+                        onChange={(e) => setUploadState(prev => ({ ...prev, language: e.target.value }))}
+                        className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:border-blue-500 focus:outline-none transition-colors"
+                      >
+                        {languages.map((lang) => (
+                          <option key={lang.code} value={lang.code}>
+                            {lang.flag} {lang.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                )}
                 {/* Processing Button */}
                 <div className="pt-6 border-t border-slate-700">
                   <button
