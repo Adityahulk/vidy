@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { ArrowLeft, ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCircle, Star, Building, Target, Zap, Shield, BarChart3, Award } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCircle, Star, Building, Target, Zap, Shield, BarChart3, Award, User, Volume2, Wand2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import InteractiveDubbingPlayer from '../components/InteractiveDubbingPlayer';
 
 export default function CorporateElearningPage() {
   useEffect(() => {
@@ -44,29 +43,29 @@ export default function CorporateElearningPage() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Transform Your{' '}
               <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-                Corporate Training
+                AI Training
               </span>{' '}
-              Globally
+              with Smart Avatars
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-              Eliminate expensive manual dubbing and reshoots. Instantly localize your onboarding, 
-              compliance, safety, and product training videos in 50+ languages with AI precision.
+              Transform documents, PPTs, and wikis into engaging avatar-based training videos. 
+              Create personalized learning experiences with AI avatars, voice cloning, and multi-language support.
             </p>
 
             {/* Key Stats */}
             <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto mb-12">
               <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">85%</div>
-                <div className="text-slate-400 text-sm">Cost Reduction</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">10x</div>
-                <div className="text-slate-400 text-sm">Faster Delivery</div>
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">90%</div>
+                <div className="text-slate-400 text-sm">Faster Creation</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl sm:text-3xl font-bold text-white mb-2">50+</div>
                 <div className="text-slate-400 text-sm">Languages</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl sm:text-3xl font-bold text-white mb-2">24/7</div>
+                <div className="text-slate-400 text-sm">Availability</div>
               </div>
             </div>
 
@@ -95,36 +94,36 @@ export default function CorporateElearningPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-              The Corporate Training Challenge
+              Traditional Training Challenges
             </h2>
             <p className="text-lg sm:text-xl text-slate-400">
-              Global companies struggle with expensive, time-consuming training localization
+              Organizations face multiple barriers in creating effective, scalable training content
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-6 text-center">
               <DollarSign className="w-12 h-12 text-red-400 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-white mb-2">High Costs</h3>
-              <p className="text-slate-400 text-sm">Manual dubbing costs $500-2000 per minute of video content</p>
+              <h3 className="text-lg font-bold text-white mb-2">Expensive Production</h3>
+              <p className="text-slate-400 text-sm">Professional video production costs $5,000-50,000 per training module</p>
             </div>
 
             <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-6 text-center">
               <Clock className="w-12 h-12 text-orange-400 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-white mb-2">Slow Delivery</h3>
-              <p className="text-slate-400 text-sm">Traditional localization takes 4-8 weeks per language</p>
+              <h3 className="text-lg font-bold text-white mb-2">Long Development</h3>
+              <p className="text-slate-400 text-sm">Traditional video creation takes 6-12 weeks from concept to delivery</p>
             </div>
 
             <div className="bg-yellow-500/10 border border-yellow-500/20 rounded-xl p-6 text-center">
               <Users className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-white mb-2">Inconsistent Quality</h3>
-              <p className="text-slate-400 text-sm">Different voice actors create inconsistent brand experience</p>
+              <h3 className="text-lg font-bold text-white mb-2">Boring Content</h3>
+              <p className="text-slate-400 text-sm">Static presentations and documents fail to engage modern learners</p>
             </div>
 
             <div className="bg-purple-500/10 border border-purple-500/20 rounded-xl p-6 text-center">
               <Target className="w-12 h-12 text-purple-400 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-white mb-2">Limited Scalability</h3>
-              <p className="text-slate-400 text-sm">Difficult to update content across multiple languages quickly</p>
+              <h3 className="text-lg font-bold text-white mb-2">Update Challenges</h3>
+              <p className="text-slate-400 text-sm">Updating training content requires complete re-production cycles</p>
             </div>
           </div>
         </div>
