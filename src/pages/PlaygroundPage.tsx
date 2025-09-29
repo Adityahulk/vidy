@@ -750,6 +750,7 @@ export default function PlaygroundPage() {
                           {selectedService === 'personality-clone' ? 'Initialize Video Cloning' :
                            selectedService === 'lip-sync' ? 'Initialize AI Lip-Sync' :
                            selectedService === 'dubbing' ? 'Initialize AI Dubbing' :
+                           selectedService === 'avatar-videos' ? 'Generate Avatar Video' :
                            'Start AI Processing'}
                         </span>
                       </>

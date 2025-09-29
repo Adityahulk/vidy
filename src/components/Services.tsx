@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { Scissors, User, Volume2, Zap, Film, Wand2, Building, ArrowRight } from 'lucide-react';
+import { Scissors, User, Volume2, Zap, Film, Wand2, Building, ArrowRight, Users } from 'lucide-react';
 
 const services = [
   {
@@ -27,6 +27,12 @@ const services = [
     title: 'Custom Solutions',
     description: 'Tailored AI video solutions designed specifically for your enterprise needs and workflow requirements.',
     features: ['Custom integrations', 'API access', 'White-label options']
+  },
+  {
+    icon: Users,
+    title: 'AI Avatar Videos',
+    description: 'Create professional videos with AI avatars. Choose from diverse avatars or create custom ones for any purpose.',
+    features: ['Diverse avatar library', 'Custom avatars', 'Multi-language support']
   }
 ];
 
@@ -59,7 +65,8 @@ export default function Services() {
                 index === 0 ? "/services/personality-clone" :
                 index === 1 ? "/services/ai-lip-syncing" :
                 index === 2 ? "/services/ai-video-dubbing" :
-                index === 3 ? "/services/custom-solutions" : "#"
+                index === 3 ? "/services/custom-solutions" :
+                index === 4 ? "/services/avatar-videos" : "#"
               )}
               className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4 sm:p-6 lg:p-5 xl:p-6 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"
             >
