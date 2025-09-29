@@ -227,7 +227,9 @@ export default function LipSyncService() {
             Professional quality, fast processing, enterprise reliability.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+            <button 
+              onClick={() => window.open('https://calendly.com/aditya-vidsimplify/demo-call', '_blank')}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
               Start Free Trial
             </button>
             <Link 
