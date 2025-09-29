@@ -27,6 +27,14 @@ export default function CorporateElearningPage() {
         </div>
 
         <div className="relative container mx-auto px-6">
+          <Link 
+            to="/" 
+            className="inline-flex items-center space-x-2 text-slate-300 hover:text-white transition-colors mb-8"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span>Back to Home</span>
+          </Link>
+          
           <div className="max-w-5xl mx-auto text-center">
             <div className="inline-flex items-center space-x-2 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-full px-6 py-3 mb-8">
               <Building className="w-5 h-5 text-blue-400" />
