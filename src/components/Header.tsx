@@ -66,6 +66,9 @@ export default function Header() {
             <button onClick={() => scrollToSection('features')} className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base">
               Features
             </button>
+            <button onClick={() => navigate('/corporate-elearning')} className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base">
+              Corporate Training
+            </button>
             <button onClick={() => scrollToSection('about')} className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base">
               About
             </button>
@@ -101,6 +104,9 @@ export default function Header() {
               </button>
               <button onClick={() => scrollToSection('features')} className="text-slate-300 hover:text-white transition-colors text-left">
                 Features
+              </button>
+              <button onClick={() => navigate('/corporate-elearning')} className="text-slate-300 hover:text-white transition-colors text-left">
+                Corporate Training
               </button>
               <button onClick={() => scrollToSection('about')} className="text-slate-300 hover:text-white transition-colors text-left">
                 About
