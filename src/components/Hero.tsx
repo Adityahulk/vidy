@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import InteractivePersonalityClonePlayer from './InteractivePersonalityClonePlayer';
 import InteractiveDubbingPlayer from './InteractiveDubbingPlayer';
 import InteractiveLipSyncPlayer from './InteractiveLipSyncPlayer';
+import InteractiveAvatarPlayer from './InteractiveAvatarPlayer';
 
 export default function Hero() {
   const [currentDemoIndex, setCurrentDemoIndex] = useState(0);
@@ -31,6 +32,12 @@ export default function Hero() {
       description: 'Professional voice cloning in 50+ languages',
       component: <InteractiveDubbingPlayer isPreview={true} />,
       path: '/services/ai-video-dubbing'
+    },
+    {
+      title: 'AI Avatar Videos',
+      description: 'Realistic expressions, perfect lip-sync, multi-language support',
+      component: <InteractiveAvatarPlayer isPreview={true} />,
+      path: '/services/avatar-videos'
     },
   ];
 

@@ -214,18 +214,18 @@ export default function InteractiveAvatarPlayer({ isPreview = false }: Interacti
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-slate-800/30 rounded-lg p-4 text-center">
                 <User className="w-6 h-6 text-blue-500 mx-auto mb-2" />
-                <p className="text-white text-sm font-medium">Realistic Avatars</p>
-                <p className="text-slate-400 text-xs">Natural expressions</p>
+                <p className="text-white text-sm font-medium">Realistic Expressions</p>
+                <p className="text-slate-400 text-xs">Micro-movements & emotions</p>
             </div>
             <div className="bg-slate-800/30 rounded-lg p-4 text-center">
-                <Mic className="w-6 h-6 text-purple-500 mx-auto mb-2" />
-                <p className="text-white text-sm font-medium">Natural Speech</p>
-                <p className="text-slate-400 text-xs">Perfect lip-sync</p>
+                <Video className="w-6 h-6 text-purple-500 mx-auto mb-2" />
+                <p className="text-white text-sm font-medium">Perfect Lip-Sync</p>
+                <p className="text-slate-400 text-xs">Sub-frame accuracy</p>
             </div>
             <div className="bg-slate-800/30 rounded-lg p-4 text-center">
                 <Globe className="w-6 h-6 text-green-500 mx-auto mb-2" />
-                <p className="text-white text-sm font-medium">Multi-Language</p>
-                <p className="text-slate-400 text-xs">50+ languages</p>
+                <p className="text-white text-sm font-medium">50+ Languages</p>
+                <p className="text-slate-400 text-xs">Native pronunciation</p>
             </div>
         </div>
       </div>

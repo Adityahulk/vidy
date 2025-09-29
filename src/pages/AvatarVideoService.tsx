@@ -183,26 +183,26 @@ export default function AvatarVideoService() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
               <User className="w-8 h-8 text-blue-500 mb-4" />
-              <h3 className="text-lg font-semibold text-white mb-2">Realistic Expressions</h3>
-              <p className="text-slate-400 text-sm">Natural facial expressions and micro-movements that match the content and tone.</p>
+              <h3 className="text-lg font-semibold text-white mb-2">🎭 Realistic Expressions & Micro-Movements</h3>
+              <p className="text-slate-400 text-sm">Advanced AI creates natural facial expressions, eye movements, and subtle micro-expressions that perfectly match your content's emotional tone and context.</p>
             </div>
 
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
               <Video className="w-8 h-8 text-purple-500 mb-4" />
-              <h3 className="text-lg font-semibold text-white mb-2">Perfect Lip-Sync</h3>
-              <p className="text-slate-400 text-sm">Precise lip synchronization with natural speech patterns and timing.</p>
+              <h3 className="text-lg font-semibold text-white mb-2">🎤 Perfect Lip-Sync Technology</h3>
+              <p className="text-slate-400 text-sm">Industry-leading lip synchronization with sub-frame accuracy. Natural mouth movements, tongue positioning, and speech timing for broadcast-quality results.</p>
             </div>
 
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
-              <Palette className="w-8 h-8 text-green-500 mb-4" />
+              <Globe className="w-8 h-8 text-green-500 mb-4" />
+              <h3 className="text-lg font-semibold text-white mb-2">🌍 Multi-Language Support (50+ Languages)</h3>
+              <p className="text-slate-400 text-sm">Native pronunciation, cultural gestures, and language-specific expressions. From English to Mandarin, Spanish to Arabic - all with perfect accuracy.</p>
+            </div>
+
+            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
+              <Palette className="w-8 h-8 text-blue-500 mb-4" />
               <h3 className="text-lg font-semibold text-white mb-2">Customizable Appearance</h3>
               <p className="text-slate-400 text-sm">Adjust clothing, backgrounds, and styling to match your brand requirements.</p>
-            </div>
-
-            <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
-              <Globe className="w-8 h-8 text-blue-500 mb-4" />
-              <h3 className="text-lg font-semibold text-white mb-2">Multi-Language Support</h3>
-              <p className="text-slate-400 text-sm">Generate videos in 50+ languages with native pronunciation and accents.</p>
             </div>
 
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300">
@@ -354,8 +354,8 @@ export default function AvatarVideoService() {
             Ready to Create Avatar Videos?
           </h2>
           <p className="text-lg sm:text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
-            Start creating professional avatar videos today. 
-            Choose from hundreds of avatars or create your own custom avatar.
+            Create professional videos with AI avatars featuring realistic expressions, perfect lip-sync, 
+            and multi-language support. Transform any script into engaging video content instantly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button 

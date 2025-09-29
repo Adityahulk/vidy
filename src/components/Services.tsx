@@ -65,8 +65,8 @@ export default function Services() {
                 index === 0 ? "/services/personality-clone" :
                 index === 1 ? "/services/ai-lip-syncing" :
                 index === 2 ? "/services/ai-video-dubbing" :
-                index === 3 ? "/services/custom-solutions" :
-                index === 4 ? "/services/avatar-videos" : "#"
+                index === 3 ? "/services/avatar-videos" :
+                index === 4 ? "/services/custom-solutions" : "#"
               )}
               className="group relative bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl p-4 sm:p-6 lg:p-5 xl:p-6 hover:bg-slate-800/70 hover:border-blue-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer active:scale-95"
             >
