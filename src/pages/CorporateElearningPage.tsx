@@ -540,7 +540,7 @@ export default function CorporateElearningPage() {
                 <Clock className="w-6 h-6 text-white" />
               </div>
               <h4 className="text-white font-semibold mb-2">Quick Response</h4>
-              <p className="text-slate-400 text-sm">< 2 hours response time</p>
+              <p className="text-slate-400 text-sm">&lt; 2 hours response time</p>
             </div>
             
             <div className="text-center">
