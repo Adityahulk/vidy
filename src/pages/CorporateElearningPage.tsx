@@ -46,9 +46,9 @@ export default function CorporateElearningPage() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
               Transform Your{' '}
               <span className="bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent">
-                AI Training
+                Corporate Training
               </span>{' '}
-              with Smart Avatars
+              with AI Precision
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
