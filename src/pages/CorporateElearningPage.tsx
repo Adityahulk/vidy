@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ArrowLeft, ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCircle, Star, Building, Target, Zap, Shield, BarChart3, Award, User, Volume2, Wand2 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import InteractiveDubbingPlayer from '../components/InteractiveDubbingPlayer';
