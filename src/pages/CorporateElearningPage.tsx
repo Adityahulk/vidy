@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef  } from 'react';
 import { ArrowLeft, ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCircle, Star, Building, Target, Zap, Shield, BarChart3, Award, User, Volume2, Wand2 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
@@ -11,6 +11,7 @@ export default function CorporateElearningPage() {
   }, []);
 
   const navigate = useNavigate();
+  const scrollContainerRef = useRef(null);
   
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
