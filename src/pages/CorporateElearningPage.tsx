@@ -19,11 +19,23 @@ export default function CorporateElearningPage() {
 
   const handleScroll = (direction) => {
     if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
       const scrollAmount = 344; // Card width (w-80 = 320px) + gap (space-x-6 = 24px)
+
       if (direction === 'left') {
-        scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-      } else {
-        scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        // If at the beginning, scroll to the end
+        if (scrollLeft < 1) {
+          scrollContainerRef.current.scrollTo({ left: scrollWidth - clientWidth, behavior: 'smooth' });
+        } else {
+          scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+      } else { // 'right'
+        // If at (or near) the end, scroll to the beginning
+        if (scrollLeft + clientWidth >= scrollWidth - 1) {
+          scrollContainerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
       }
     }
   };
