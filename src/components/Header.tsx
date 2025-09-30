@@ -22,6 +22,16 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (solutionsMenuRef.current && !solutionsMenuRef.current.contains(event.target)) {
+        setIsSolutionsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false);
     
