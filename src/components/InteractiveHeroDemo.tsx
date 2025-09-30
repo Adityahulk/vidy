@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Play, Pause, FileText, File, Globe, Sparkles, Users, CheckCircle } from 'lucide-react';
 
+// --- Data Arrays ---
 const languages = [
   { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'es', name: 'Spanish', flag: '🇪🇸' },
@@ -10,21 +11,24 @@ const languages = [
 ];
 
 const avatars = [
-  { id: 1, name: 'Sarah', image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100' },
-  { id: 2, name: 'David', image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100' },
-  { id: 3, name: 'Maya', image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100' },
-  { id: 4, name: 'Alex', image: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100' },
+  { id: 1, name: 'Sarah', image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200' },
+  { id: 2, name: 'David', image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=200' },
+  { id: 3, name: 'Maya', image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=200' },
+  { id: 4, name: 'Alex', image: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=200' },
 ];
 
 export default function InteractiveHeroDemo() {
+  // --- State Management ---
   const [selectedSource, setSelectedSource] = useState('powerpoint');
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
+  const [videoTopic, setVideoTopic] = useState('Annual Compliance Training');
   const [isPlaying, setIsPlaying] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
   const [completedVideos] = useState(184);
   const [successRate] = useState(78);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef < HTMLVideoElement > (null);
 
+  // --- Handlers ---
   const handlePlayPause = () => {
     if (videoRef.current) {
       if (isPlaying) {
@@ -38,7 +42,7 @@ export default function InteractiveHeroDemo() {
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         {/* Left Side - Controls */}
         <div className="space-y-6">
           <div className="text-center lg:text-left">
@@ -49,54 +53,74 @@ export default function InteractiveHeroDemo() {
             </button>
           </div>
 
-          {/* Generate From Dropdown */}
-          <div className="relative">
-            <button
-              onClick={() => setShowDropdown(!showDropdown)}
-              className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors"
-            >
-              <div className="flex items-center space-x-3">
-                <Sparkles className="w-5 h-5 text-blue-600" />
-                <span className="text-gray-700 font-medium">Generate from</span>
-              </div>
-              <svg className={`w-5 h-5 text-gray-400 transition-transform ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            {showDropdown && (
-              <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-10">
-                <button
-                  onClick={() => {
-                    setSelectedSource('powerpoint');
-                    setShowDropdown(false);
-                  }}
-                  className={`w-full px-4 py-3 flex items-center space-x-3 hover:bg-gray-50 transition-colors ${
-                    selectedSource === 'powerpoint' ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
-                  }`}
-                >
-                  <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center">
-                    <FileText className="w-4 h-4 text-white" />
-                  </div>
-                  <span>PowerPoint</span>
-                </button>
-                <button
-                  onClick={() => {
-                    setSelectedSource('pdf');
-                    setShowDropdown(false);
-                  }}
-                  className={`w-full px-4 py-3 flex items-center space-x-3 hover:bg-gray-50 transition-colors ${
-                    selectedSource === 'pdf' ? 'bg-blue-50 text-blue-700' : 'text-gray-700'
-                  }`}
-                >
-                  <div className="w-6 h-6 bg-red-500 rounded flex items-center justify-center">
-                    <File className="w-4 h-4 text-white" />
-                  </div>
-                  <span>PDF</span>
-                </button>
-              </div>
-            )}
+          {/* Generate From Section (Always Visible) */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="flex items-center space-x-3 mb-3">
+              <Sparkles className="w-5 h-5 text-blue-600" />
+              <span className="font-medium text-gray-700">Generate from</span>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <button
+                onClick={() => setSelectedSource('powerpoint')}
+                className={`w-full px-4 py-3 flex items-center justify-center space-x-3 rounded-lg transition-colors ${
+                  selectedSource === 'powerpoint' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'hover:bg-gray-50 text-gray-700 border border-transparent'
+                }`}
+              >
+                <div className="w-6 h-6 bg-orange-500 rounded flex items-center justify-center">
+                  <FileText className="w-4 h-4 text-white" />
+                </div>
+                <span>PowerPoint</span>
+              </button>
+              <button
+                onClick={() => setSelectedSource('pdf')}
+                className={`w-full px-4 py-3 flex items-center justify-center space-x-3 rounded-lg transition-colors ${
+                  selectedSource === 'pdf' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'hover:bg-gray-50 text-gray-700 border border-transparent'
+                }`}
+              >
+                <div className="w-6 h-6 bg-red-500 rounded flex items-center justify-center">
+                  <File className="w-4 h-4 text-white" />
+                </div>
+                <span>PDF</span>
+              </button>
+            </div>
           </div>
+          
+          {/* Video Topic Section */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+             <div className="flex items-center space-x-3 mb-3">
+               <FileText className="w-5 h-5 text-blue-600" />
+               <span className="font-medium text-gray-700">What is this video about?</span>
+             </div>
+             <textarea
+                value={videoTopic}
+                onChange={(e) => setVideoTopic(e.target.value)}
+                rows={2}
+                className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="e.g., Annual Compliance Training"
+             />
+          </div>
+
+          {/* Avatar Selection */}
+          <div className="bg-white rounded-lg border border-gray-200 p-4">
+            <div className="flex items-center space-x-3 mb-3">
+              <Users className="w-5 h-5 text-blue-600" />
+              <span className="font-medium text-gray-700">Choose an Avatar</span>
+            </div>
+            <div className="flex items-center justify-between space-x-2">
+              {avatars.map((avatar) => (
+                <button key={avatar.id} onClick={() => setSelectedAvatar(avatar)} className="relative">
+                  <img
+                    src={avatar.image}
+                    alt={avatar.name}
+                    className={`w-16 h-16 rounded-full border-4 transition-all duration-200 ${
+                      selectedAvatar.id === avatar.id ? 'border-blue-500' : 'border-transparent hover:border-blue-200'
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+
 
           {/* Language Selection */}
           <div className="bg-white rounded-lg border border-gray-200 p-4">
@@ -131,7 +155,7 @@ export default function InteractiveHeroDemo() {
         </div>
 
         {/* Right Side - Video Preview */}
-        <div className="space-y-6">
+        <div className="space-y-6 sticky top-8">
           {/* Stats */}
           <div className="flex justify-end space-x-6 text-sm">
             <div className="flex items-center space-x-2">
@@ -147,24 +171,24 @@ export default function InteractiveHeroDemo() {
           </div>
 
           {/* Video Player */}
-          <div className="relative bg-gray-100 rounded-xl overflow-hidden">
+          <div className="relative bg-gray-100 rounded-xl overflow-hidden shadow-2xl">
             <div className="aspect-video bg-gradient-to-br from-orange-100 to-blue-100 relative">
               {/* Mock Video Content */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-32 h-32 bg-white rounded-full shadow-lg flex items-center justify-center mb-4 mx-auto">
-                    <img 
-                      src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200" 
-                      alt="AI Avatar" 
+                    <img
+                      src={selectedAvatar.image}
+                      alt={selectedAvatar.name}
                       className="w-28 h-28 rounded-full object-cover"
                     />
                   </div>
                   <div className="bg-white rounded-lg p-4 shadow-lg max-w-xs mx-auto">
-                    <h3 className="font-semibold text-gray-800 mb-2">An easier way to create videos</h3>
+                    <h3 className="font-semibold text-gray-800 mb-2 truncate">{videoTopic || 'Video Topic'}</h3>
                     <div className="flex items-center justify-center space-x-2 mb-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                      <span className="text-sm text-gray-600">Upload your logo</span>
-                    </div>
+                       <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                       <span className="text-sm text-gray-600">Based on your {selectedSource}</span>
+                     </div>
                     <div className="bg-orange-100 border-2 border-dashed border-orange-300 rounded-lg p-3 flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-orange-500 text-2xl mb-1">✱</div>
@@ -213,26 +237,6 @@ export default function InteractiveHeroDemo() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Avatar Selection */}
-          <div className="flex justify-end">
-            <div className="flex items-center space-x-2">
-              {avatars.map((avatar, index) => (
-                <div key={avatar.id} className="relative">
-                  <img
-                    src={avatar.image}
-                    alt={avatar.name}
-                    className="w-10 h-10 rounded-full border-2 border-white shadow-sm"
-                  />
-                  {index === avatars.length - 1 && (
-                    <div className="absolute -right-2 -top-2 bg-blue-600 text-white text-xs rounded-full w-6 h-6 flex items-center justify-center font-medium">
-                      +200
-                    </div>
-                  )}
-                </div>
-              ))}
             </div>
           </div>
         </div>
