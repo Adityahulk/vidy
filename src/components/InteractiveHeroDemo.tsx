@@ -46,7 +46,7 @@ export default function InteractiveHeroDemo() {
         {/* Left Side - Controls */}
         <div className="space-y-4">
           <div className="text-center lg:text-left">
-            <p className="text-slate-300 mb-4">AI avatars. Available in 100+ languages. No editing skills required.</p>
+            <p className="text-slate-300 mb-4">AI avatars. Available in 50+ languages. No editing skills required.</p>
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-semibold transition-colors flex items-center space-x-2 mx-auto lg:mx-0">
               <Sparkles className="w-5 h-5" />
               <span>Generate a free video</span>
