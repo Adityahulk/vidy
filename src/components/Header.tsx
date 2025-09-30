@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, Play, User, LogOut } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -8,6 +8,8 @@ import UserMenu from './UserMenu';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
+  const solutionsMenuRef = useRef(null);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
