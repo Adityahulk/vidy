@@ -360,6 +360,10 @@ export default function CorporateElearningPage() {
                   <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
                   <span>Automatic script generation</span>
                 </div>
+                <div className="mt-6 text-sm font-semibold text-blue-400 group-hover:text-blue-300 transition-colors duration-300 flex items-center">
+                  <span>Click to know more</span>
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </div>
 
