@@ -53,106 +53,100 @@ export default function InteractiveHeroDemo() {
             </button>
           </div>
           
-          {/* Re-organized Controls in a Nested Grid for better space management */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Nested Left Column */}
-            <div className="space-y-4">
-              {/* Generate From Section */}
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <div className="flex items-center space-x-3 mb-3">
-                  <Sparkles className="w-5 h-5 text-blue-600" />
-                  <span className="font-medium text-gray-700">Generate from</span>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => setSelectedSource('powerpoint')}
-                    className={`px-3 py-2 flex flex-col items-center justify-center space-y-2 rounded-lg transition-colors ${
-                      selectedSource === 'powerpoint' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'hover:bg-gray-50 text-gray-700 border border-transparent'
-                    }`}
-                  >
-                    <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-sm font-medium">PowerPoint</span>
-                  </button>
-                  <button
-                    onClick={() => setSelectedSource('pdf')}
-                     className={`px-3 py-2 flex flex-col items-center justify-center space-y-2 rounded-lg transition-colors ${
-                      selectedSource === 'pdf' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'hover:bg-gray-50 text-gray-700 border border-transparent'
-                    }`}
-                  >
-                    <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
-                      <File className="w-5 h-5 text-white" />
-                    </div>
-                    <span className="text-sm font-medium">PDF</span>
-                  </button>
-                </div>
+          {/* Corrected Controls Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+            {/* Generate From Section */}
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
+              <div className="flex items-center space-x-3 mb-3">
+                <Sparkles className="w-5 h-5 text-blue-600" />
+                <span className="font-medium text-gray-700">Generate from</span>
               </div>
-
-               {/* Avatar Selection */}
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <div className="flex items-center space-x-3 mb-3">
-                  <Users className="w-5 h-5 text-blue-600" />
-                  <span className="font-medium text-gray-700">Choose an Avatar</span>
-                </div>
-                <div className="flex items-center justify-between space-x-2">
-                  {avatars.map((avatar) => (
-                    <button key={avatar.id} onClick={() => setSelectedAvatar(avatar)} className="relative">
-                      <img
-                        src={avatar.image}
-                        alt={avatar.name}
-                        className={`w-12 h-12 md:w-14 md:h-14 rounded-full border-4 transition-all duration-200 ${
-                          selectedAvatar.id === avatar.id ? 'border-blue-500' : 'border-transparent hover:border-blue-200'
-                        }`}
-                      />
-                    </button>
-                  ))}
-                </div>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={() => setSelectedSource('powerpoint')}
+                  className={`px-3 py-2 flex flex-col items-center justify-center space-y-2 rounded-lg transition-colors ${
+                    selectedSource === 'powerpoint' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'hover:bg-gray-50 text-gray-700 border border-transparent'
+                  }`}
+                >
+                  <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-sm font-medium">PowerPoint</span>
+                </button>
+                <button
+                  onClick={() => setSelectedSource('pdf')}
+                   className={`px-3 py-2 flex flex-col items-center justify-center space-y-2 rounded-lg transition-colors ${
+                    selectedSource === 'pdf' ? 'bg-blue-50 text-blue-700 border border-blue-200' : 'hover:bg-gray-50 text-gray-700 border border-transparent'
+                  }`}
+                >
+                  <div className="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center">
+                    <File className="w-5 h-5 text-white" />
+                  </div>
+                  <span className="text-sm font-medium">PDF</span>
+                </button>
               </div>
             </div>
-            
-            {/* Nested Right Column */}
-            <div className="space-y-4">
-              {/* Video Topic Section */}
-              <div className="bg-white rounded-lg border border-gray-200 p-4 h-full">
-                <div className="flex items-center space-x-3 mb-3">
-                  <FileText className="w-5 h-5 text-blue-600" />
-                  <span className="font-medium text-gray-700">What is this video about?</span>
-                </div>
-                <textarea
-                    value={videoTopic}
-                    onChange={(e) => setVideoTopic(e.target.value)}
-                    rows={4}
-                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                    placeholder="e.g., Annual Compliance Training"
-                />
-              </div>
 
-               {/* Language Selection */}
-              <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <div className="flex items-center space-x-3 mb-3">
-                  <Globe className="w-5 h-5 text-blue-600" />
-                  <span className="font-medium text-gray-700">Language</span>
-                </div>
-                <div className="space-y-2">
-                  {languages.slice(0, 2).map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => setSelectedLanguage(lang)}
-                      className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
-                        selectedLanguage.code === lang.code
-                          ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                          : 'hover:bg-gray-50 text-gray-700'
+            {/* Video Topic Section */}
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
+              <div className="flex items-center space-x-3 mb-3">
+                <FileText className="w-5 h-5 text-blue-600" />
+                <span className="font-medium text-gray-700">What is this video about?</span>
+              </div>
+              <textarea
+                  value={videoTopic}
+                  onChange={(e) => setVideoTopic(e.target.value)}
+                  rows={3}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                  placeholder="e.g., Annual Compliance Training"
+              />
+            </div>
+            
+             {/* Avatar Selection */}
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
+              <div className="flex items-center space-x-3 mb-3">
+                <Users className="w-5 h-5 text-blue-600" />
+                <span className="font-medium text-gray-700">Choose an Avatar</span>
+              </div>
+              <div className="flex items-center justify-around space-x-2">
+                {avatars.map((avatar) => (
+                  <button key={avatar.id} onClick={() => setSelectedAvatar(avatar)} className="relative">
+                    <img
+                      src={avatar.image}
+                      alt={avatar.name}
+                      className={`w-12 h-12 md:w-14 md:h-14 rounded-full border-4 transition-all duration-200 ${
+                        selectedAvatar.id === avatar.id ? 'border-blue-500' : 'border-transparent hover:border-blue-200'
                       }`}
-                    >
-                      <span className="text-lg">{lang.flag}</span>
-                      <span>{lang.name}</span>
-                      {selectedLanguage.code === lang.code && (
-                        <CheckCircle className="w-4 h-4 text-blue-600 ml-auto" />
-                      )}
-                    </button>
-                  ))}
-                </div>
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+             {/* Language Selection */}
+            <div className="bg-white rounded-lg border border-gray-200 p-4">
+              <div className="flex items-center space-x-3 mb-3">
+                <Globe className="w-5 h-5 text-blue-600" />
+                <span className="font-medium text-gray-700">Language</span>
+              </div>
+              <div className="space-y-2">
+                {languages.slice(0, 2).map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => setSelectedLanguage(lang)}
+                    className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg transition-colors ${
+                      selectedLanguage.code === lang.code
+                        ? 'bg-blue-50 text-blue-700 border border-blue-200'
+                        : 'hover:bg-gray-50 text-gray-700'
+                    }`}
+                  >
+                    <span className="text-lg">{lang.flag}</span>
+                    <span>{lang.name}</span>
+                    {selectedLanguage.code === lang.code && (
+                      <CheckCircle className="w-4 h-4 text-blue-600 ml-auto" />
+                    )}
+                  </button>
+                ))}
               </div>
             </div>
           </div>
