@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Play, Globe, DollarSign, Clock, Users, CheckCirc
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import InteractiveHeroDemo from '../components/InteractiveHeroDemo';
 import InteractiveDubbingPlayer from '../components/InteractiveDubbingPlayer';
 
 export default function CorporateElearningPage() {
@@ -111,6 +112,11 @@ export default function CorporateElearningPage() {
                 <Play className="w-5 h-5" />
                 <span>Watch Demo</span>
               </button>
+            </div>
+
+            {/* Interactive Demo Component */}
+            <div className="mt-16 sm:mt-20">
+              <InteractiveHeroDemo />
             </div>
           </div>
         </div>
