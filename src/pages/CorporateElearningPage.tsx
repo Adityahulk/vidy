@@ -392,6 +392,10 @@ export default function CorporateElearningPage() {
                   <CheckCircle className="w-4 h-4 text-green-400 mr-3" />
                   <span>Unlimited content generation</span>
                 </div>
+                <div className="mt-6 text-sm font-semibold text-purple-400 group-hover:text-purple-300 transition-colors duration-300 flex items-center">
+                  <span>Click to know more</span>
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </div>
               </div>
             </div>
 
