@@ -130,6 +130,25 @@ export default function Header() {
         {isMenuOpen && (
           <div className="lg:hidden mt-4 py-6 px-6 border-t border-slate-700 bg-slate-900/95 backdrop-blur-md rounded-lg">
             <div className="flex flex-col space-y-4">
+              <button 
+                onClick={() => setIsSolutionsOpen(!isSolutionsOpen)} 
+                className="text-slate-300 hover:text-white transition-colors text-left flex items-center justify-between w-full"
+              >
+                <span>Solutions</span>
+                <ChevronDown className={`w-5 h-5 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isSolutionsOpen && (
+                <button
+                  onClick={() => {
+                    navigate('/corporate-elearning');
+                    setIsMenuOpen(false);
+                    setIsSolutionsOpen(false);
+                  }}
+                  className="text-slate-300 hover:text-white transition-colors text-left pl-4"
+                >
+                  Corporate E-learning
+                </button>
+              )}
               <button onClick={() => scrollToSection('services')} className="text-slate-300 hover:text-white transition-colors text-left">
                 Services
               </button>
