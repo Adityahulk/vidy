@@ -22,15 +22,25 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // REPLACE the old useEffect for handleClickOutside with this one:
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // This ref is for the desktop menu. We check if the click is outside of it.
       if (solutionsMenuRef.current && !solutionsMenuRef.current.contains(event.target)) {
         setIsSolutionsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+
+    // Only add the event listener when the solutions dropdown is open.
+    // This prevents it from instantly closing the mobile dropdown upon opening.
+    if (isSolutionsOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isSolutionsOpen]); // Add isSolutionsOpen to the dependency array
 
   const scrollToSection = (sectionId: string) => {
     setIsMenuOpen(false);
