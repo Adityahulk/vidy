@@ -160,7 +160,7 @@ export default function CorporateElearningPage() {
             </button>
 
             {/* Scrolling Container */}
-            <div className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div ref={scrollContainerRef} className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {/* Employee Onboarding Demo */}
               <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-blue-100 to-purple-100">
