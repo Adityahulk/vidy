@@ -17,6 +17,17 @@ export default function CorporateElearningPage() {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleScroll = (direction) => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 344; // Card width (w-80 = 320px) + gap (space-x-6 = 24px)
+      if (direction === 'left') {
+        scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+      } else {
+        scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Header />
