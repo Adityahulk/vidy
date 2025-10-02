@@ -191,22 +191,14 @@ export default function CorporateElearningPage() {
             {/* Scrolling Container */}
             <div ref={scrollContainerRef} className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {/* Employee Onboarding Demo */}
-              <div className="flex-shrink-0 w-96 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <div className="relative aspect-video bg-gradient-to-br from-blue-100 to-purple-100">
-                  <img
-                    src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
-                    alt="Employee Onboarding Demo"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                      <Play className="w-8 h-8 text-gray-800 ml-1" />
-                    </div>
-                  </div>
-                  <div className="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                    New Hire
-                  </div>
-                </div>
+              <video
+                  controls
+                  className="w-full aspect-video"
+                  poster="https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-02%20at%2010.22.47%20PM.png"
+                >
+                  <source src="https://storage.googleapis.com/vidsimplify/Employee%20onboarding.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-gray-900">Employee Onboarding</h3>
                 </div>
