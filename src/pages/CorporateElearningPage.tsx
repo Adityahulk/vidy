@@ -162,41 +162,8 @@ export default function CorporateElearningPage() {
         </div>
       </section>
 
-      {/* Demo Video Player Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-slate-800">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-              See AI Training in Action
-            </h2>
-            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
-              Watch how AI avatars deliver engaging compliance training
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
-              <video
-                controls
-                className="w-full aspect-video"
-                poster="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              >
-                <source src="https://storage.googleapis.com/vidsimplify/Compliance%20at%20workplace.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-              <div className="p-6 bg-slate-900">
-                <h3 className="text-xl font-bold text-white mb-2">Compliance at Workplace - AI Training Demo</h3>
-                <p className="text-slate-400">
-                  Experience how AI avatars deliver professional workplace compliance training with natural voice and engaging presentation.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Main Training Demo Section */}
-      <section id="demo-section" className="py-16 sm:py-20 lg:py-24 bg-slate-900 overflow-hidden">
+      <section id="demo-section" className="py-16 sm:py-20 lg:py-24 bg-slate-800 overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
@@ -250,18 +217,16 @@ export default function CorporateElearningPage() {
               </div>
 
               {/* Compliance & InfoSec Demo */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                 <div className="relative aspect-video bg-gradient-to-br from-green-100 to-blue-100">
-                  <img 
-                    src="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Compliance Training Demo" 
+                  <video
+                    controls
                     className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                      <Play className="w-8 h-8 text-gray-800 ml-1" />
-                    </div>
-                  </div>
+                    poster="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  >
+                    <source src="https://storage.googleapis.com/vidsimplify/Compliance%20at%20workplace.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                   <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium">
                     Compliance
                   </div>
