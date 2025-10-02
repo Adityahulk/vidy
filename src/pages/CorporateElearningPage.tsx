@@ -21,7 +21,7 @@ export default function CorporateElearningPage() {
   const handleScroll = (direction) => {
     if (scrollContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
-      const scrollAmount = 344; // Card width (w-80 = 320px) + gap (space-x-6 = 24px)
+      const scrollAmount = 408; // Card width (w-96 = 384px) + gap (space-x-6 = 24px)
 
       if (direction === 'left') {
         // If at the beginning, scroll to the end
@@ -191,7 +191,7 @@ export default function CorporateElearningPage() {
             {/* Scrolling Container */}
             <div ref={scrollContainerRef} className="flex space-x-6 overflow-x-auto scrollbar-hide pb-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {/* Employee Onboarding Demo */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="flex-shrink-0 w-96 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-blue-100 to-purple-100">
                   <img
                     src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -213,7 +213,7 @@ export default function CorporateElearningPage() {
               </div>
 
               {/* Compliance & InfoSec Demo */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+              <div className="flex-shrink-0 w-96 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                 <video
                   controls
                   className="w-full aspect-video"
@@ -228,7 +228,7 @@ export default function CorporateElearningPage() {
               </div>
 
               {/* Internal Upskilling Demo */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="flex-shrink-0 w-96 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-purple-100 to-pink-100">
                   <img
                     src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -250,7 +250,7 @@ export default function CorporateElearningPage() {
               </div>
 
               {/* Product Training Demo */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="flex-shrink-0 w-96 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-orange-100 to-red-100">
                   <img
                     src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -272,7 +272,7 @@ export default function CorporateElearningPage() {
               </div>
 
               {/* Safety Training Demo */}
-              <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <div className="flex-shrink-0 w-96 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-yellow-100 to-orange-100">
                   <img
                     src="https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800"
