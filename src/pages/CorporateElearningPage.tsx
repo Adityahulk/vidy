@@ -217,13 +217,13 @@ export default function CorporateElearningPage() {
                 <video
                   controls
                   className="w-full aspect-video"
-                  poster="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  poster="https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-02%20at%2010.22.47%20PM.png"
                 >
                   <source src="https://storage.googleapis.com/vidsimplify/Compliance%20at%20workplace.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-gray-900">Compliance & InfoSec</h3>
+                  <h3 className="text-lg font-bold text-gray-900">Compliance Training</h3>
                 </div>
               </div>
 
