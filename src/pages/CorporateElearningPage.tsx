@@ -194,7 +194,7 @@ export default function CorporateElearningPage() {
               <video
                   controls
                   className="w-full aspect-video"
-                  poster="https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-02%20at%2010.22.47%20PM.png"
+                  poster="https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-03%20at%202.58.51%20AM.png"
                 >
                   <source src="https://storage.googleapis.com/vidsimplify/Employee%20onboarding.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
