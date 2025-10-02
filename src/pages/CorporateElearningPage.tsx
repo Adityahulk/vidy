@@ -193,9 +193,9 @@ export default function CorporateElearningPage() {
               {/* Employee Onboarding Demo */}
               <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-blue-100 to-purple-100">
-                  <img 
-                    src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Employee Onboarding Demo" 
+                  <img
+                    src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Employee Onboarding Demo"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -207,45 +207,32 @@ export default function CorporateElearningPage() {
                     New Hire
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Employee Onboarding</h3>
-                  <p className="text-gray-600 text-sm mb-4">Welcome new employees with engaging avatar-based company culture and policy training in their native language.</p>
-                  <button className="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors flex items-center">
-                    Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                  </button>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-900">Employee Onboarding</h3>
                 </div>
               </div>
 
               {/* Compliance & InfoSec Demo */}
               <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                <div className="relative aspect-video bg-gradient-to-br from-green-100 to-blue-100">
-                  <video
-                    controls
-                    className="w-full h-full object-cover"
-                    poster="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  >
-                    <source src="https://storage.googleapis.com/vidsimplify/Compliance%20at%20workplace.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                  <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium">
-                    Compliance
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Compliance & InfoSec</h3>
-                  <p className="text-gray-600 text-sm mb-4">Deliver required compliance, security, & regulatory training in a format that's trackable, consistent, and easier to engage with.</p>
-                  <button className="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors flex items-center">
-                    Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                  </button>
+                <video
+                  controls
+                  className="w-full aspect-video"
+                  poster="https://images.pexels.com/photos/5668858/pexels-photo-5668858.jpeg?auto=compress&cs=tinysrgb&w=800"
+                >
+                  <source src="https://storage.googleapis.com/vidsimplify/Compliance%20at%20workplace.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-900">Compliance & InfoSec</h3>
                 </div>
               </div>
 
               {/* Internal Upskilling Demo */}
               <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-purple-100 to-pink-100">
-                  <img 
-                    src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Internal Upskilling Demo" 
+                  <img
+                    src="https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Internal Upskilling Demo"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -257,21 +244,17 @@ export default function CorporateElearningPage() {
                     Skills
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Internal Upskilling</h3>
-                  <p className="text-gray-600 text-sm mb-4">Produce short, focused videos that teach tools, processes, and soft skills without needing instructional design software.</p>
-                  <button className="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors flex items-center">
-                    Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                  </button>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-900">Internal Upskilling</h3>
                 </div>
               </div>
 
               {/* Product Training Demo */}
               <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-orange-100 to-red-100">
-                  <img 
-                    src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Product Training Demo" 
+                  <img
+                    src="https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Product Training Demo"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -283,21 +266,17 @@ export default function CorporateElearningPage() {
                     Product
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Product Explainers</h3>
-                  <p className="text-gray-600 text-sm mb-4">Use AI avatars to turn your product script into an engaging explainer video — complete with AI avatar, voiceover, and on-screen visuals.</p>
-                  <button className="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors flex items-center">
-                    Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                  </button>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-900">Product Explainers</h3>
                 </div>
               </div>
 
               {/* Safety Training Demo */}
               <div className="flex-shrink-0 w-80 bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer">
                 <div className="relative aspect-video bg-gradient-to-br from-yellow-100 to-orange-100">
-                  <img 
-                    src="https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Safety Training Demo" 
+                  <img
+                    src="https://images.pexels.com/photos/416978/pexels-photo-416978.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    alt="Safety Training Demo"
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
@@ -309,12 +288,8 @@ export default function CorporateElearningPage() {
                     Safety
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Safety Training</h3>
-                  <p className="text-gray-600 text-sm mb-4">Critical safety information delivered clearly with AI avatars ensuring consistent messaging across all locations and languages.</p>
-                  <button className="text-blue-600 font-medium text-sm hover:text-blue-700 transition-colors flex items-center">
-                    Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                  </button>
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-900">Safety Training</h3>
                 </div>
               </div>
             </div>
