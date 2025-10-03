@@ -29,7 +29,7 @@ const demoAvatars = [
     category: "Product Manager",
     isInteractive: true,
     videoOptions: [
-      { id: 'marketing', name: 'Marketing Pitch', icon: '🎯', videoUrl: 'https://storage.googleapis.com/vidsimplify/avatar_marketing.mp4' }
+      { id: 'marketing', name: 'Marketing Pitch', icon: '🎯', videoUrl: 'https://storage.googleapis.com/vidsimplify/Product%20Explainers.mp4' }
     ]
   }
 ];
