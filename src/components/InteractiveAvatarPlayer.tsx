@@ -19,8 +19,7 @@ const demoAvatars = [
     category: "Education",
     isInteractive: true,
     videoOptions: [
-      { id: 'lesson', name: 'Training Lesson', icon: '📚', videoUrl: 'https://storage.googleapis.com/vidsimplify/avatar_training.mp4' },
-      { id: 'welcome', name: 'Course Welcome', icon: '👋', videoUrl: 'https://storage.googleapis.com/vidsimplify/avatar_welcome.mp4' }
+      { id: 'lesson', name: 'Infosec Training', icon: '📚', videoUrl: 'https://storage.googleapis.com/vidsimplify/infosec%20training.mp4' }
     ]
   },
   {
