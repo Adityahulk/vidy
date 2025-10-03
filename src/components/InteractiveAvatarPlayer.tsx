@@ -5,7 +5,7 @@ const demoAvatars = [
   {
     id: 1,
     name: "Sarah - Business Professional",
-    thumbnail: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400',
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-03%20at%202.56.40%20AM.png',
     category: "Business",
     isInteractive: true,
     videoOptions: [
