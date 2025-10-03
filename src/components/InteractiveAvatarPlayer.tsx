@@ -26,7 +26,7 @@ const demoAvatars = [
     id: 3,
     name: "Alicia",
     thumbnail: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
-    category: "Creative",
+    category: "Product Manager",
     isInteractive: true,
     videoOptions: [
       { id: 'marketing', name: 'Marketing Pitch', icon: '🎯', videoUrl: 'https://storage.googleapis.com/vidsimplify/avatar_marketing.mp4' }
