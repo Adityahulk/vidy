@@ -117,31 +117,6 @@ export default function InteractiveAvatarPlayer({ isPreview = false }: Interacti
           ))}
         </div>
       </div>
-
-      {/* Script Input Section */}
-      <div className="max-w-4xl mx-auto">
-        <h4 className="text-xl font-bold text-white mb-4 text-center">Enter Your Script</h4>
-        <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700 rounded-xl p-6">
-          <textarea
-            value={customScript}
-            onChange={(e) => !isPreview && setCustomScript(e.target.value)}
-            disabled={isPreview}
-            rows={4}
-            className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
-            placeholder="Enter your script here... The AI avatar will speak this text naturally with appropriate gestures and expressions."
-          />
-          <div className="mt-4 flex justify-center">
-            <button
-              onClick={handleGenerateVideo}
-              disabled={isPreview || !customScript.trim()}
-              className="bg-gradient-to-r from-green-600 to-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center space-x-2"
-            >
-              <Zap className="w-5 h-5" />
-              <span>Generate Custom Video</span>
-            </button>
-          </div>
-        </div>
-      </div>
       
       {/* Main Video Player */}
       <div>
