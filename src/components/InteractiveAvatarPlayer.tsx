@@ -4,7 +4,7 @@ import { Play, User, Palette, Video, Loader, Mic, Globe, Zap } from 'lucide-reac
 const demoAvatars = [
   {
     id: 1,
-    name: "Sarah - Business Professional",
+    name: "Sarah",
     thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%202.06.02%20AM.png',
     category: "Business",
     isInteractive: true,
@@ -14,8 +14,8 @@ const demoAvatars = [
   },
   {
     id: 2,
-    name: "David - Educator",
-    thumbnail: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400',
+    name: "Zainab",
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%201.53.42%20AM.png',
     category: "Education",
     isInteractive: true,
     videoOptions: [
