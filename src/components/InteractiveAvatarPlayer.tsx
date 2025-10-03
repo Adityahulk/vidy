@@ -9,8 +9,7 @@ const demoAvatars = [
     category: "Business",
     isInteractive: true,
     videoOptions: [
-      { id: 'intro', name: 'Company Introduction', icon: '🏢', videoUrl: 'https://storage.googleapis.com/vidsimplify/avatar_business_intro.mp4' },
-      { id: 'product', name: 'Product Demo', icon: '📱', videoUrl: 'https://storage.googleapis.com/vidsimplify/avatar_product_demo.mp4' }
+      { id: 'intro', name: 'Employee Onboarding', icon: '🏢', videoUrl: 'https://storage.googleapis.com/vidsimplify/Employee%20onboarding.mp4' }
     ]
   },
   {
