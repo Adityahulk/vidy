@@ -15,7 +15,7 @@ const demoAvatars = [
   {
     id: 2,
     name: "Zainab",
-    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%201.53.42%20AM.png',
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%201.53.17%20AM.png',
     category: "Cybersecurity",
     isInteractive: true,
     videoOptions: [
