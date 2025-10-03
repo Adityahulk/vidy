@@ -25,7 +25,7 @@ const demoAvatars = [
   {
     id: 3,
     name: "Alicia",
-    thumbnail: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
+    thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%202.15.56%20AM.png',
     category: "Product Manager",
     isInteractive: true,
     videoOptions: [
