@@ -256,7 +256,6 @@ export default function CorporateElearningPage() {
                   <h3 className="text-lg font-bold text-gray-900">Product Explainers</h3>
                 </div>
               </div>
-              </div>
             </div>
           </div>
         </div>
