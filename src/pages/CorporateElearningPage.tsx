@@ -242,7 +242,7 @@ export default function CorporateElearningPage() {
                   className="w-full aspect-video"
                   poster="https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%201.53.42%20AM.png"
                 >
-                  <source src="https://storage.googleapis.com/vidsimplify/infosec%20training.mp4" type="video/mp4" />
+                  <source src="https://storage.googleapis.com/vidsimplify/Product%20Explainers.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
                 <div className="p-4">
