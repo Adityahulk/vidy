@@ -6,7 +6,7 @@ const demoAvatars = [
     id: 1,
     name: "Sarah",
     thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%202.06.02%20AM.png',
-    category: "Business",
+    category: "HR",
     isInteractive: true,
     videoOptions: [
       { id: 'intro', name: 'Employee Onboarding', icon: '🏢', videoUrl: 'https://storage.googleapis.com/vidsimplify/Employee%20onboarding.mp4' }
@@ -16,7 +16,7 @@ const demoAvatars = [
     id: 2,
     name: "Zainab",
     thumbnail: 'https://storage.googleapis.com/vidsimplify/Screenshot%202025-10-04%20at%201.53.42%20AM.png',
-    category: "Education",
+    category: "Cybersecurity",
     isInteractive: true,
     videoOptions: [
       { id: 'lesson', name: 'Infosec Training', icon: '📚', videoUrl: 'https://storage.googleapis.com/vidsimplify/infosec%20training.mp4' }
