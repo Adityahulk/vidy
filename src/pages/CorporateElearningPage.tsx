@@ -231,7 +231,7 @@ export default function CorporateElearningPage() {
                   Your browser does not support the video tag.
                 </video>
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-gray-900">InfoSec Training</h3>
+                  <h3 className="text-lg font-bold text-gray-900">Infosec Training</h3>
                 </div>
               </div>
 
