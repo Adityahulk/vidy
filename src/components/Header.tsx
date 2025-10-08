@@ -82,8 +82,8 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <div className="relative" ref={solutionsMenuRef}>
-              <button 
-                onClick={() => setIsSolutionsOpen(!isSolutionsOpen)} 
+              <button
+                onClick={() => setIsSolutionsOpen(!isSolutionsOpen)}
                 className="flex items-center space-x-1 text-slate-300 hover:text-white transition-colors text-sm xl:text-base"
               >
                 <span>Solutions</span>
@@ -91,7 +91,7 @@ export default function Header() {
               </button>
               {isSolutionsOpen && (
                 <div className="absolute top-full mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg py-1">
-                  <button 
+                  <button
                     onClick={() => {
                       navigate('/corporate-elearning');
                       setIsSolutionsOpen(false);
@@ -115,15 +115,7 @@ export default function Header() {
             <button onClick={() => scrollToSection('contact')} className="text-slate-300 hover:text-white transition-colors text-sm xl:text-base">
               Contact
             </button>
-            {user && (
-              <button 
-                onClick={signOut}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-sm xl:text-base flex items-center space-x-2"
-              >
-                <LogOut className="w-4 h-4" />
-                <span>Sign Out</span>
-              </button>
-            )}
+            {user && <UserMenu />}
           </div>
 
           {/* Mobile menu button */}
@@ -171,13 +163,9 @@ export default function Header() {
                 Contact
               </button>
               {user && (
-                <button 
-                  onClick={signOut}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold transition-colors text-left flex items-center space-x-2 w-full justify-center"
-                >
-                  <LogOut className="w-4 h-4" />
-                  <span>Sign Out</span>
-                </button>
+                <div className="pt-2 border-t border-slate-700">
+                  <UserMenu />
+                </div>
               )}
             </div>
           </div>
