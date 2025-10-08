@@ -1,33 +1,75 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User } from '@supabase/supabase-js';
-import { auth } from '../lib/supabase';
+import { auth, supabase } from '../lib/supabase';
+
+interface UserProfile {
+  id: string;
+  email: string;
+  full_name: string | null;
+  company: string | null;
+  credits: number;
+  subscription_tier: string;
+  avatar_url: string | null;
+}
 
 interface AuthContextType {
   user: User | null;
+  profile: UserProfile | null;
   loading: boolean;
   signInWithGoogle: () => Promise<any>;
   signUp: (email: string, password: string, fullName: string) => Promise<any>;
   signIn: (email: string, password: string) => Promise<any>;
   signOut: () => Promise<any>;
+  refreshProfile: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchProfile = async (userId: string) => {
+    const { data, error } = await supabase
+      .from('profiles')
+      .select('*')
+      .eq('id', userId)
+      .maybeSingle();
+
+    if (data && !error) {
+      setProfile(data);
+    }
+  };
+
+  const refreshProfile = async () => {
+    if (user) {
+      await fetchProfile(user.id);
+    }
+  };
+
   useEffect(() => {
-    // Get initial session
     auth.getCurrentUser().then(({ user }) => {
       setUser(user);
+      if (user) {
+        fetchProfile(user.id);
+      }
       setLoading(false);
     });
 
-    // Listen for auth changes
     const { data: { subscription } } = auth.onAuthStateChange((event, session) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
+      (async () => {
+        const currentUser = session?.user ?? null;
+        setUser(currentUser);
+
+        if (currentUser) {
+          await fetchProfile(currentUser.id);
+        } else {
+          setProfile(null);
+        }
+
+        setLoading(false);
+      })();
     });
 
     return () => subscription.unsubscribe();
@@ -55,11 +97,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const value = {
     user,
+    profile,
     loading,
     signInWithGoogle,
     signUp,
     signIn,
     signOut,
+    refreshProfile,
   };
 
   return (
