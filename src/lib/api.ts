@@ -60,6 +60,9 @@ interface VoiceCloneResponse {
 
 interface UploadResponse {
   url: string;
+  filename: string;
+  size_bytes: number;
+  uploaded_at: string;
 }
 
 export const api = {
@@ -67,7 +70,7 @@ export const api = {
     const formData = new FormData();
     formData.append('file', videoFile);
 
-    const response = await fetch(`${BASE_URL}/upload`, {
+    const response = await fetch(`${BASE_URL}/upload/video`, {
       method: 'POST',
       body: formData,
     });
