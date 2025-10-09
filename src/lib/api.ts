@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://vidsimplifycloning-production.up.railway.app/';
 
 interface GenerationInput {
   type: 'video' | 'audio' | 'text';
