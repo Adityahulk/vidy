@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import { useAuth } from '../contexts/AuthContext';
 import { db } from '../lib/supabase';
 import AuthModal from '../components/AuthModal';
+import PersonalityCloneWorkflow from '../components/PersonalityCloneWorkflow';
 
 type ServiceType = 'personality-clone' | 'lip-sync' | 'dubbing' | 'avatar-videos' | 'custom';
 
@@ -604,84 +605,66 @@ export default function PlaygroundPage() {
               </div>
               
               <div className="space-y-8">
-                {/* Video Upload - Required for all services */}
-                <div>
-                  <label className="block text-slate-300 mb-4 font-medium flex items-center space-x-2">
-                    <Film className="w-4 h-4" />
-                    <span>Primary Video Input</span>
-                    <span className="text-red-400">*</span>
-                  </label>
-                  <div 
-                    onClick={() => videoInputRef.current?.click()}
-                    className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
-                      uploadState.video 
-                        ? `border-${currentService.color}-500 bg-gradient-to-br ${currentService.bgGlow}`
-                        : `border-slate-600 hover:border-${currentService.color}-500 hover:bg-slate-800/50`
-                    }`}
-                  >
-                    {/* Tech Pattern Overlay */}
-                    <div className="absolute inset-0 opacity-5">
-                      <div className="w-full h-full" style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                        backgroundSize: '20px 20px'
-                      }}></div>
-                    </div>
-                    
-                    <div className="relative z-10">
-                      <Upload className="w-16 h-16 text-slate-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                      {uploadState.video ? (
-                        <div className="space-y-2">
-                          <p className="text-white font-medium flex items-center justify-center space-x-2">
-                            <CheckCircle className="w-5 h-5 text-green-400" />
-                            <span>{uploadState.video.name}</span>
-                          </p>
-                          <p className="text-slate-400 text-sm">{(uploadState.video.size / 1024 / 1024).toFixed(2)} MB • Ready for processing</p>
-                          <div className="flex items-center justify-center space-x-2 text-xs text-green-400">
-                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                            <span>File validated</span>
-                          </div>
-                        </div>
-                      ) : (
-                        <div className="space-y-3">
-                          <p className="text-white mb-2 font-medium">Upload Video File</p>
-                          <p className="text-slate-400 text-sm">MP4, MOV, AVI • Max 500MB • HD Quality Recommended</p>
-                          <div className="flex items-center justify-center space-x-4 text-xs text-slate-500 mt-4">
-                            <span>• Neural analysis ready</span>
-                            <span>• GPU acceleration enabled</span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  <input
-                    ref={videoInputRef}
-                    type="file"
-                    accept="video/*"
-                    onChange={(e) => e.target.files?.[0] && handleFileUpload('video', e.target.files[0])}
-                    className="hidden"
-                  />
-                </div>
-
                 {/* Service-specific inputs */}
-                {selectedService === 'personality-clone' && (
-                  <div className="space-y-6">
+                {selectedService === 'personality-clone' && user && (
+                  <PersonalityCloneWorkflow />
+                )}
+
+                {selectedService === 'personality-clone' && !user && (
+                  <div className="text-center py-8 bg-slate-900/50 rounded-xl border border-slate-700">
+                    <p className="text-slate-400 mb-4">Please sign in to use Personality Clone service</p>
+                    <button
+                      onClick={() => setShowAuthModal(true)}
+                      className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all"
+                    >
+                      Sign In
+                    </button>
+                  </div>
+                )}
+
+                {selectedService !== 'personality-clone' && (
+                  <>
                     <div>
                       <label className="block text-slate-300 mb-4 font-medium flex items-center space-x-2">
-                        <Brain className="w-4 h-4" />
-                        <span>Neural Script Input</span>
+                        <Film className="w-4 h-4" />
+                        <span>Primary Video Input</span>
                         <span className="text-red-400">*</span>
                       </label>
-                      <div className="relative">
-                        <textarea
-                          value={uploadState.script}
-                          onChange={(e) => setUploadState(prev => ({ ...prev, script: e.target.value }))}
-                          rows={6}
-                          className="w-full px-6 py-4 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-blue-500 focus:outline-none transition-colors resize-none"
-                          placeholder="Enter your script here... The AI will generate a video of your personality speaking this text naturally."
-                        />
+                      <div
+                        onClick={() => videoInputRef.current?.click()}
+                        className={`relative border-2 border-dashed rounded-xl p-8 text-center transition-all duration-300 cursor-pointer group ${
+                          uploadState.video
+                            ? `border-${currentService.color}-500 bg-gradient-to-br ${currentService.bgGlow}`
+                            : `border-slate-600 hover:border-${currentService.color}-500 hover:bg-slate-800/50`
+                        }`}
+                      >
+                        <div className="relative z-10">
+                          <Upload className="w-16 h-16 text-slate-400 mx-auto mb-4 group-hover:scale-110 transition-transform" />
+                          {uploadState.video ? (
+                            <div className="space-y-2">
+                              <p className="text-white font-medium flex items-center justify-center space-x-2">
+                                <CheckCircle className="w-5 h-5 text-green-400" />
+                                <span>{uploadState.video.name}</span>
+                              </p>
+                              <p className="text-slate-400 text-sm">{(uploadState.video.size / 1024 / 1024).toFixed(2)} MB</p>
+                            </div>
+                          ) : (
+                            <div className="space-y-3">
+                              <p className="text-white mb-2 font-medium">Upload Video File</p>
+                              <p className="text-slate-400 text-sm">MP4, MOV, AVI • Max 500MB</p>
+                            </div>
+                          )}
+                        </div>
                       </div>
+                      <input
+                        ref={videoInputRef}
+                        type="file"
+                        accept="video/*"
+                        onChange={(e) => e.target.files?.[0] && handleFileUpload('video', e.target.files[0])}
+                        className="hidden"
+                      />
                     </div>
-                  </div>
+                  </>
                 )}
 
                 {selectedService === 'lip-sync' && (

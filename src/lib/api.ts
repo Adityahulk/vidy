@@ -58,7 +58,28 @@ interface VoiceCloneResponse {
   description: string | null;
 }
 
+interface UploadResponse {
+  url: string;
+}
+
 export const api = {
+  uploadVideo: async (videoFile: File): Promise<UploadResponse> => {
+    const formData = new FormData();
+    formData.append('file', videoFile);
+
+    const response = await fetch(`${BASE_URL}/upload`, {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to upload video');
+    }
+
+    return response.json();
+  },
+
   createGeneration: async (data: CreateGenerationRequest): Promise<GenerationResponse> => {
     const response = await fetch(`${BASE_URL}/generations`, {
       method: 'POST',
@@ -171,4 +192,5 @@ export type {
   CostEstimateResponse,
   VoiceDetails,
   VoiceCloneResponse,
+  UploadResponse,
 };
