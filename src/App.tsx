@@ -17,6 +17,7 @@ import AuthCallback from './pages/AuthCallback';
 import ProfilePage from './pages/ProfilePage';
 import CorporateElearningPage from './pages/CorporateElearningPage';
 import AvatarVideoService from './pages/AvatarVideoService';
+import HospitalityTrainingPage from './pages/HospitalityTrainingPage';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/corporate-elearning" element={<CorporateElearningPage />} />
         <Route path="/services/avatar-videos" element={<AvatarVideoService />} />
+        <Route path="/solutions/hospitality-training" element={<HospitalityTrainingPage />} />
       </Routes>
     </div>
   );
