@@ -142,7 +142,7 @@ export default function HospitalityTrainingPage() {
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-              Scale your hospitality training across 50+ languages with AI-powered video solutions — without needing to record manually every time.
+              Scale your hospitality training across 50+ languages with AI-powered video solutions without needing to record manually every time.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
@@ -188,7 +188,7 @@ export default function HospitalityTrainingPage() {
               Tailored AI Video Use Cases for HTI
             </h2>
             <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto">
-              From multilingual training to brand-specific content — discover how AI video
+              From multilingual training to brand-specific content, discover how AI video
               solutions can transform your hospitality training operations
             </p>
           </div>
@@ -257,7 +257,7 @@ export default function HospitalityTrainingPage() {
                 Why HTI Should Choose Our AI Video Solutions
               </h2>
               <p className="text-lg text-slate-300 mb-8">
-                Since HTI already leads in hospitality training, our AI tools help you scale training videos effortlessly — in multiple languages, formats, and with consistent quality — without needing to record manually every time.
+                Since HTI already leads in hospitality training, our AI tools help you scale training videos effortlessly in multiple languages, formats, and with consistent quality — without needing to record manually every time.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
