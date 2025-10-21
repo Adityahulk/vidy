@@ -90,7 +90,7 @@ export default function Header() {
                 <ChevronDown className={`w-4 h-4 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} />
               </button>
               {isSolutionsOpen && (
-                <div className="absolute top-full mt-2 w-48 bg-slate-800 border border-slate-700 rounded-lg shadow-lg py-1">
+                <div className="absolute top-full mt-2 w-56 bg-slate-800 border border-slate-700 rounded-lg shadow-lg py-1">
                   <button
                     onClick={() => {
                       navigate('/corporate-elearning');
@@ -99,6 +99,15 @@ export default function Header() {
                     className="block w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors"
                   >
                     Corporate E-learning
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate('/solutions/hospitality-training');
+                      setIsSolutionsOpen(false);
+                    }}
+                    className="block w-full text-left px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors"
+                  >
+                    Hospitality Training
                   </button>
                 </div>
               )}
@@ -139,16 +148,28 @@ export default function Header() {
                 <ChevronDown className={`w-5 h-5 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} />
               </button>
               {isSolutionsOpen && (
-                <button
-                  onClick={() => {
-                    navigate('/corporate-elearning');
-                    setIsMenuOpen(false);
-                    setIsSolutionsOpen(false);
-                  }}
-                  className="text-slate-300 hover:text-white transition-colors text-left pl-4"
-                >
-                  Corporate E-learning
-                </button>
+                <div className="pl-4 space-y-2">
+                  <button
+                    onClick={() => {
+                      navigate('/corporate-elearning');
+                      setIsMenuOpen(false);
+                      setIsSolutionsOpen(false);
+                    }}
+                    className="text-slate-300 hover:text-white transition-colors text-left block"
+                  >
+                    Corporate E-learning
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate('/solutions/hospitality-training');
+                      setIsMenuOpen(false);
+                      setIsSolutionsOpen(false);
+                    }}
+                    className="text-slate-300 hover:text-white transition-colors text-left block"
+                  >
+                    Hospitality Training
+                  </button>
+                </div>
               )}
               <button onClick={() => scrollToSection('services')} className="text-slate-300 hover:text-white transition-colors text-left">
                 Services
