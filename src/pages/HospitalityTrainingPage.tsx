@@ -16,8 +16,8 @@ const useCases = [
     color: 'from-blue-500 to-purple-600',
     examples: [
       'Convert existing PPTs to engaging video lessons',
-      'Create quick multilingual versions (13+ languages)',
-      'Maintain consistency across 410+ cities'
+      'Create quick multilingual versions in 50+ languages',
+      'Maintain consistency across all locations'
     ]
   },
   {
@@ -25,12 +25,12 @@ const useCases = [
     title: 'Local Language Dubbing & Lip-Sync',
     description: 'Automatically translate and sync training videos in different languages',
     icon: Languages,
-    benefit: 'Scale 350+ local language trainers faster; maintain content quality',
+    benefit: 'Scale local language trainers faster; maintain content quality',
     solution: 'AI Video Dubbing + Lip-Syncing',
     link: '/services/ai-video-dubbing',
     color: 'from-green-500 to-blue-600',
     examples: [
-      'Dub existing videos in 13+ languages',
+      'Dub existing videos in 50+ languages',
       'Perfect lip-sync for authentic delivery',
       'No need to re-record for each language'
     ]
@@ -40,7 +40,7 @@ const useCases = [
     title: 'Personalized Brand Training Videos',
     description: 'Create brand-specific AI videos with different avatars, tone, and visuals',
     icon: Briefcase,
-    benefit: 'Rapid onboarding for 60+ partner brands with brand-specific tone',
+    benefit: 'Rapid onboarding for multiple partner brands with brand-specific tone',
     solution: 'Avatar Videos + Corporate eLearning',
     link: '/services/corporate-elearning',
     color: 'from-purple-500 to-pink-600',
@@ -98,10 +98,10 @@ const useCases = [
 ];
 
 const stats = [
-  { label: 'Languages Supported', value: '13+', icon: Globe },
-  { label: 'Partner Brands', value: '60+', icon: Briefcase },
-  { label: 'Cities Covered', value: '410+', icon: TrendingUp },
-  { label: 'Training Modules', value: '1000+', icon: BookOpen }
+  { label: 'Languages Supported', value: '50+', icon: Globe },
+  { label: 'Videos Processed', value: '10K+', icon: Video },
+  { label: 'AI Avatars', value: '100+', icon: Users },
+  { label: 'Demo Steps', value: '20+', icon: Play }
 ];
 
 export default function HospitalityTrainingPage() {
@@ -142,8 +142,7 @@ export default function HospitalityTrainingPage() {
             </h1>
 
             <p className="text-lg sm:text-xl md:text-2xl text-slate-300 mb-8 sm:mb-12 leading-relaxed px-4 sm:px-0">
-              Scale your hospitality training across 13+ languages, 60+ brands, and 410+ cities
-              with AI-powered video solutions — without needing to record manually every time.
+              Scale your hospitality training across 50+ languages with AI-powered video solutions — without needing to record manually every time.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4 sm:px-0">
@@ -258,9 +257,7 @@ export default function HospitalityTrainingPage() {
                 Why HTI Should Choose Our AI Video Solutions
               </h2>
               <p className="text-lg text-slate-300 mb-8">
-                Since HTI already leads in hospitality training and operates in 13+ languages across 60+ brands,
-                our AI tools help you scale training videos effortlessly — in multiple languages, formats,
-                and with consistent quality — without needing to record manually every time.
+                Since HTI already leads in hospitality training, our AI tools help you scale training videos effortlessly — in multiple languages, formats, and with consistent quality — without needing to record manually every time.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
